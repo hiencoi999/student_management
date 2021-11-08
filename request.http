@@ -1,0 +1,40 @@
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "username": "19021269@vnu.edu.vn",
+    "password": "12346"
+}
+
+###
+
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "username": "19021200@vnu.edu.vn",
+    "password": "19021200"
+}
+
+###
+POST http://localhost:5000/create-student-account
+Content-Type: application/json
+
+{
+    "username": "19021200@vnu.edu.vn",
+    "password": "19021200"
+}
+
+###
+
+POST http://localhost:5000/student
+Content-Type: application/json
+
+{
+    "id": "19021243",
+    "name": "Nguyễn Văn Thanh",
+    "birthday": Date: 31-08-2001,
+    "gender": "Nam",
+    "gpa": 2.5,
+    "status": "Không"
+}

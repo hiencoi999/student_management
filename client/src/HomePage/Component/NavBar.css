@@ -1,0 +1,259 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+.body {
+  height: 100%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 100%;
+  background-color: #0c67b3;
+  padding: 6px 14px;
+  transition: all 0.5s ease;
+}
+.sidebar.open {
+  width: 200px;
+}
+.sidebar .logo-details {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.sidebar .logo-details #btn {
+  position: absolute;
+  top: 50%;
+  margin-left: 10px;
+  transform: translateY(-50%);
+  font-size: 22px;
+  transition: all 0.5s ease;
+  font-size: 23px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.sidebar.open .logo-details #btn {
+  right: 0;
+}
+.sidebar .logo-details .logo_name {
+  color: white;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.sidebar.open .logo-details .logo_name {
+  opacity: 1;
+  margin-left: 10px;
+}
+.sidebar .nav-list {
+  margin-top: 20px;
+  height: 100%;
+}
+.sidebar li {
+  position: relative;
+  list-style: none;
+  height: 45px;
+  margin-right: 5px;
+  margin-bottom: 15px;
+}
+
+.sidebar li .tooltip {
+  position: absolute;
+  top: -20px;
+  left: calc(100% + 20px);
+  z-index: 3;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: 0s;
+}
+.sidebar li:hover .tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.sidebar.open li .tooltip {
+  display: none;
+}
+.sidebar li a {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.5s ease;
+}
+.home {
+  background: #1e94f5;
+}
+.home1 {
+  background: #1e94f5;
+}
+.sidebar li a:hover {
+  background: #fff;
+  cursor: pointer;
+}
+.sidebar li a .links_name {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s;
+}
+.sidebar.open li a .links_name {
+  opacity: 1;
+  pointer-events: auto;
+}
+.sidebar li a:hover .links_name,
+.sidebar li a:hover .icon {
+  transition: all 0.5s ease;
+  color: #11101d;
+}
+.icon {
+  margin-left: 15px;
+  margin-right: 20px;
+  margin-top: 3px;
+  color: #fff;
+}
+#main {
+  transition: all 0.5s ease;
+}
+#main_nightmode {
+  transition: all 0.5s ease;
+  background-color: #141229;
+}
+.night_mode {
+  margin-top: 170px;
+}
+
+.homewallpaper {
+  margin-top: 30px;
+  width: 1000px;
+  height: 450px;
+  border-radius: 20px;
+  margin-left: 140px;
+  transition: all 0.5s ease;
+  box-shadow: 3px 3px 3px black;
+}
+.homewallpaper.open {
+  margin-left: 150px;
+  margin-top: 27px;
+  width: 800px;
+  height: 380px;
+}
+#title {
+  color: #0c67b3;
+  text-shadow: 1px 1px #11101d;
+  font-size: 60px;
+  transition: all 0.5s ease;
+  text-align: center;
+  transition: all 0.5s ease;
+}
+.elements {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 4rem;
+  font-weight: 700;
+}
+.elements.open {
+  max-width: 800px;
+  font-size: 3rem;
+}
+#student,
+#noti {
+  color: rgb(88, 86, 86);
+  transition: all 0.5s ease;
+}
+
+.notifications {
+  /* max-width: 1500px; */
+  right: 0;
+  margin-left: 80px;
+  text-align: center;
+  height: 100vh;
+  transition: all 0.5s ease;
+}
+.notifications.open {
+  right: 0;
+  margin-left: 200px;
+}
+
+.hide_noti {
+  display: none;
+}
+.alert {
+  padding: 20px;
+  background-color: #0c67b3;
+  color: white;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: all 0.5s ease;
+}
+#main .alert:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #2f86ce;
+}
+#main_nightmode .alert {
+  /* max-width: 750px; */
+  background-color: rgb(100, 98, 98);
+  transition: all 0.5s ease;
+}
+.notifications.open .alert {
+  max-width: 750px;
+}
+.notiCloseBtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#main_nightmode .elements #student,
+#main_nightmode .elements #noti {
+  color: #fff;
+  text-shadow: 1px 1px 1px #fff;
+}
+#main_nightmode .elements {
+  color: rgb(184, 174, 174);
+}
+#main_nightmode .homewallpaper {
+  box-shadow: 3px 3px 3px rgb(160, 149, 149);
+}
+
+
+.nav_open {
+  right :0;
+  margin-left: 200px;
+  transition: all 0.6s ease;
+}
+
+.nav_close {
+  right :0;
+  margin-left: 80px;
+  transition: all 0.6s ease;
+}
