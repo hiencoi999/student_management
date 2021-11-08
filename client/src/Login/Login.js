@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Login.css";
 import axios from "axios";
-import { Router, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 // export default Login;
 

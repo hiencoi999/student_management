@@ -5,7 +5,7 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import NavBar from "./HomePage/Component/NavBar";
+import NavBar from "./HomePage/NavBar";
 import Login from "./Login/Login";
 
 const Invalid = () => {

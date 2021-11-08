@@ -64,3 +64,17 @@ tr {
   margin : 0px 0px 0px 10px;
   display: inline-block;
 }
+
+.center {
+  text-align: center;
+  margin-left: 30%;
+}
+
+.back {
+  padding-top: 50px;
+  margin-left: 20%;
+}
+
+.ml-20 {
+  margin-left: 20px;
+}
