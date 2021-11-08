@@ -1,5 +1,5 @@
 .container {
-    width: 70%;
+    width: 75%;
 }
 
 
@@ -24,6 +24,34 @@ legend {
 fieldset {
     border: 1px solid cadetblue;
     border-radius: 10px;
+}
+
+.left {
+    float: left;
+}
+
+.ml-20 {
+    margin-left: 20px;
+}
+.ml-10 {
+    margin-left: 10px;
+}
+.ml-50 {
+    margin-left: 50px;
+}
+.address {
+    clear: left;
+    margin-top: 20px;
+}
+
+hr {
+    clear: left;
+}
+
+.avatar {
+    margin: 5px;
+    border : 1px solid gray;
+    border-radius: 15px;
 }
 
 .goback {

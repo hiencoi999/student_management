@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { Component } from "react";
 import "./Login.css";
 import axios from "axios";
@@ -51,61 +52,67 @@ class Login extends Component {
   render() {
     if (this.state.isLogin === true) {
       return <Redirect to="/home" />;
-    }
-    return (
-      <form
-        className="_loginForm"
-        id="loginForm"
-        style={{ border: "3px solid rgba(0, 0, 0, 0.2)", display: "block" }}
-        action=""
-        method="post"
-        onSubmit={this.submit}
-      >
-        <div>
-          <label
-            className="_account"
-            style={{ lineHeight: "20px", marginLeft: "-120px" }}
+    } else {
+      return (
+        <div className='container'>
+          <div>
+            <img src='https://lh3.googleusercontent.com/proxy/OvcLwFoX_OZIZT3FFbc1zOEqN95cwIsdHvCmj3rJSKV1zWDm2XA0xZGEm2EHJ3y6unEeER4aNhmQC00kAsbrX0YNZnVktrv-mrnf1fMOt8gX-4GeeBS22VLWdEKx' width='100px' height='100px' />
+          </div>
+          <form
+            className="_loginForm"
+            id="loginForm"
+            style={{ border: "3px solid rgba(0, 0, 0, 0.2)", display: "block" }}
+            action=""
+            method="post"
+            onSubmit={this.submit}
           >
-            Username
-          </label>
-          <input
-            type="text"
-            required
-            name="username"
-            id="accInput"
-            className="_account"
-            placeholder="Enter your username"
-            value={this.state.username}
-            onChange={this.handle}
-          />
-        </div>
-        <div>
-          <label
-            className="_password"
-            style={{ lineHeight: "20px", marginLeft: "-120px" }}
-            htmlFor="password"
-          >
-            {" "}
-            Password{" "}
-          </label>
-          <input
-            type="password"
-            name="password"
-            id="passInput"
-            className="_password"
-            placeholder="Enter your password"
-            value={this.state.password}
-            onChange={this.handle}
-          />
-        </div>
+            <div>
+              <label
+                className="_account"
+                style={{ lineHeight: "20px", marginLeft: "-120px" }}
+              >
+                Username
+              </label>
+              <input
+                type="text"
+                required
+                name="username"
+                id="accInput"
+                className="_account"
+                placeholder="Enter your username"
+                value={this.state.username}
+                onChange={this.handle}
+              />
+            </div>
+            <div>
+              <label
+                className="_password"
+                style={{ lineHeight: "20px", marginLeft: "-120px" }}
+                htmlFor="password"
+              >
+                {" "}
+                Password{" "}
+              </label>
+              <input
+                type="password"
+                name="password"
+                id="passInput"
+                className="_password"
+                placeholder="Enter your password"
+                value={this.state.password}
+                onChange={this.handle}
+              />
+            </div>
 
-        <div className="_formElm form">
-          <button className="_button" type="submit">
-            LOGIN
-          </button>
+            <div className="_formElm form">
+              <button className="_button" type="submit">
+                LOGIN
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
-    );
+      );
+    }
   }
 }
 

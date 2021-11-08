@@ -13,16 +13,45 @@ class InfoStudent extends Component {
                         <b>Thông tin cá nhân</b>
                     </legend>
                     <section>
-                        <img src='https://img.lovepik.com/element/45004/4990.png_860.png'/>
+                        <div className='left'>
+                            <img className='avatar' src='https://i.imgur.com/k88evbb.png' width='150px' height='150px' />
+                        </div>
+                        <div className='left ml-50'>
+                            <p>Mã sinh viên: _______</p>
+                            <p>Họ và tên: _________</p>
+                            <p>Ngày sinh: dd/mm/yyyy</p>
+                            <p className='left'>Giới tính: Nam</p>
+                            <p className='left ml-50'>SĐT: ___________</p>
+                            <p>Địa chỉ E-mail ĐHQGHN: </p>
+                            <p>Địa chỉ E-mail khác: </p>
+                        </div>
                     </section>
+                    <div className='address ml-20'>
+                        <p className='left'>Quê quán: Phường/Xã :</p>
+                        <label className='left ml-10'>Thanh Bình Thịnh</label>
+                        <p className='left ml-10'>Quận/Huyện:</p>
+                        <label className='left ml-10'>Đức Thọ</label>
+                        <p className='left ml-10'>Tỉnh/Thành phố:</p>
+                        <label className='left ml-10'>Hà Tĩnh</label>
+                        <hr />
+                        <p className='left'>Chỗ ở hiện nay: Số nhà :</p>
+                        <label className='left ml-10'>2</label>
+                        <p className='left ml-10'>Đường:</p>
+                        <label className='left ml-10'>Mỹ Đình</label>
+                        <p className='left ml-10'>Phường:</p>
+                        <label className='left ml-10'>Mỹ Đình 1</label>
+                        <p className='left ml-10'>Quận:</p>
+                        <label className='left ml-10'>Nam Từ Liêm</label>
+                        <p className='left ml-10'>Thành phố:</p>
+                        <label className='left ml-10'>Hà Nội</label>
+                    </div>
+                    
                 </fieldset> <br/> <hr/>
-                <fieldset className='address'>
+                <fieldset className='gpa'>
                     <legend>
                         <b>Điểm số</b>
                     </legend>
-                    <section>
-
-                    </section>
+                    
                 </fieldset> <br/>
                 <Link to='/liststd' className='goback btn btn-danger'>
                     <span className="fa fa-arrow-left"></span> &nbsp; Quay lại

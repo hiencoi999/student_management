@@ -18,6 +18,10 @@ class OneRowData extends Component {
     }
   }
 
+  showID = (id) => {
+
+  }
+
   render() {
 
       //var day = this.dateTransform(student.date);
@@ -33,8 +37,8 @@ class OneRowData extends Component {
               <td className='text_center'>{student.mark}</td>
               <td className='text_center'>{student.status}</td>
               <td className='text_center'>
-              <Link to='/liststd/sua' className='btn btn-warning'>
-                  <span className='fa fa-pencil'></span> &nbsp;Sửa
+              <Link to='/liststd/sua' className='btn btn-warning' >
+                  <span className='fa fa-info'></span> &nbsp;Chi tiết
               </Link> &nbsp;
               <button className='btn btn-danger' type='button' onClick={() => this.onDelete(student.id)}>
                   <span className='fa fa-trash'></span> &nbsp;Xóa

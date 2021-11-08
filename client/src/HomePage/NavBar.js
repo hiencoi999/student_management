@@ -7,7 +7,6 @@ import { AiOutlineHome } from "react-icons/ai";
 import { BsClipboardData } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { BiLogOut } from "react-icons/bi";
-import { MdOutlineNightsStay } from "react-icons/md";
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,6 +18,9 @@ import Notification from "./Component/Notification";
 import ListStudent from "../ListStudent/ListStudent";
 import AddForm from "../ListStudent/Components/AddForm";
 import InfoStudent from '../ListStudent/Components/InfoStudent';
+import Home from '../HomePage/Component/Home';
+import Chart from "../Chart/Chart";
+import Chat from "../Chat/Chat";
 
 class NavBar extends Component {
 
@@ -28,9 +30,10 @@ class NavBar extends Component {
       openNav: false,
       chooseHome: true,
       chooseNoti: false,
+      chooseChat: false,
       chooseList: false,
-      chooseNight: false,
-      chooseLogout : false
+      chooseChart: false,
+      chooseProfile: false
     }
   };
 
@@ -44,7 +47,10 @@ class NavBar extends Component {
     this.setState({
       chooseHome: true,
       chooseNoti: false,
-      chooseList: false      
+      chooseChat: false,
+      chooseList: false,
+      chooseChart: false,
+      chooseProfile: false
     })
   }
 
@@ -52,19 +58,59 @@ class NavBar extends Component {
     this.setState({
       chooseHome: false,
       chooseNoti: true,
-      chooseList: false      
+      chooseChat: false,
+      chooseList: false,
+      chooseChart: false,
+      chooseProfile: false     
     })
   }
+
+  chooseChat = () => {
+    this.setState({
+      chooseHome: false,
+      chooseNoti: false,
+      chooseChat: true,
+      chooseList: false,
+      chooseChart: false,
+      chooseProfile: false     
+    })
+  }
+
   chooseList = () => {
     this.setState({
       chooseHome: false,
       chooseNoti: false,
-      chooseList: true      
+      chooseChat: false,
+      chooseList: true,
+      chooseChart: false,
+      chooseProfile: false    
+    })
+  }
+
+  chooseChart = () => {
+    this.setState({
+      chooseHome: false,
+      chooseNoti: false,
+      chooseChat: false,
+      chooseList: false,
+      chooseChart: true,
+      chooseProfile: false
+    })
+  }
+
+  chooseProfile = () => {
+    this.setState({
+      chooseHome: false,
+      chooseNoti: false,
+      chooseChat: false,
+      chooseList: false,
+      chooseChart: false,
+      chooseProfile: true
     })
   }
 
   render() {
-    var { openNav, chooseHome, chooseNoti, chooseList  } = this.state;
+    var { openNav, chooseHome, chooseNoti, chooseChat, chooseList, chooseChart, chooseProfile } = this.state;
     return (
       <Router>
         <section className='body'>
@@ -103,7 +149,7 @@ class NavBar extends Component {
               </li>
               <li>
                 <Link to='/chat'>
-                  <a>
+                  <a className={chooseChat ? 'home' : ''} onClick={this.chooseChat}>
                     <div className='icon'><span className='fa fa-comment-dots'></span></div>
                     <span className='links_name'>Chat</span>
                   </a>
@@ -117,24 +163,23 @@ class NavBar extends Component {
                   <div className='icon'>
                     <BsClipboardData />
                   </div>
-                  <span className='links_name'>Bảng Điểm</span>
+                  <span className='links_name'>DS Sinh viên</span>
                 </a>
                 </Link>
-                <span className='tooltip'>Bảng Điểm</span>
+                <span className='tooltip'>DS Sinh viên</span>
               </li>
-              <li className='night_mode'>
-                <a>
-                  {/* night mode */}
-                  <div className='icon'>
-                    <MdOutlineNightsStay />
-                  </div>
-                  <span className='links_name'>Night mode</span>
+              <li className='chart'>
+                <Link to='/chart'>
+                <a className={chooseChart ? 'home' : ''} onClick={this.chooseChart}>
+                  <div className='icon'><span className='fa fa-chart-bar'></span></div>
+                  <span className='links_name'>Biểu đồ điểm</span>
                 </a>
-                <span className='tooltip'>Night mode</span>
+                </Link>
+                <span className='tooltip'>Biểu đồ điểm</span>
               </li>
               <li className='profile'>
                 <Link to='/profile'>
-                  <a>
+                  <a className={chooseProfile ? 'home' : ''} onClick={this.chooseProfile}>
                     <div className='icon'><span className='fa fa-id-card'></span> </div>
                     <span className='links_name'>Hồ sơ</span>
                   </a>
@@ -157,17 +202,19 @@ class NavBar extends Component {
             <div>
               <Switch>
                 <Route path='/home'>
-                  <div>
-                    <p className={openNav ? 'element open' : 'element'} id='title'>QUẢN LÝ <span id='student'>SINH VIÊN</span></p>
-                    <hr/>
-                    <img className={openNav ? 'homewallpaper open' : 'homewallpaper'} src='https://images4.alphacoders.com/861/thumb-1920-861900.png'></img>
-                  </div>
+                  < Home />
                 </Route>
                 <Route path='/noti'>
                   < Notification />
                 </Route>
+                <Route path='/chat' exact>
+                  <Chat />
+                </Route>
                 <Route path='/liststd' exact>
                   <ListStudent />
+                </Route>
+                <Route path='/chart' exact>
+                  <Chart />
                 </Route>
                 <Route path='/liststd/add' exact>
                   <AddForm />
