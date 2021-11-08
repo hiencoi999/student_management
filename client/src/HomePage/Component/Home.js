@@ -21,9 +21,9 @@ export default class Home extends Component {
   // }
 
   render() {
-    if (localStorage.getItem("accessToken") == null) {
-      return <Redirect to="/auth" />;
-    }
+    // if (localStorage.getItem("accessToken") == null) {
+    //   return <Redirect to="/login" />;
+    // }
     return <h1>HOMEPAGE</h1>;
   }
 }

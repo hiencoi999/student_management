@@ -8,37 +8,20 @@ import {
 import NavBar from "./HomePage/Component/NavBar";
 import Login from "./Login/Login";
 
-var Auth = {
-  isAuthenticated: localStorage.getItem("accessToken") != null,
+const Invalid = () => {
+  return <Redirect to="/login" />;
 };
-
-// const PrivateRoute = ({ component: Component, ...rest }) => {
-//   return (
-//     <Route
-//       {...rest}
-//       render={(props) =>
-//         Auth.isAuthenticated === true ? (
-//           <Component {...props} />
-//         ) : (
-//           <Redirect to="/login" />
-//         )
-//       }
-//     />
-//   );
-// };
 
 class StudentManagement extends Component {
   render() {
     return (
       <Router>
         <Switch>
-          <Route path="/login" component={Login} />
           <Route path="/home" component={NavBar} />
-
-          {/* <NavBar /> */}
+          <Route exact path="/login" component={Login} />
+          <Route path="/" component={Invalid} />
         </Switch>
       </Router>
-      // <div> ALO</div>
     );
   }
 }

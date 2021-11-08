@@ -25,6 +25,7 @@ class NavBar extends Component {
       chooseList: false,
       chooseNight: false,
       chooseLogout: false,
+      isLogin: localStorage.getItem("accessToken") != null,
     };
   }
 
@@ -58,6 +59,9 @@ class NavBar extends Component {
   };
 
   render() {
+    if (this.state.isLogin === false) {
+      return <Redirect to="/login" />;
+    }
     var {
       openNav,
       chooseHome,
@@ -181,9 +185,6 @@ class NavBar extends Component {
                 <Route path="/list-students">
                   <ListStudent />
                 </Route>
-                {/* <Route>
-                  <Chat />
-                </Route> */}
               </Switch>
             </div>
           </div>
