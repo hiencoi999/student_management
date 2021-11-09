@@ -10,10 +10,11 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { BiLogOut } from "react-icons/bi";
 import { MdOutlineNightsStay } from "react-icons/md";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Home from "./Home";
 import Notification from "./Notification";
 import ListStudent from "../../ListStudent/ListStudent";
-import { Redirect } from "react-router-dom";
+import Logout from "../../Login/Logout";
 
 class NavBar extends Component {
   constructor(props) {
@@ -56,6 +57,11 @@ class NavBar extends Component {
       chooseNoti: false,
       chooseList: true,
     });
+  };
+
+  hoso = () => {
+    localStorage.removeItem("accessToken");
+    return <Redirect to="/login" />;
   };
 
   render() {
@@ -159,7 +165,7 @@ class NavBar extends Component {
                   <span className="tooltip">Hồ sơ</span>
                 </Link>
               </li>
-              <li className="logout">
+              <li className="logout" onClick={this.hoso}>
                 <Link to="/logout">
                   <a>
                     {/* Log out */}
@@ -184,6 +190,9 @@ class NavBar extends Component {
                 </Route>
                 <Route path="/list-students">
                   <ListStudent />
+                </Route>
+                <Route path="/logout">
+                  <Logout />
                 </Route>
               </Switch>
             </div>
