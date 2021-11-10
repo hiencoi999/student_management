@@ -92,7 +92,7 @@ class AddForm extends Component {
                                     <button type='submit' className="button submit btn btn-primary" onClick={this.onSubmit}>
                                         <span className="fa fa-plus"></span> &nbsp;Lưu lại
                                     </button> &nbsp;
-                                    <Link to='/liststd' className="button cancle btn btn-primary">
+                                    <Link to='/liststudent' className="button cancle btn btn-primary">
                                         <span className="fa fa-close"></span> &nbsp;Hủy bỏ
                                     </Link>
                                 </div>

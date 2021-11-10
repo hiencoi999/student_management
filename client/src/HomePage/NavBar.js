@@ -111,7 +111,7 @@ class NavBar extends Component {
   }
 
   logOut = (e) => {
-    dispatchEvent()
+    dispatchEvent({type : 'LOG_OUT'})
   }
 
   render() {
