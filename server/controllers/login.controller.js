@@ -57,9 +57,9 @@ export const createStudentAccount = async (req, res) => {
     if (user)
       return res
         .status(400)
-        .json({ success: false, message: "Username already taken" });
+        .json({ success: false, message: "Username already exist" });
 
-    // All good
+    // If user is ok -> save to the db
     const hashedPassword = await argon2.hash(password);
     const newUser = new Users({
       username,

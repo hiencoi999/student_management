@@ -54,9 +54,13 @@ class Login extends Component {
       return <Redirect to="/home" />;
     } else {
       return (
-        <div className='container'>
+        <div className="container">
           <div>
-            <img src='https://lh3.googleusercontent.com/proxy/OvcLwFoX_OZIZT3FFbc1zOEqN95cwIsdHvCmj3rJSKV1zWDm2XA0xZGEm2EHJ3y6unEeER4aNhmQC00kAsbrX0YNZnVktrv-mrnf1fMOt8gX-4GeeBS22VLWdEKx' width='100px' height='100px' />
+            <img
+              src="https://lh3.googleusercontent.com/proxy/0Ctva3jcX7mDqQPrAks7lBYR8gFEyNmYkYTDEPoGZ6oUztd3QhLBeLXudiPos2uSkJ0dZYUAK8q1OSI11GciyZNyerU"
+              width="100px"
+              height="100px"
+            />
           </div>
           <form
             className="_loginForm"

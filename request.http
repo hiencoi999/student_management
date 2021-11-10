@@ -33,7 +33,7 @@ Content-Type: application/json
 {
     "id": "19021243",
     "name": "Nguyễn Văn Thanh",
-    "birthday": Date: 31-08-2001,
+    "birthday": "2001-08-08",
     "gender": "Nam",
     "gpa": 2.5,
     "status": "Không"

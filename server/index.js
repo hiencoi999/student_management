@@ -16,6 +16,7 @@ app.use(cors());
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 
+
 mongoose
   .connect(DB_URL, {
     useNewUrlParser: true,

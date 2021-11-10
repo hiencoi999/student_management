@@ -1,22 +1,13 @@
 import React from "react";
 import axios from "axios";
+import { Redirect } from "react-router";
 
 const Notification = () => {
-  axios({
-    method: "post",
-    url: "localhost:5000/student",
-    data: {
-      firstName: "Fred",
-      lastName: "Flintstone",
-    },
-  })
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  // let isAuth = localStorage.getItem("accessToken") != null;
 
+  // if (!isAuth) {
+  //   return <Redirect to="/login" />;
+  // } else {
   return (
     <div>
       <p>THONG BAO</p>
@@ -26,6 +17,7 @@ const Notification = () => {
       </div>
     </div>
   );
+  // }
 };
 
 export default Notification;
