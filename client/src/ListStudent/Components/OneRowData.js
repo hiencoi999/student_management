@@ -24,7 +24,6 @@ class OneRowData extends Component {
 
   render() {
 
-      //var day = this.dateTransform(student.date);
     var { student, index } = this.props;
     //console.log(student.ngaysinh);
       return (

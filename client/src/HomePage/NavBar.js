@@ -21,6 +21,7 @@ import InfoStudent from '../ListStudent/Components/InfoStudent';
 import Home from '../HomePage/Component/Home';
 import Chart from "../Chart/Chart";
 import Chat from "../Chat/Chat";
+import Login from "../Login/Login";
 
 class NavBar extends Component {
 
@@ -136,7 +137,7 @@ class NavBar extends Component {
                 <span className='tooltip'>Trang chủ</span>
               </li>
               <li>
-                <Link to='/noti'>
+                <Link to='/notification'>
                 <a className={chooseNoti ? 'home' : ''} onClick={this.chooseNoti}>
                   {/* thong bao */}
                   <div className='icon'>
@@ -157,7 +158,7 @@ class NavBar extends Component {
                 </Link>
               </li>
               <li id='bangdiem'>
-                <Link to='/liststd'>
+                <Link to='/liststudent'>
                 <a className={chooseList ? 'home' : ''} onClick={this.chooseList}>
                   {/* danh sach sinh vien */}
                   <div className='icon'>
@@ -187,14 +188,16 @@ class NavBar extends Component {
                 </Link>
               </li>
               <li className='logout'>
-                <a>
-                  {/* Log out */}
-                  <div className='icon'>
-                    <BiLogOut />
-                  </div>
-                  <span className='links_name'>Đăng Xuất</span>
-                </a>
+                <Link to='/login'>
+                  <a>
+                    {/* Log out */}
+                    <div className='icon'>
+                      <BiLogOut />
+                    </div>
+                    <span className='links_name'>Đăng Xuất</span>
+                  </a>
                 <span className='tooltip'>Đăng Xuất</span>
+                </Link>
               </li>
             </ul>
           </div>
@@ -204,22 +207,22 @@ class NavBar extends Component {
                 <Route path='/home'>
                   < Home />
                 </Route>
-                <Route path='/noti'>
+                <Route path='/notification'>
                   < Notification />
                 </Route>
                 <Route path='/chat' exact>
                   <Chat />
                 </Route>
-                <Route path='/liststd' exact>
+                <Route path='/liststudent' exact>
                   <ListStudent />
                 </Route>
                 <Route path='/chart' exact>
                   <Chart />
                 </Route>
-                <Route path='/liststd/add' exact>
+                <Route path='/liststudent/add' exact>
                   <AddForm />
                 </Route>
-                <Route path='/liststd/sua' exact>
+                <Route path='/liststudent/sua' exact>
                   < InfoStudent />
                 </Route>
               </Switch>
