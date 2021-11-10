@@ -217,7 +217,7 @@ class NavBar extends Component {
                 </Link>
               </li>
               <li className="logout" onClick={this.logout}>
-                <Link to="/notification">
+                <Link to="/login">
                   {/* Log out */}
                   <div className="icon">
                     <BiLogOut />
