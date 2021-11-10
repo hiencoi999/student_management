@@ -110,6 +110,10 @@ class NavBar extends Component {
     })
   }
 
+  logOut = (e) => {
+    dispatchEvent()
+  }
+
   render() {
     var { openNav, chooseHome, chooseNoti, chooseChat, chooseList, chooseChart, chooseProfile } = this.state;
     return (
@@ -188,8 +192,7 @@ class NavBar extends Component {
                 </Link>
               </li>
               <li className='logout'>
-                <Link to='/login'>
-                  <a>
+                  <a href='#' onClick={(e) => this.logOut()}>
                     {/* Log out */}
                     <div className='icon'>
                       <BiLogOut />
@@ -197,7 +200,6 @@ class NavBar extends Component {
                     <span className='links_name'>Đăng Xuất</span>
                   </a>
                 <span className='tooltip'>Đăng Xuất</span>
-                </Link>
               </li>
             </ul>
           </div>
