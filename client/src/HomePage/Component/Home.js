@@ -6,7 +6,7 @@ import '../NavBar.css';
 export default class Home extends Component {
   render() {
     return (
-      <div className='Container' id='main'>
+      <div id='main'>
         <div className='homepage'>
           <p className='elements' id='title'>
             Classe <span id='student'>369</span>
