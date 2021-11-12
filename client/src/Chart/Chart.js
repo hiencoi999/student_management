@@ -9,7 +9,6 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import CallApi from "../API/CallApi";
 
 const data = [
   {

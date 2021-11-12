@@ -33,7 +33,7 @@ class OneRowData extends Component {
         <td className="text_center">{student.mark}</td>
         <td className="text_center">{student.status}</td>
         <td className="text_center">
-          <Link to="/list-students/sua" className="btn btn-warning">
+          <Link to="/liststudent/sua" className="btn btn-warning">
             <span className="fa fa-info"></span> &nbsp;Chi tiết
           </Link>{" "}
           &nbsp;

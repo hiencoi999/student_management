@@ -16,6 +16,7 @@ import InfoStudent from "../ListStudent/Components/InfoStudent";
 import Home from "../HomePage/Component/Home";
 import Chart from "../Chart/Chart";
 import Chat from "../Chat/Chat";
+import Login from "../Login/Login";
 
 class NavBar extends Component {
   constructor(props) {
@@ -103,8 +104,8 @@ class NavBar extends Component {
     });
   };
 
-  logout = () => {
-    localStorage.removeItem("accessToken");
+  logOut = (e) => {
+    dispatchEvent({ type: "LOG_OUT" });
   };
 
   render() {
@@ -174,7 +175,7 @@ class NavBar extends Component {
                 </Link>
               </li>
               <li id="bangdiem">
-                <Link to="/list-students">
+                <Link to="/liststudent">
                   <a
                     className={chooseList ? "home" : ""}
                     onClick={this.chooseList}
@@ -216,14 +217,14 @@ class NavBar extends Component {
                   <span className="tooltip">Hồ sơ</span>
                 </Link>
               </li>
-              <li className="logout" onClick={this.logout}>
-                <Link to="/login">
+              <li className="logout">
+                <a>
                   {/* Log out */}
                   <div className="icon">
                     <BiLogOut />
                   </div>
                   <span className="links_name">Đăng Xuất</span>
-                </Link>
+                </a>
                 <span className="tooltip">Đăng Xuất</span>
               </li>
             </ul>
@@ -240,16 +241,16 @@ class NavBar extends Component {
                 <Route path="/chat" exact>
                   <Chat />
                 </Route>
-                <Route path="/list-students" exact>
+                <Route path="/liststudent" exact>
                   <ListStudent />
                 </Route>
                 <Route path="/chart" exact>
                   <Chart />
                 </Route>
-                <Route path="/list-students/add" exact>
+                <Route path="/liststudent/add" exact>
                   <AddForm />
                 </Route>
-                <Route path="/list-students/sua" exact>
+                <Route path="/liststudent/sua" exact>
                   <InfoStudent />
                 </Route>
               </Switch>
