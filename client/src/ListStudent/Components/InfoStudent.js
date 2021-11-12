@@ -25,35 +25,20 @@ class InfoStudent extends Component {
                             <p>Địa chỉ E-mail ĐHQGHN: </p>
                             <p>Địa chỉ E-mail khác: </p>
                         </div>
-                    </section>
-                    <div className='address ml-20'>
-                        <p className='left'>Quê quán: Phường/Xã :</p>
-                        <label className='left ml-10'>Thanh Bình Thịnh</label>
-                        <p className='left ml-10'>Quận/Huyện:</p>
-                        <label className='left ml-10'>Đức Thọ</label>
-                        <p className='left ml-10'>Tỉnh/Thành phố:</p>
-                        <label className='left ml-10'>Hà Tĩnh</label>
-                        <hr />
-                        <p className='left'>Chỗ ở hiện nay: Số nhà :</p>
-                        <label className='left ml-10'>2</label>
-                        <p className='left ml-10'>Đường:</p>
-                        <label className='left ml-10'>Mỹ Đình</label>
-                        <p className='left ml-10'>Phường:</p>
-                        <label className='left ml-10'>Mỹ Đình 1</label>
-                        <p className='left ml-10'>Quận:</p>
-                        <label className='left ml-10'>Nam Từ Liêm</label>
-                        <p className='left ml-10'>Thành phố:</p>
-                        <label className='left ml-10'>Hà Nội</label>
-                    </div>
-                    
+                    </section>                    
                 </fieldset> <br/> <hr/>
                 <fieldset className='gpa'>
                     <legend>
                         <b>Điểm số</b>
                     </legend>
-                    
+                    <section>
+                        <div className='ml-20'>
+                            <p>Tổng số tín chỉ đã đăng ký: giá trị</p>
+                            <p>Điểm trung bình :</p>
+                        </div>
+                    </section>   
                 </fieldset> <br/>
-                <Link to='/liststd' className='goback btn btn-danger'>
+                <Link to='/list-students' className='goback btn btn-danger'>
                     <span className="fa fa-arrow-left"></span> &nbsp; Quay lại
                 </Link>
                 <button type='submit' className='btn btn-primary'>

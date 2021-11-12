@@ -1,0 +1,18 @@
+.container {
+    width: 75%;
+}
+
+.title {
+    text-align: center;
+    font-family: 'Arial';
+}
+
+.import {
+    border: 1px solid brown;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.mg-20 {
+    margin-left: 25%;
+}

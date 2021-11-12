@@ -21,7 +21,7 @@ import InfoStudent from '../ListStudent/Components/InfoStudent';
 import Home from '../HomePage/Component/Home';
 import Chart from "../Chart/Chart";
 import Chat from "../Chat/Chat";
-import Login from "../Login/Login";
+import ImportData from "../ListStudent/Components/ImportData";
 
 class NavBar extends Component {
 
@@ -162,7 +162,7 @@ class NavBar extends Component {
                 </Link>
               </li>
               <li id='bangdiem'>
-                <Link to='/liststudent'>
+                <Link to='/list-students'>
                 <a className={chooseList ? 'home' : ''} onClick={this.chooseList}>
                   {/* danh sach sinh vien */}
                   <div className='icon'>
@@ -215,17 +215,20 @@ class NavBar extends Component {
                 <Route path='/chat' exact>
                   <Chat />
                 </Route>
-                <Route path='/liststudent' exact>
+                <Route path='/list-students' exact>
                   <ListStudent />
                 </Route>
                 <Route path='/chart' exact>
                   <Chart />
                 </Route>
-                <Route path='/liststudent/add' exact>
+                <Route path='/list-students/add' exact>
                   <AddForm />
                 </Route>
-                <Route path='/liststudent/sua' exact>
+                <Route path='/list-students/sua' exact>
                   < InfoStudent />
+                </Route>
+                <Route path='/list-students/import-data' exact>
+                  <ImportData />
                 </Route>
               </Switch>
             </div>
