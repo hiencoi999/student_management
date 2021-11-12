@@ -1,9 +1,9 @@
-.container {
-  width :100%;
+/* .container {
+  width: 100%;
 }
 
 body {
-  background-color:rgb(84, 183, 219);
+  background-color: rgb(84, 183, 219);
 }
 
 .left {
@@ -27,16 +27,16 @@ body {
 
 #school_name {
   font-size: 35px;
-  color : rgb(7, 3, 146);
+  color: rgb(7, 3, 146);
   margin-top: 3%;
   font-weight: bolder;
-  font-family: 'Time new roman';
+  font-family: "Time new roman";
 }
 
 #appName {
-  font-family:'Arial';
+  font-family: "Arial";
   font-weight: bold;
-  color :white
+  color: white;
 }
 
 .login {
@@ -56,7 +56,7 @@ body {
   color: whitesmoke;
 }
 .login label {
-  color : white;
+  color: white;
 }
 
 input {
@@ -82,7 +82,7 @@ button {
 footer {
   border-top: 1px solid white;
   color: whitesmoke;
-  font-family: 'Arial';
+  font-family: "Arial";
   height: 30px;
   line-height: 30px;
   position: absolute;
@@ -90,8 +90,9 @@ footer {
   left: 0;
   width: 100%;
   text-align: center;
-}
+}*/
 
-footer p {
-  font-size: 12px;
-}
+/* footer p {
+  box-shadow: 1px 1px 1px black;
+ font-family: Verdana, Geneva, Tahoma, sans-serif
+} */

@@ -3,59 +3,167 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-import styled from 'styled-components';
+import styled from "styled-components";
+import "./Login.css";
+import { FaUser } from "react-icons/fa";
+import { RiLockPasswordFill } from "react-icons/ri";
+import Logo from "./uet.png";
+import AppLogo from "./applogo_1.png";
 
 const Body = styled.div`
-  background-color : rgb(84, 183, 219);
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
 `;
 const Container = styled.div`
-  width :100%;
-  height : 100%
-  background-color : rgb(84, 183, 219);
-`;
-const Left = styled.div`
-  float: left;
-`;
-const NotLeft = styled.div`
-clear : left;
-`;
-const Logo = styled.div`
-  margin-left : 15%;
-`;
-const Classe369 = styled.div`
-  margin-left : 20%;
-`;
-const AppName = styled.div`
-  margin-left: 0%;
-  width : 600px;
-`;
-const _Login = styled.div`
-  margin-left: 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(162, 199, 243);
-  border: 1px solid;
-  border-style: none;
-  border-radius: 10px;
   width: 100%;
-  max-width: 400px;
+  display: flex;
 `;
-const _Input = styled.div`
-  border-radius: 5px;
+const _Input = styled.input`
+  border: 0;
+  border-bottom: 2px solid #09599b;
+  outline: 0;
+  background: transparent;
+  width: 60%;
+`;
+const _Button = styled.button`
+  width: 260px;
+  margin-left: 70px;
   height: 40px;
-  width: 250px;
-  border-style: none;
-  padding-left: 15px;
-`;
-const _Button = styled.div`
-  margin-left: 70%;
-  height: 35px;
-  width: 100px;
-  border-radius: 15px;
-  border-style: none;
+  background-color: #2573b3;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.8rem;
+  transition: all 0.3s ease;
+  opacity: 0.9;
+  &:hover {
+    opacity: 1;
+  }
 `;
 
+const Icon = styled.i`
+  padding: 0px 5px 1px 0px;
+  border-bottom: 2px solid #09599b;
+  margin-left: 18%;
+  color: #2573b3;
+`;
+const Title = styled.p`
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 600;
+  font-size: 3rem;
+  color: #2573b3;
+  padding: 20px 0px 20px 0px;
+`;
+const Title1 = styled.p`
+  width: 150px;
+  margin: auto;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  &:hover {
+    cursor: pointer;
+    opacity: 1;
+  }
+`;
+const Form = styled.form`
+  width: 400px;
+  height: 500px;
+  margin-top: 100px;
+  background-color: white;
+  margin-left: 50%;
+  border-radius: 60px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+`;
+const Input_container = styled.div`
+  padding: 0 0 10px 0;
+`;
+const Uet_logo = styled.img`
+  width: 100px;
+  height: 100px;
+  margin-left: 150px;
+  margin-top: 20px;
+`;
+const App_logo = styled.img`
+  width: 650px;
+  height: 280px;
+`;
+const App_logo_container = styled.div`
+  margin: 160px 0 0 150px;
+`;
+const Form_container = styled.div``;
+const Line1 = styled.div`
+  top: -11rem;
+  left: -6rem;
+  position: absolute;
+  width: 500px;
+  height: 350px;
+  border: 4px solid rgb(12, 64, 124);
+  border-radius: 50%;
+`;
+const Line2 = styled.div`
+  position: absolute;
+  overflow: hidden;
+  width: 450px;
+  height: 350px;
+  border: 4px solid rgb(12, 64, 124);
+  border-radius: 50%;
+  right: -6.5rem;
+  bottom: -6rem;
+  opacity: 0.8;
+`;
+const Comment = styled.p`
+  margin: auto;
+  max-width: 380px;
+  text-align: center;
+  font-size: 1.4rem;
+  color: rgb(9, 49, 95);
+  transition: all 0.3s ease;
+  font-weight: bold;
+  opacity: 0.6;
+  line-height: 3rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  &:hover {
+    opacity: 1;
+  }
+`;
+const Comment1 = styled.p`
+  margin: auto;
+  max-width: 380px;
+  text-align: center;
+  font-size: 1.4rem;
+  color: rgb(9, 49, 95);
+  transition: all 0.3s ease;
+  font-weight: bold;
+  opacity: 0.6;
+  line-height: 3rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  &:hover {
+    opacity: 1;
+  }
+`;
+const Comment2 = styled.p`
+  margin: auto;
+  max-width: 380px;
+  text-align: center;
+  font-size: 1.4rem;
+  color: rgb(9, 49, 95);
+  transition: all 0.3s ease;
+  font-weight: bold;
+  opacity: 0.6;
+  line-height: 3rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  &:hover {
+    opacity: 1;
+  }
+`;
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -101,60 +209,54 @@ class Login extends Component {
 
   render() {
     if (this.state.isLogin === true) {
-      return <Redirect to="/home" />;
+      return <Redirect to='/home' />;
     } else {
       return (
         <Body>
+          <Line1></Line1>
+          <Line2></Line2>
           <Container>
-            <div >
-              <Left>
-                <img src='https://i.imgur.com/naCQWfW.png' width='170px' height='150px' />
-              </Left>
-              <Left>
-                <h2 id='school_name'> Trường Đại học Công Nghệ</h2>
-              </Left>
-            </div>
-            <NotLeft>
-              <Left>
-                <Logo>
-                  <Classe369>
-                    <img src='https://i.imgur.com/WrYiJFm.png' width='250px' height='200px' />
-                  </Classe369>
-                  <AppName><h2>Hệ thống quản lí sinh viên</h2></AppName>
-                </Logo>
-              </Left>
-              <Left>
-                <_Login>
-                  <NotLeft>
-                    <form action="" method="post" onSubmit={this.submit}>
-                      <NotLeft>
-                        <h3>Đăng nhập</h3> <br />
-                      </NotLeft>
-                      <div>
-                        <label>E-mail: </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <_Input>
-                          <input type="email" required name="username" placeholder="Nhập email trường uet"
-                                  value={this.state.username} onChange={this.handle} />
-                        </_Input>
-                      </div> <br />
-                      <div>
-                        <label>Mật khẩu:</label> &nbsp;
-                        <_Input>
-                          <input type="password" name="password" placeholder= "Nhập mật khẩu"
-                                  value={this.state.password} onChange={this.handle}/>
-                        </_Input>
-                      </div> <br />
-                      <_Button>
-                        <button className="_button" type="submit">Đăng nhập</button>
-                      </_Button> <br />
-                    </form>
-                  </NotLeft>
-                </_Login>
-              </Left>
-            </NotLeft>
-            <footer>
-              <p>Sản phẩm của nhóm 3 - K64-CACLC-4 - Trường Đại học Công Nghệ</p>
-            </footer>
+            <App_logo_container>
+              <App_logo src={AppLogo} />
+              <Comment>Hệ thống hỗ trợ quản lý sinh viên Classe369</Comment>
+              <Comment1>Xây dựng và phát triển bởi N3-INT3306_22</Comment1>
+              <Comment2>Trường Đại học Công nghệ - ĐHQGHN</Comment2>
+            </App_logo_container>
+            <Form_container>
+              <Form action='' method='post' onSubmit={this.submit}>
+                <Uet_logo src={Logo} />
+                <Title>ĐĂNG NHẬP</Title>
+                <Input_container>
+                  <Icon>
+                    <FaUser />
+                  </Icon>
+                  <_Input
+                    type='text'
+                    required
+                    name='username'
+                    placeholder='Email đăng nhập'
+                    value={this.state.username}
+                    onChange={this.handle}
+                  />
+                </Input_container>
+                <br />
+                <Input_container>
+                  <Icon>
+                    <RiLockPasswordFill />
+                  </Icon>
+                  <_Input
+                    type='password'
+                    name='password'
+                    placeholder='Mật khẩu'
+                    value={this.state.password}
+                    onChange={this.handle}></_Input>
+                </Input_container>
+                <br />
+                <Title1>Quên mật khẩu?</Title1>
+                <_Button>Đăng nhập</_Button>
+                <br />
+              </Form>
+            </Form_container>
           </Container>
         </Body>
       );
