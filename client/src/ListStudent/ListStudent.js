@@ -107,15 +107,15 @@ class ListStudent extends Component {
           </div>            
             <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
               &nbsp;
-              <Link to='/liststd/add' className="btn btn-primary">
+              <Link to='/list-students/add' className="btn btn-primary">
                 <span className="fa fa-plus"></span> &nbsp; Thêm sinh viên
               </Link> &nbsp;
               <button type='button' className='btn btn-primary data'>
                 <span className='fa fa-file-export'></span>&nbsp; Xuất file Excel
               </button>&nbsp;
-              <button type='button' className='btn btn-primary data'>
+              <Link to='/list-students/import-data' className='btn btn-primary data'>
                 <span className='fa fa-file-import'></span>&nbsp; Nhập dữ liệu từ Excel
-              </button> 
+              </Link> 
                 <div className="row">
                   <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <ListSV student={students} onDelete={this.onDelete} onFilter={this.onFilter} onSort={this.onSort}/>

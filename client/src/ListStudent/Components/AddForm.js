@@ -10,7 +10,8 @@ class AddForm extends Component {
             msv : '',
             name : '',
             date : '',
-            gender : '',
+            gender: '',
+            tc: '',
             mark : '',
             status : ''
         }
@@ -33,6 +34,7 @@ class AddForm extends Component {
             name: this.state.name,
             date: this.state.date,
             gender: this.state.gender,
+            tc: this.state.tc,
             mark: this.state.mark,
             status: this.state.status
         });
@@ -40,7 +42,8 @@ class AddForm extends Component {
             msv : '',
             name : '',
             date : '',
-            gender : '',
+            gender: '',
+            tc: '',
             mark : '',
             status : ''
         })
@@ -51,7 +54,7 @@ class AddForm extends Component {
         return (
             <div className='addForm'>
                 <div className='back'>
-                    <Link to='/liststd' className='btn btn-danger'>
+                    <Link to='/list-students' className='btn btn-danger'>
                         <span className="fa fa-arrow-left"></span> &nbsp; Quay lại
                     </Link>
                 </div>
@@ -65,21 +68,23 @@ class AddForm extends Component {
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
                                 <label>MSV: </label>
-                                <input type="text" className="form-control" name="msv" value={this.state.msv} onChange={this.onChange}/>
+                                <input type="text" className="form-control" required name="msv" value={this.state.msv} onChange={this.onChange}/>
                                 <label>Họ và tên: </label>
-                                <input type="text" className="form-control" name="name" value={this.state.name} onChange={this.onChange}/>
+                                <input type="text" className="form-control" required name="name" value={this.state.name} onChange={this.onChange}/>
                                 <label>Ngày sinh: </label>
-                                <input type="date" className="form-control" name="date" value={this.state.date} onChange={this.onChange}/>
+                                <input type="date" className="form-control" required name="date" value={this.state.date} onChange={this.onChange}/>
                                 <label>Giới tính:</label>
-                                <select className="form-control" name="gender" value={this.state.gender} onChange={this.onChange}>
+                                <select className="form-control" name="gender" required value={this.state.gender} onChange={this.onChange}>
                                     <option>--Select--</option>
                                     <option value="Nam">Nam</option>
                                     <option value="Nữ">Nữ</option>
                                 </select>
+                                <label>Tổng số tín chỉ: </label>
+                                <input type='text' className='form-control' required name='tc' value={this.state.tc} onChange={this.onChange}/>
                                 <label>GPA: </label>
-                                <input type="text" className='form-control' name="mark" value={this.state.mark} onChange={this.onChange}/>
+                                <input type="text" className='form-control' required name="mark" value={this.state.mark} onChange={this.onChange}/>
                                 <label>Trạng thái: </label>
-                                <select className="form-control" name="status" value={this.state.status} onChange={this.onChange}>
+                                <select className="form-control" required name="status" value={this.state.status} onChange={this.onChange}>
                                     <option>--Select--</option>
                                     <option value='Không'>Không </option>
                                     <option value='Nguy cơ nghỉ học'>Nguy cơ nghỉ học</option>
