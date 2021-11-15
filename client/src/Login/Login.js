@@ -80,8 +80,6 @@ const Form = styled.form`
   margin-left: 30%;
   border-radius: 60px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  z-index: 2;
-  posotion: relative;
 `;
 const Input_container = styled.div`
   padding: 0 0 10px 0;
@@ -119,7 +117,6 @@ const Line2 = styled.div`
   right: -6.5rem;
   bottom: -6rem;
   opacity: 0.8;
-  z-index: 0;
 `;
 const Comment = styled.p`
   margin: auto;
@@ -233,7 +230,7 @@ class Login extends Component {
                     <FaUser />
                   </Icon>
                   <_Input
-                    type='text'
+                    type='email'
                     required
                     name='username'
                     placeholder='Email đăng nhập'
@@ -255,7 +252,7 @@ class Login extends Component {
                 </Input_container>
                 <br />
                 <Title1>Quên mật khẩu?</Title1>
-                <_Button>Đăng nhập</_Button>
+                <_Button onClick={this.submit}>Đăng nhập</_Button>
                 <br />
               </Form>
             </Form_container>
