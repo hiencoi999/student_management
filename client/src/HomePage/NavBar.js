@@ -209,7 +209,7 @@ class NavBar extends Component {
                 <Route path='/home'>
                   < Home />
                 </Route>
-                <Route path='/notification'>
+                <Route path='/notification' exact>
                   < Notification />
                 </Route>
                 <Route path='/chat' exact>

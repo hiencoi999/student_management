@@ -9,7 +9,7 @@ import Logo from "./uet.png";
 import AppLogo from "./applogo_1.png";
 
 const Body = styled.div`
-  background-color: white;
+  background-color: rgb(186, 248, 255);
   position: relative;
   overflow: hidden;
   height: 100vh;
@@ -45,6 +45,7 @@ const Icon = styled.i`
   padding: 0px 5px 1px 0px;
   border-bottom: 2px solid #09599b;
   margin-left: 18%;
+  margin-right: 5px;
   color: #2573b3;
 `;
 const Title = styled.p`
@@ -76,9 +77,11 @@ const Form = styled.form`
   height: 500px;
   margin-top: 100px;
   background-color: white;
-  margin-left: 50%;
+  margin-left: 30%;
   border-radius: 60px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  z-index: 2;
+  posotion: relative;
 `;
 const Input_container = styled.div`
   padding: 0 0 10px 0;
@@ -90,8 +93,8 @@ const Uet_logo = styled.img`
   margin-top: 20px;
 `;
 const App_logo = styled.img`
-  width: 650px;
-  height: 280px;
+  width: 600px;
+  height: 250px;
 `;
 const App_logo_container = styled.div`
   margin: 160px 0 0 150px;
@@ -116,6 +119,7 @@ const Line2 = styled.div`
   right: -6.5rem;
   bottom: -6rem;
   opacity: 0.8;
+  z-index: 0;
 `;
 const Comment = styled.p`
   margin: auto;
