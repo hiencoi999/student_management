@@ -4,6 +4,10 @@ import cors from "cors";
 import loginRoute from "./routes/login.js";
 import dotenv from "dotenv";
 import createStudent from "./routes/student.js";
+import deleteStudent from "./routes/student.js";
+import importFromExcel from "./routes/student.js";
+import exportToExcel from "./routes/student.js";
+import getAllStudent from "./routes/student.js";
 
 const PORT = process.env.PORT || 5000;
 
@@ -16,7 +20,6 @@ app.use(cors());
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 
-
 mongoose
   .connect(DB_URL, {
     useNewUrlParser: true,
@@ -28,6 +31,13 @@ mongoose
 app.use("/", loginRoute);
 
 app.use("/", createStudent);
-// app.use('/student', (req, res) => {res.send("SSSS");});
+
+app.use("/", deleteStudent);
+
+app.use("/", importFromExcel);
+
+app.use("/", exportToExcel);
+
+app.use("/", getAllStudent);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT} `));

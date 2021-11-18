@@ -19,6 +19,17 @@ const studentSchema = new mongoose.Schema({
     default: "Nam",
     required: true,
   },
+  phone: {
+    type: String,
+    required: true,
+  },
+  address: {
+    type: String,
+    required: true,
+  },
+  sum_of_credits: {
+    type: Number,
+  },
   gpa: {
     type: Number,
   },
