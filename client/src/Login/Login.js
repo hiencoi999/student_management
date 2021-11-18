@@ -1,11 +1,168 @@
-/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable react/jsx-pascal-case */
 import React, { Component } from "react";
-import "./Login.css";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import styled from "styled-components";
+import { FaUser } from "react-icons/fa";
+import { RiLockPasswordFill } from "react-icons/ri";
+import Logo from "./uet.png";
+import AppLogo from "./applogo_1.png";
 
-// export default Login;
+const Body = styled.div`
+  background-color: rgb(186, 248, 255);
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+`;
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+`;
+const _Input = styled.input`
+  border: 0;
+  border-bottom: 2px solid #09599b;
+  outline: 0;
+  background: transparent;
+  width: 60%;
+`;
+const _Button = styled.button`
+  width: 260px;
+  margin-left: 70px;
+  height: 40px;
+  background-color: #2573b3;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.8rem;
+  transition: all 0.3s ease;
+  opacity: 0.9;
+  &:hover {
+    opacity: 1;
+  }
+`;
 
+const Icon = styled.i`
+  padding: 0px 5px 1px 0px;
+  border-bottom: 2px solid #09599b;
+  margin-left: 18%;
+  margin-right: 5px;
+  color: #2573b3;
+`;
+const Title = styled.p`
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 600;
+  font-size: 3rem;
+  color: #2573b3;
+  padding: 20px 0px 20px 0px;
+`;
+const Title1 = styled.p`
+  width: 150px;
+  margin: auto;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  &:hover {
+    cursor: pointer;
+    opacity: 1;
+  }
+`;
+const Form = styled.form`
+  width: 400px;
+  height: 500px;
+  margin-top: 100px;
+  background-color: white;
+  margin-left: 30%;
+  border-radius: 60px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+`;
+const Input_container = styled.div`
+  padding: 0 0 10px 0;
+`;
+const Uet_logo = styled.img`
+  width: 100px;
+  height: 100px;
+  margin-left: 150px;
+  margin-top: 20px;
+`;
+const App_logo = styled.img`
+  width: 600px;
+  height: 250px;
+`;
+const App_logo_container = styled.div`
+  margin: 160px 0 0 150px;
+`;
+const Form_container = styled.div``;
+const Line1 = styled.div`
+  top: -11rem;
+  left: -6rem;
+  position: absolute;
+  width: 500px;
+  height: 350px;
+  border: 4px solid rgb(12, 64, 124);
+  border-radius: 50%;
+`;
+const Line2 = styled.div`
+  position: absolute;
+  overflow: hidden;
+  width: 450px;
+  height: 350px;
+  border: 4px solid rgb(12, 64, 124);
+  border-radius: 50%;
+  right: -6.5rem;
+  bottom: -6rem;
+  opacity: 0.8;
+`;
+const Comment = styled.p`
+  margin: auto;
+  max-width: 380px;
+  text-align: center;
+  font-size: 1.4rem;
+  color: rgb(9, 49, 95);
+  transition: all 0.3s ease;
+  font-weight: bold;
+  opacity: 0.6;
+  line-height: 3rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  &:hover {
+    opacity: 1;
+  }
+`;
+const Comment1 = styled.p`
+  margin: auto;
+  max-width: 380px;
+  text-align: center;
+  font-size: 1.4rem;
+  color: rgb(9, 49, 95);
+  transition: all 0.3s ease;
+  font-weight: bold;
+  opacity: 0.6;
+  line-height: 3rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  &:hover {
+    opacity: 1;
+  }
+`;
+const Comment2 = styled.p`
+  margin: auto;
+  max-width: 380px;
+  text-align: center;
+  font-size: 1.4rem;
+  color: rgb(9, 49, 95);
+  transition: all 0.3s ease;
+  font-weight: bold;
+  opacity: 0.6;
+  line-height: 3rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  &:hover {
+    opacity: 1;
+  }
+`;
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -54,67 +211,54 @@ class Login extends Component {
       return <Redirect to="/home" />;
     } else {
       return (
-        <div className="container">
-          <div>
-            <img
-              src="https://lh3.googleusercontent.com/proxy/0Ctva3jcX7mDqQPrAks7lBYR8gFEyNmYkYTDEPoGZ6oUztd3QhLBeLXudiPos2uSkJ0dZYUAK8q1OSI11GciyZNyerU"
-              width="100px"
-              height="100px"
-            />
-          </div>
-          <form
-            className="_loginForm"
-            id="loginForm"
-            style={{ border: "3px solid rgba(0, 0, 0, 0.2)", display: "block" }}
-            action=""
-            method="post"
-            onSubmit={this.submit}
-          >
-            <div>
-              <label
-                className="_account"
-                style={{ lineHeight: "20px", marginLeft: "-120px" }}
-              >
-                Username
-              </label>
-              <input
-                type="text"
-                required
-                name="username"
-                id="accInput"
-                className="_account"
-                placeholder="Enter your username"
-                value={this.state.username}
-                onChange={this.handle}
-              />
-            </div>
-            <div>
-              <label
-                className="_password"
-                style={{ lineHeight: "20px", marginLeft: "-120px" }}
-                htmlFor="password"
-              >
-                {" "}
-                Password{" "}
-              </label>
-              <input
-                type="password"
-                name="password"
-                id="passInput"
-                className="_password"
-                placeholder="Enter your password"
-                value={this.state.password}
-                onChange={this.handle}
-              />
-            </div>
-
-            <div className="_formElm form">
-              <button className="_button" type="submit">
-                LOGIN
-              </button>
-            </div>
-          </form>
-        </div>
+        <Body>
+          <Line1></Line1>
+          <Line2></Line2>
+          <Container>
+            <App_logo_container>
+              <App_logo src={AppLogo} />
+              <Comment>Hệ thống hỗ trợ quản lý sinh viên Classe369</Comment>
+              <Comment1>Xây dựng và phát triển bởi N3-INT3306_22</Comment1>
+              <Comment2>Trường Đại học Công nghệ - ĐHQGHN</Comment2>
+            </App_logo_container>
+            <Form_container>
+              <Form action="" method="post" onSubmit={this.submit}>
+                <Uet_logo src={Logo} />
+                <Title>ĐĂNG NHẬP</Title>
+                <Input_container>
+                  <Icon>
+                    <FaUser />
+                  </Icon>
+                  <_Input
+                    type="email"
+                    required
+                    name="username"
+                    placeholder="Email đăng nhập"
+                    value={this.state.username}
+                    onChange={this.handle}
+                  />
+                </Input_container>
+                <br />
+                <Input_container>
+                  <Icon>
+                    <RiLockPasswordFill />
+                  </Icon>
+                  <_Input
+                    type="password"
+                    name="password"
+                    placeholder="Mật khẩu"
+                    value={this.state.password}
+                    onChange={this.handle}
+                  ></_Input>
+                </Input_container>
+                <br />
+                <Title1>Quên mật khẩu?</Title1>
+                <_Button onClick={this.submit}>Đăng nhập</_Button>
+                <br />
+              </Form>
+            </Form_container>
+          </Container>
+        </Body>
       );
     }
   }

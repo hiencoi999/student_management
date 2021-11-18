@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Redirect } from "react-router";
+import "../NavBar.css";
 
 const Notification = () => {
   // let isAuth = localStorage.getItem("accessToken") != null;
@@ -10,10 +10,28 @@ const Notification = () => {
   // } else {
   return (
     <div>
-      <p>THONG BAO</p>
-      <hr></hr>
+      <p className="elements">
+        THÔNG<span id="noti"> BÁO</span>
+      </p>
+      <div className="notiManagement">
+        <div>
+          <p id="add-noti-title">THÊM THÔNG BÁO</p>
+          <textarea id="notiText" placeholder="Thêm thông báo..."></textarea>
+          <br />
+          <button id="add-noti-btn">THÊM</button>
+        </div>
+      </div>
       <div className="alert">
-        <span className="notiCloseBtn">x</span>
+        <div className="hiddenNotiDetailBtn" id="notiHiddenBtn">
+          <span>?</span>
+        </div>
+        <div style={{ marginLeft: "30px" }}>Danh sách thông báo</div>
+        <span id="notiCloseBtn">
+          <span>!</span>
+        </span>
+      </div>
+      <div className="notiDetail" id="hiddenNotiDetail">
+        an huy 123
       </div>
     </div>
   );

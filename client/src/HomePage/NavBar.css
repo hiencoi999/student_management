@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
-.body {
+/* .body {
   height: 100%;
-}
+} */
 * {
   margin: 0;
   padding: 0;
@@ -134,26 +134,40 @@
 }
 #main {
   transition: all 0.5s ease;
+  height: 100%;
 }
 #main_nightmode {
+  height: 100%;
   transition: all 0.5s ease;
   background-color: #141229;
 }
-.profile{
-  margin-top: 150px;
+.night_mode {
+  margin-top: 350px;
 }
+.homepage {
+  /* max-width: 1500px; */
+  right: 0;
+  margin-left: 80px;
+  /* text-align: center; */
 
+  transition: all 0.5s ease;
+}
+.homepage.open {
+  right: 0;
+  margin-left: 200px;
+}
 .homewallpaper {
+  text-align: center;
   margin-top: 30px;
   width: 1000px;
   height: 450px;
   border-radius: 20px;
-  margin-left: 140px;
+  /* margin-left: 240px; */
   transition: all 0.5s ease;
   box-shadow: 3px 3px 3px black;
 }
 .homewallpaper.open {
-  margin-left: 150px;
+  /* margin-left: 320px; */
   margin-top: 27px;
   width: 800px;
   height: 380px;
@@ -161,9 +175,9 @@
 #title {
   color: #0c67b3;
   text-shadow: 1px 1px #11101d;
-  font-size: 60px;
   transition: all 0.5s ease;
-  text-align: center;
+}
+#homehr {
   transition: all 0.5s ease;
 }
 .elements {
@@ -172,6 +186,7 @@
   margin-right: auto;
   font-size: 4rem;
   font-weight: 700;
+  text-align: center;
 }
 .elements.open {
   max-width: 800px;
@@ -183,7 +198,23 @@
   transition: all 0.5s ease;
 }
 
-.notifications {
+#main_nightmode .elements #student,
+#main_nightmode .elements #noti {
+  color: #fff;
+  text-shadow: 1px 1px 1px #fff;
+}
+#main_nightmode .elements {
+  color: rgb(184, 174, 174);
+}
+#main_nightmode .homewallpaper {
+  box-shadow: 3px 3px 3px rgb(160, 149, 149);
+}
+.hide_board {
+  display: none;
+}
+
+.notifications,
+.scoreboard {
   /* max-width: 1500px; */
   right: 0;
   margin-left: 80px;
@@ -191,11 +222,11 @@
   height: 100vh;
   transition: all 0.5s ease;
 }
-.notifications.open {
+.notifications.open,
+.scoreboard.open {
   right: 0;
   margin-left: 200px;
 }
-
 .hide_noti {
   display: none;
 }
@@ -213,6 +244,7 @@
 #main .alert:hover {
   cursor: pointer;
   box-shadow: 1px 1px 1px #2f86ce;
+  background-color: #108bf0;
 }
 #main_nightmode .alert {
   /* max-width: 750px; */
@@ -222,29 +254,167 @@
 .notifications.open .alert {
   max-width: 750px;
 }
-.notiCloseBtn {
-  margin-left: 15px;
+.notiDetail {
+  padding: 20px;
+  background-color: #09477a;
   color: white;
-  font-weight: bold;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  margin-top: -10px;
+  transition: all 0.5s ease;
+}
+
+.profile{
+  margin-top: 150px;
+}
+
+#main_nightmode .notiDetail {
+  /* max-width: 750px; */
+  background-color: rgb(65, 62, 62);
+  transition: all 0.5s ease;
+}
+.notifications.open .notiDetail {
+  max-width: 730px;
+}
+#notiCloseBtn {
   float: right;
+  color: white;
   font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
+  font-weight: bold;
+  /* cursor: pointer; */
+  transition: all 0.3s ease;
+  margin-top: -25px;
 }
-
-#main_nightmode .elements #student,
-#main_nightmode .elements #noti {
-  color: #fff;
-  text-shadow: 1px 1px 1px #fff;
+#notiHiddenBtn {
+  float: left;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  /* cursor: pointer; */
+  transition: all 0.3s ease;
 }
-#main_nightmode .elements {
-  color: rgb(184, 174, 174);
+.hide_homepage {
+  display: none;
 }
-#main_nightmode .homewallpaper {
-  box-shadow: 3px 3px 3px rgb(160, 149, 149);
+.introduction {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.5s ease;
+  justify-content: space-between;
 }
-
+.homepage.open .introduction {
+  max-width: 800px;
+}
+.manage {
+  display: inline;
+  font-size: 2.9rem;
+  line-height: 3.2rem;
+  color: #0c67b3;
+}
+#_manage {
+  font-weight: 400;
+  color: rgb(97, 96, 96);
+  /* font-family: "Franklin Gothic Medium"; */
+}
+.manage_1 {
+  float: right;
+}
+#_intro1 {
+  margin-top: 20px;
+  max-width: 1000px;
+  font-size: 1.5rem;
+}
+#_footer1 {
+  font-size: 1.8rem;
+  line-height: 3.2rem;
+  color: #0c67b3;
+  text-align: center;
+  transition: all 0.5 ease;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+#_footer2 {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  text-align: center;
+  transition: all 0.5s ease;
+}
+.footer_icons {
+  /* display: inline; */
+  color: #0c67b3;
+  float: left;
+  margin-top: -10px;
+  text-align: center;
+  margin-left: 15%;
+  background-color: white;
+  height: 30px;
+  width: 30px;
+  transition: all 0.5s ease;
+}
+#main_nightmode .footer_icons {
+  background-color: #141229;
+  color: white;
+}
+#main_nightmode .footer_fn,
+#main_nightmode #_footer2,
+#main_nightmode #_intro1,
+#main_nightmode .manage_1 {
+  color: white;
+}
+#main_nightmode .manage,
+#main_nightmode #_footer1 {
+  color: #1792f7;
+}
+.footer_fn {
+  /* float: left; */
+  display: inline;
+  width: 120px;
+  text-align: center;
+  transition: all 0.5s ease;
+}
+#footer_fn1 {
+  margin-left: 15%;
+}
+#footer_fn2 {
+  margin-left: 12%;
+}
+#footer_fn3 {
+  margin-left: 8%;
+}
+#footer_fn4 {
+  margin-left: 6%;
+}
+.homepage.open .introduction .footer2 .footer_icons {
+  margin-left: 136px;
+}
+.homepage.open .introduction .footer2 #footer_fn1 {
+  margin-left: 90px;
+}
+.homepage.open .introduction .footer2 #footer_fn2 {
+  margin-left: 60px;
+}
+.homepage.open .introduction .footer2 #footer_fn3 {
+  margin-left: 60px;
+}
+.homepage.open .introduction .footer2 #footer_fn4 {
+  margin-left: 80px;
+}
+#hiddenNotiDetail {
+  display: none;
+  transition: all 0.5s ease;
+}
+.hiddenNotiDetailBtn {
+  display: none;
+}
+.hiddenNotiDetailBtn.open {
+  display: inline;
+}
 
 .nav_open {
   right :0;
@@ -256,4 +426,47 @@
   right :0;
   margin-left: 80px;
   transition: all 0.6s ease;
+}
+
+.notiManagement {
+  background-color: #0c67b3;
+  margin-bottom: 30px;
+  padding: 10px;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  transition: all 0.5s ease;
+}
+#notiText {
+  width: 500px;
+  min-height: 100px;
+  resize: vertical;
+  border-radius: 25px;
+  padding: 10px;
+}
+#add-noti-title {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  text-align: center;
+}
+#add-noti-btn {
+  background-color: white;
+  height: 30px;
+  width: 80px;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.5s ease;
+  color: rgb(24, 24, 24);
+  margin-left: 40%;
+}
+#add-noti-btn:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 1px black;
+  background-color: #5f5b5b;
+  color: rgb(235, 226, 226);
+}
+#main_nightmode .notifications .notiManagement {
+  background-color: gray;
 }

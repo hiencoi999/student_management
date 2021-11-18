@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
@@ -9,13 +10,7 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { BiLogOut } from "react-icons/bi";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import Notification from "./Component/Notification";
-import ListStudent from "../ListStudent/ListStudent";
-import AddForm from "../ListStudent/Components/AddForm";
-import InfoStudent from "../ListStudent/Components/InfoStudent";
-import Home from "../HomePage/Component/Home";
-import Chart from "../Chart/Chart";
-import Chat from "../Chat/Chat";
+import routes from "../router";
 
 class NavBar extends Component {
   constructor(props) {
@@ -107,6 +102,10 @@ class NavBar extends Component {
     localStorage.removeItem("accessToken");
   };
 
+  logOut = (e) => {
+    dispatchEvent({ type: "LOG_OUT" });
+  };
+
   render() {
     var {
       openNav,
@@ -130,7 +129,7 @@ class NavBar extends Component {
             </div>
             <ul className="nav-list">
               <li>
-                <Link to="/homepage">
+                <Link to="/home">
                   <a
                     className={chooseHome ? "home" : ""}
                     onClick={this.chooseHome}
@@ -229,36 +228,29 @@ class NavBar extends Component {
             </ul>
           </div>
           <div className={openNav ? "nav_open" : "nav_close"}>
-            <div>
-              <Switch>
-                <Route path="/homepage">
-                  <Home />
-                </Route>
-                <Route path="/notification">
-                  <Notification />
-                </Route>
-                <Route path="/chat" exact>
-                  <Chat />
-                </Route>
-                <Route path="/list-students" exact>
-                  <ListStudent />
-                </Route>
-                <Route path="/chart" exact>
-                  <Chart />
-                </Route>
-                <Route path="/list-students/add" exact>
-                  <AddForm />
-                </Route>
-                <Route path="/list-students/sua" exact>
-                  <InfoStudent />
-                </Route>
-              </Switch>
-            </div>
+            <div>{this.show(routes)}</div>
           </div>
         </section>
       </Router>
     );
   }
+
+  show = (routes) => {
+    var result = null;
+    if (routes.length > 0) {
+      result = routes.map((route, index) => {
+        return (
+          <Route
+            key={index}
+            path={route.path}
+            exact={route.exact}
+            component={route.main}
+          />
+        );
+      });
+    }
+    return <Switch>{result}</Switch>;
+  };
 }
 
 export default NavBar;
