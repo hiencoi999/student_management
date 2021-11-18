@@ -18,10 +18,6 @@ class OneRowData extends Component {
     }
   }
 
-  showID = (id) => {
-
-  }
-
   render() {
 
     var { student, index } = this.props;
@@ -36,7 +32,7 @@ class OneRowData extends Component {
               <td className='text_center'>{student.mark}</td>
               <td className='text_center'>{student.status}</td>
               <td className='text_center'>
-              <Link to='/list-students/sua' className='btn btn-warning' >
+            <Link to={`/list-students/update/${student.id}`} className='btn btn-warning' >
                   <span className='fa fa-info'></span> &nbsp;Chi tiết
               </Link> &nbsp;
               <button className='btn btn-danger' type='button' onClick={() => this.onDelete(student.id)}>

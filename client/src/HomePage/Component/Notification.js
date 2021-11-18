@@ -24,9 +24,9 @@ const Notification = () => {
         <div className='notiManagement'>
           <div>
             <p id='add-noti-title'>THÊM THÔNG BÁO</p>
-            <textarea id='notiText' placeholder='Nhap thong bao...'></textarea>
+            <textarea id='notiText' placeholder='Thêm thông báo...'></textarea>
             <br />
-            <button id='add-noti-btn'>GỬI</button>
+            <button id='add-noti-btn'>THÊM</button>
           </div>
         </div>
         <div className='alert'>

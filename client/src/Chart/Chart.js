@@ -30,37 +30,37 @@ class Chart extends Component {
     var data = [
       {
         name: "Dưới 2.0",
-        SV : 0
+        Số_SV : 0
       },
       {
         name: "2.0-2.5",
-        SV: 0
+        Số_SV: 0
       },
       {
         name: "2.5-3.0",
-        SV: 0
+        Số_SV: 0
       },
       {
         name: "3.0-3.2",
-        SV: 0
+        Số_SV: 0
       },
       {
         name: "3.2-3.6",
-        SV: 0
+        Số_SV: 0
       },
       {
         name: "3.6-4.0",
-        SV: 0
+        Số_SV: 0
       }
     ];
     var { students } = this.state;
     for (var i = 0; i < students.length; i++) {
-      if (students[i].mark < 2.0) data[0].SV += 1;
-      if (students[i].mark >= 2.0 && students[i].mark < 2.5) data[1].SV += 1;
-      if (students[i].mark >= 2.5 && students[i].mark < 3.0) data[2].SV += 1;
-      if (students[i].mark >= 3.0 && students[i].mark < 3.2) data[3].SV += 1;
-      if (students[i].mark >= 3.2 && students[i].mark < 3.6) data[4].SV += 1;
-      if (students[i].mark >= 3.6 && students[i].mark <= 4.0) data[5].SV += 1;
+      if (students[i].mark < 2.0) data[0].Số_SV += 1;
+      if (students[i].mark >= 2.0 && students[i].mark < 2.5) data[1].Số_SV += 1;
+      if (students[i].mark >= 2.5 && students[i].mark < 3.0) data[2].Số_SV += 1;
+      if (students[i].mark >= 3.0 && students[i].mark < 3.2) data[3].Số_SV += 1;
+      if (students[i].mark >= 3.2 && students[i].mark < 3.6) data[4].Số_SV += 1;
+      if (students[i].mark >= 3.6 && students[i].mark <= 4.0) data[5].Số_SV += 1;
     }
     
     console.log(data);
@@ -82,8 +82,8 @@ class Chart extends Component {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="SV" barSize={70} fill="#413ea0" />
-        <Line type="monotone" dataKey="SV" stroke="#ff7300" />
+        <Bar dataKey="Số_SV" barSize={70} fill="#413ea0" />
+        <Line type="monotone" dataKey="Số_SV" stroke="#ff7300" />
       </ComposedChart>
     );
   }

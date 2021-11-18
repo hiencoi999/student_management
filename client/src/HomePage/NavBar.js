@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
@@ -14,14 +15,7 @@ import {
   Link
 } from "react-router-dom";
 
-import Notification from "./Component/Notification";
-import ListStudent from "../ListStudent/ListStudent";
-import AddForm from "../ListStudent/Components/AddForm";
-import InfoStudent from '../ListStudent/Components/InfoStudent';
-import Home from '../HomePage/Component/Home';
-import Chart from "../Chart/Chart";
-import Chat from "../Chat/Chat";
-import ImportData from "../ListStudent/Components/ImportData";
+import routes from "../router";
 
 class NavBar extends Component {
 
@@ -130,25 +124,25 @@ class NavBar extends Component {
             <ul className='nav-list'>
               <li>
                 <Link to='/home'>
-                <a className={chooseHome ? 'home' : ''} onClick={this.chooseHome}>
-                  {/* ve Home */}
-                  <div className='icon'>
-                    <AiOutlineHome />
-                  </div>
-                  <span className='links_name'>Trang chủ</span>
-                </a>
+                  <a className={chooseHome ? 'home' : ''} onClick={this.chooseHome}>
+                    {/* ve Home */}
+                    <div className='icon'>
+                      <AiOutlineHome />
+                    </div>
+                    <span className='links_name'>Trang chủ</span>
+                  </a>
                 </Link>
                 <span className='tooltip'>Trang chủ</span>
               </li>
               <li>
                 <Link to='/notification'>
-                <a className={chooseNoti ? 'home' : ''} onClick={this.chooseNoti}>
-                  {/* thong bao */}
-                  <div className='icon'>
-                    <IoMdNotificationsOutline />
-                  </div>
-                  <span className='links_name'>Thông Báo</span>
-                </a >
+                  <a className={chooseNoti ? 'home' : ''} onClick={this.chooseNoti}>
+                    {/* thong bao */}
+                    <div className='icon'>
+                      <IoMdNotificationsOutline />
+                    </div>
+                    <span className='links_name'>Thông Báo</span>
+                  </a >
                 </Link>
                 <span className='tooltip'>Thông Báo</span>
               </li>
@@ -163,22 +157,22 @@ class NavBar extends Component {
               </li>
               <li id='bangdiem'>
                 <Link to='/list-students'>
-                <a className={chooseList ? 'home' : ''} onClick={this.chooseList}>
-                  {/* danh sach sinh vien */}
-                  <div className='icon'>
-                    <BsClipboardData />
-                  </div>
-                  <span className='links_name'>DS Sinh viên</span>
-                </a>
+                  <a className={chooseList ? 'home' : ''} onClick={this.chooseList}>
+                    {/* danh sach sinh vien */}
+                    <div className='icon'>
+                      <BsClipboardData />
+                    </div>
+                    <span className='links_name'>DS Sinh viên</span>
+                  </a>
                 </Link>
                 <span className='tooltip'>DS Sinh viên</span>
               </li>
               <li className='chart'>
                 <Link to='/chart'>
-                <a className={chooseChart ? 'home' : ''} onClick={this.chooseChart}>
-                  <div className='icon'><span className='fa fa-chart-bar'></span></div>
-                  <span className='links_name'>Biểu đồ điểm</span>
-                </a>
+                  <a className={chooseChart ? 'home' : ''} onClick={this.chooseChart}>
+                    <div className='icon'><span className='fa fa-chart-bar'></span></div>
+                    <span className='links_name'>Biểu đồ điểm</span>
+                  </a>
                 </Link>
                 <span className='tooltip'>Biểu đồ điểm</span>
               </li>
@@ -192,51 +186,38 @@ class NavBar extends Component {
                 </Link>
               </li>
               <li className='logout'>
-                  <a>
-                    {/* Log out */}
-                    <div className='icon'>
-                      <BiLogOut />
-                    </div>
-                    <span className='links_name'>Đăng Xuất</span>
-                  </a>
+                <a>
+                  {/* Log out */}
+                  <div className='icon'>
+                    <BiLogOut />
+                  </div>
+                  <span className='links_name'>Đăng Xuất</span>
+                </a>
                 <span className='tooltip'>Đăng Xuất</span>
               </li>
             </ul>
           </div>
           <div className={openNav ? 'nav_open' : 'nav_close'}>
             <div>
-              <Switch>
-                <Route path='/home'>
-                  < Home />
-                </Route>
-                <Route path='/notification' exact>
-                  < Notification />
-                </Route>
-                <Route path='/chat' exact>
-                  <Chat />
-                </Route>
-                <Route path='/list-students' exact>
-                  <ListStudent />
-                </Route>
-                <Route path='/chart' exact>
-                  <Chart />
-                </Route>
-                <Route path='/list-students/add' exact>
-                  <AddForm />
-                </Route>
-                <Route path='/list-students/sua' exact>
-                  < InfoStudent />
-                </Route>
-                <Route path='/list-students/import-data' exact>
-                  <ImportData />
-                </Route>
-              </Switch>
+              {this.show(routes)}
             </div>
           </div>
         </section>
       </Router>
-    )
+    );
   }
+
+  show = (routes) => {
+    var result = null;
+    if (routes.length > 0) {
+      result = routes.map((route, index) => {
+        return (
+          <Route key={index} path={route.path} exact={route.exact} component={route.main} />);
+      });
+    }
+    return <Switch>{result}</Switch>
+  }
+
 }; 
 
 export default NavBar;

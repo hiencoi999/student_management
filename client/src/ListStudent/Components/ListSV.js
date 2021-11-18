@@ -11,20 +11,26 @@ class ListSV extends Component {
     super(props);
     this.state = {
       students: [],
-      filterMsv : '',
-      filterName : '',
-      filterGender : '',
-      filterMark : '',
-      filterStatus : ''
+      filter : {
+        msv : '',
+        name : '',
+        gender : '',
+        mark : '',
+        status : ''
+      },
+      sort : {
+        by : 'msv',
+        value : 1
+      }
     }
   }
 
   componentDidMount() {
     CallApi('students', 'GET', null).then(res => {
       this.setState({
-        students : res.data 
+        students: res.data
       })
-    })
+    });
   }
 
   findIndex = (id) => {
@@ -55,47 +61,104 @@ class ListSV extends Component {
     var target = event.target;
     var name = target.name;
     var value = target.value;
-    this.props.onFilter(
-      name === 'filterMsv' ? value : this.state.filterMsv,
-      name === 'filterName' ? value : this.state.filterName,
-      name === 'filterGender' ? value : this.state.filterGender,
-      name === 'filterMark' ? value : this.state.filterMark,
-      name === 'filterStatus' ? value : this.state.filterStatus
-    );
     this.setState({
-      [name] : value
+      filter: {
+        [name]: value
+      }
     })
   }
+
+  onSort = (sortBy, sortValue) => {
+    this.setState({
+      sort: {
+        by: sortBy,
+        value : sortValue
+      }
+    })
+  }
+
   
   render() {
-    var {students, filterMsv, filterName, filterGender, filterMark, filterStatus } = this.state;
+    var { students, filter, sort } = this.state;
+    console.log(filter, '-', sort);
+    if(filter) {
+      if(filter.msv) {
+        students = students.filter((student) => {
+          return student.msv.indexOf(filter.msv) === 0;
+        })
+      }
+      if(filter.name) {
+        students = students.filter((student) => {
+          return student.name.indexOf(filter.name) !== -1;
+        })
+      }
+      if(filter.gender) {
+        students = students.filter((student) => {
+          if(filter.gender === 'all') return true;
+          else return student.gender === filter.gender;
+        })
+      }
+      if(filter.mark) {
+        students = students.filter((student) => {
+          if(filter.mark === 'all') return true; 
+          else if(filter.mark === '2.0') return student.mark < 2.0;
+          else {
+            var mark = filter.mark.toString().split('-');
+            return (student.mark > mark[0] && student.mark <= mark[1]);
+          }
+          })
+      }
+      if(filter.status) {
+        students = students.filter((student) => {
+          if(filter.status === 'all') return true; 
+          else return student.status === filter.status;
+        })
+      }
+    }
+
+    if (sort) {
+    if (sort.by === 'msv') {
+      students.sort((student1, student2) => {
+        //console.log(typeof student1.name,'-',student2.name);
+        if (student1.msv > student2.msv) return sort.value; else if (student1.msv < student2.msv) return -sort.value; else return 0;
+      });
+    } else if (sort.by === 'name') {
+      students.sort((student1, student2) => {
+        if (student1.name.localeCompare(student2.name) < 0) return sort.value; else if (student1.name.localeCompare(student2.name) > 0) return -sort.value; else return 0;
+      });
+    } else {
+      students.sort((student1, student2) => {
+        if (student1.mark > student2.mark) return sort.value; else if (student1.mark < student2.mark) return -sort.value; else return 0;
+      });
+    }
+    }
     var studentList = students.map((student, index) => {
       return <OneRowData key={student.id} index={index} student={student} onDelete={this.onDelete}/>
     })
     return (
       <div>
         <table className="table table-bordered table-hover">
-          <Sort onSort={this.props.onSort} />
+          <Sort onSort={this.onSort} />
                     
             <tbody>
               <tr>
                 <td></td>
                 <td>
-                  <input type='text' className='form-control' name='filterMsv' value={filterMsv} onChange= {this.onChange} />
+                  <input type='text' className='form-control' name='msv' value={filter.msv} onChange= {this.onChange} />
                 </td>
                 <td>
-                  <input type='text' className='form-control' name='filterName' value={filterName} onChange= {this.onChange}/>
+                  <input type='text' className='form-control' name='name' value={filter.name} onChange= {this.onChange}/>
                 </td>
                 <td></td>
                 <td> 
-                  <select className='form-control' name='filterGender' value={filterGender} onChange= {this.onChange}>
+                  <select className='form-control' name='gender' value={filter.gender} onChange= {this.onChange}>
                             <option value='all'></option>
                             <option value="Nam">Nam</option>
                             <option value="Nữ">Nữ</option>
                   </select>
                 </td>
                 <td>
-                  <select className='form-control' name='filterMark' value={filterMark} onChange= {this.onChange}>
+                  <select className='form-control' name='mark' value={filter.mark} onChange= {this.onChange}>
                             <option value='all'></option>
                             <option value="3.6-4.0">3.6 - 4.0</option>
                             <option value="3.2-3.6">3.2 - 3.6</option>
@@ -106,7 +169,7 @@ class ListSV extends Component {
                   </select>
                 </td>
                 <td>
-                  <select className="form-control" name="filterStatus" value={filterStatus} onChange= {this.onChange}>
+                  <select className="form-control" name="status" value={filter.status} onChange= {this.onChange}>
                             <option value='all'></option>
                             <option value='Không'>Không </option>
                             <option value='Nguy cơ nghỉ học'>Nguy cơ nghỉ học</option>

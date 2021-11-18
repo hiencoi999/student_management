@@ -30,6 +30,15 @@ fieldset {
     float: left;
 }
 
+.inline {
+    display: inline;
+}
+
+.inline-block {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
 .ml-20 {
     margin-left: 20px;
 }
