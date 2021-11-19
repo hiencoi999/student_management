@@ -37,7 +37,7 @@
 }
 
 tr {
-  height:10px;
+  height: 10px;
 }
 
 .dropdown-toggle {
@@ -57,11 +57,11 @@ tr {
   margin-right: 10px;
 }
 
-.sort_selected::after{
-  content : '\f00c';
+.sort_selected::after {
+  content: "\f00c";
   font-weight: normal;
   font-family: FontAweSome;
-  margin : 0px 0px 0px 10px;
+  margin: 0px 0px 0px 10px;
   display: inline-block;
 }
 

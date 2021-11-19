@@ -8,7 +8,7 @@ import deleteStudent from "./routes/student.js";
 import importFromExcel from "./routes/student.js";
 import exportToExcel from "./routes/student.js";
 import getAllStudent from "./routes/student.js";
-
+import getStudentDetail from "./routes/student.js";
 const PORT = process.env.PORT || 5000;
 
 dotenv.config();
@@ -39,5 +39,7 @@ app.use("/", importFromExcel);
 app.use("/", exportToExcel);
 
 app.use("/", getAllStudent);
+
+app.use("/", getStudentDetail);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT} `));

@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import {
   ComposedChart,
   Line,
@@ -7,7 +7,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend
+  Legend,
 } from "recharts";
 import CallApi from "../API/CallApi";
 
@@ -15,54 +15,51 @@ class Chart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      students: []
-    }
+      students: [],
+    };
   }
   componentDidMount() {
-    CallApi('students', 'GET', null).then(res => {
+    CallApi("student", "GET", null).then((res) => {
       this.setState({
-        students : res.data
-      })
-    })
+        students: res.data.ListStudents,
+      });
+    });
   }
 
   render() {
     var data = [
       {
         name: "Dưới 2.0",
-        Số_SV : 0
+        Số_SV: 0,
       },
       {
         name: "2.0-2.5",
-        Số_SV: 0
+        Số_SV: 0,
       },
       {
-        name: "2.5-3.0",
-        Số_SV: 0
-      },
-      {
-        name: "3.0-3.2",
-        Số_SV: 0
+        name: "2.5-3.2",
+        Số_SV: 0,
       },
       {
         name: "3.2-3.6",
-        Số_SV: 0
+        Số_SV: 0,
       },
       {
         name: "3.6-4.0",
-        Số_SV: 0
-      }
+        Số_SV: 0,
+      },
     ];
     var { students } = this.state;
+    console.log(students);
     for (var i = 0; i < students.length; i++) {
-      if (students[i].mark < 2.0) data[0].Số_SV += 1;
-      if (students[i].mark >= 2.0 && students[i].mark < 2.5) data[1].Số_SV += 1;
-      if (students[i].mark >= 2.5 && students[i].mark < 3.0) data[2].Số_SV += 1;
-      if (students[i].mark >= 3.0 && students[i].mark < 3.2) data[3].Số_SV += 1;
-      if (students[i].mark >= 3.2 && students[i].mark < 3.6) data[4].Số_SV += 1;
-      if (students[i].mark >= 3.6 && students[i].mark <= 4.0) data[5].Số_SV += 1;
+      if (students[i].gpa < 2.0) data[0].Số_SV += 1;
+      if (students[i].gpa >= 2.0 && students[i].gpa < 2.5) data[1].Số_SV += 1;
+      if (students[i].gpa >= 2.5 && students[i].gpa < 3.0) data[2].Số_SV += 1;
+      if (students[i].gpa >= 3.0 && students[i].gpa < 3.2) data[3].Số_SV += 1;
+      if (students[i].gpa >= 3.2 && students[i].gpa < 3.6) data[4].Số_SV += 1;
+      if (students[i].gpa >= 3.6 && students[i].gpa <= 4.0) data[5].Số_SV += 1;
     }
-    
+
     console.log(data);
 
     return (
@@ -74,7 +71,7 @@ class Chart extends Component {
           top: 20,
           right: 20,
           bottom: 20,
-          left: 20
+          left: 20,
         }}
       >
         <CartesianGrid stroke="#f5f5f5" />

@@ -13,10 +13,21 @@ export const getAllStudent = async (req, res) => {
   }
 };
 
+export const getStudentDetail = async (req, res) => {
+  try {
+    const StudentDetail = await Student.find({ _id: req.params.id });
+    res.json({ StudentDetail });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ success: false, message: "Server error ~ getStudentDetail" });
+  }
+};
+
 export const createStudent = async (req, res) => {
   try {
     const {
-      id,
+      msv,
       name,
       birthday,
       gender,
@@ -27,7 +38,7 @@ export const createStudent = async (req, res) => {
       status,
     } = req.body;
 
-    const isExist = await Student.findOne({ id });
+    const isExist = await Student.findOne({ msv });
     if (isExist) {
       return res
         .status(400)
@@ -35,7 +46,7 @@ export const createStudent = async (req, res) => {
     }
 
     const newStudent = new Student({
-      id,
+      msv,
       name,
       birthday,
       gender,
@@ -53,12 +64,15 @@ export const createStudent = async (req, res) => {
 };
 
 export const deleteStudent = async (req, res) => {
+  // const userID = req.params.id;
   try {
-    const deletedStudent = await Student.findOneAndDelete({ id: req.body.id });
+    const deletedStudent = await Student.findOneAndDelete({
+      _id: req.params.id,
+    });
     if (deletedStudent) {
       res.json({ success: true, message: "Deleted successfully!" });
     } else {
-      res.status(404).json({ success: false, message: "Deleted fail!" });
+      res.status(404).json({ success: false, message: "Deleted failed!" });
     }
   } catch (error) {
     res.status(500).json({ message: "Server error ~ deleteStudent" });

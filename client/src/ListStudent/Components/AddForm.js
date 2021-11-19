@@ -8,10 +8,12 @@ class AddForm extends Component {
     this.state = {
       msv: "",
       name: "",
-      date: "",
+      birthday: "",
       gender: "",
-      tc: "",
-      mark: "",
+      phone: "",
+      address: "",
+      sum_of_credits: 0,
+      gpa: 0,
       status: "",
     };
   }
@@ -25,28 +27,28 @@ class AddForm extends Component {
     });
   };
 
-  onCloseAddForm = () => {
-    this.props.onCloseAddForm();
-  };
-
   onSubmit = (event) => {
     event.preventDefault();
-    CallApi("students", "POST", {
+    CallApi("student/create", "POST", {
       msv: this.state.msv,
       name: this.state.name,
-      date: this.state.date,
+      birthday: this.state.birthday,
       gender: this.state.gender,
-      tc: this.state.tc,
-      mark: this.state.mark,
+      phone: this.state.phone,
+      address: this.state.address,
+      sum_of_credits: this.state.sum_of_credits,
+      gpa: this.state.gpa,
       status: this.state.status,
     });
     this.setState({
       msv: "",
       name: "",
-      date: "",
+      birthday: "",
       gender: "",
-      tc: "",
-      mark: "",
+      phone: "",
+      address: "",
+      sum_of_credits: "",
+      gpa: "",
       status: "",
     });
     alert("Đã thêm thành công");
@@ -56,20 +58,14 @@ class AddForm extends Component {
     return (
       <div className="addForm">
         <div className="back">
-          <Link to="/list-students" className="btn btn-danger">
+          <Link to="/home/list-students" className="btn btn-danger">
             <span className="fa fa-arrow-left"></span> &nbsp; Quay lại
           </Link>
         </div>
         <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5 center">
           <div className="panel panel-warning">
             <div className="panel-heading">
-              <h3 className="panel-title">
-                Thêm sinh viên
-                <span
-                  className="fa fa-times-circle text_right"
-                  onClick={this.onCloseAddForm}
-                ></span>
-              </h3>
+              <h3 className="panel-title">Thêm sinh viên</h3>
             </div>
             <div className="panel-body">
               <form onSubmit={this.onSubmit}>
@@ -97,8 +93,8 @@ class AddForm extends Component {
                     type="date"
                     className="form-control"
                     required
-                    name="date"
-                    value={this.state.date}
+                    name="birthday"
+                    value={this.state.birthday}
                     onChange={this.onChange}
                   />
                   <label>Giới tính:</label>
@@ -113,13 +109,30 @@ class AddForm extends Component {
                     <option value="Nam">Nam</option>
                     <option value="Nữ">Nữ</option>
                   </select>
+                  <label>Số điện thoại:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    required
+                    name="phone"
+                    value={this.state.phone}
+                    onChange={this.onChange}
+                  />
+                  <label>Địa chỉ: </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="address"
+                    value={this.state.address}
+                    onChange={this.onChange}
+                  />
                   <label>Tổng số tín chỉ: </label>
                   <input
                     type="text"
                     className="form-control"
                     required
-                    name="tc"
-                    value={this.state.tc}
+                    name="sum_of_credits"
+                    value={this.state.sum_of_credits}
                     onChange={this.onChange}
                   />
                   <label>GPA: </label>
@@ -127,8 +140,8 @@ class AddForm extends Component {
                     type="text"
                     className="form-control"
                     required
-                    name="mark"
-                    value={this.state.mark}
+                    name="gpa"
+                    value={this.state.gpa}
                     onChange={this.onChange}
                   />
                   <label>Trạng thái: </label>
@@ -158,7 +171,7 @@ class AddForm extends Component {
                     </button>{" "}
                     &nbsp;
                     <Link
-                      to="/liststudent"
+                      to="/home/list-students"
                       className="button cancle btn btn-primary"
                     >
                       <span className="fa fa-close"></span> &nbsp;Hủy bỏ

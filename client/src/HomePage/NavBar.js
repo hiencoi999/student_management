@@ -9,7 +9,7 @@ import { BsClipboardData } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { BiLogOut } from "react-icons/bi";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import { Redirect } from "react-router-dom";
 import routes from "../router";
 
 class NavBar extends Component {
@@ -23,6 +23,7 @@ class NavBar extends Component {
       chooseList: false,
       chooseChart: false,
       chooseProfile: false,
+      logout: false,
     };
   }
 
@@ -98,15 +99,22 @@ class NavBar extends Component {
     });
   };
 
-  logout = () => {
+  chooseLogout = () => {
+    this.setState({
+      chooseHome: false,
+      chooseNoti: false,
+      chooseChat: false,
+      chooseList: false,
+      chooseChart: false,
+      chooseProfile: false,
+    });
     localStorage.removeItem("accessToken");
   };
 
-  logOut = (e) => {
-    dispatchEvent({ type: "LOG_OUT" });
-  };
-
   render() {
+    if (localStorage.getItem("accessToken") == null) {
+      return <Redirect to="/login" />;
+    }
     var {
       openNav,
       chooseHome,
@@ -128,101 +136,94 @@ class NavBar extends Component {
               </div>
             </div>
             <ul className="nav-list">
-              <li>
+              <li
+                className={chooseHome ? "home" : ""}
+                onClick={this.chooseHome}
+              >
                 <Link to="/home">
-                  <a
-                    className={chooseHome ? "home" : ""}
-                    onClick={this.chooseHome}
-                  >
-                    {/* ve Home */}
-                    <div className="icon">
-                      <AiOutlineHome />
-                    </div>
-                    <span className="links_name">Trang chủ</span>
-                  </a>
+                  <div className="icon">
+                    <AiOutlineHome />
+                  </div>
+                  <span className="links_name">Trang chủ</span>
                 </Link>
                 <span className="tooltip">Trang chủ</span>
               </li>
-              <li>
-                <Link to="/notification">
-                  <a
-                    className={chooseNoti ? "home" : ""}
-                    onClick={this.chooseNoti}
-                  >
-                    {/* thong bao */}
-                    <div className="icon">
-                      <IoMdNotificationsOutline />
-                    </div>
-                    <span className="links_name">Thông Báo</span>
-                  </a>
+
+              <li
+                className={chooseNoti ? "home" : ""}
+                onClick={this.chooseNoti}
+              >
+                <Link to="/home/notification">
+                  {/* thong bao */}
+                  <div className="icon">
+                    <IoMdNotificationsOutline />
+                  </div>
+                  <span className="links_name">Thông Báo</span>
                 </Link>
                 <span className="tooltip">Thông Báo</span>
               </li>
-              <li>
-                <Link to="/chat">
-                  <a
-                    className={chooseChat ? "home" : ""}
-                    onClick={this.chooseChat}
-                  >
-                    <div className="icon">
-                      <span className="fa fa-comment-dots"></span>
-                    </div>
-                    <span className="links_name">Chat</span>
-                  </a>
+              <li
+                className={chooseChat ? "home" : ""}
+                onClick={this.chooseChat}
+              >
+                <Link to="/home/chat">
+                  <div className="icon">
+                    <span className="fa fa-comment-dots"></span>
+                  </div>
+                  <span className="links_name">Chat</span>
+
                   <span className="tooltip">Chat</span>
                 </Link>
               </li>
-              <li id="bangdiem">
-                <Link to="/list-students">
-                  <a
-                    className={chooseList ? "home" : ""}
-                    onClick={this.chooseList}
-                  >
-                    {/* danh sach sinh vien */}
-                    <div className="icon">
-                      <BsClipboardData />
-                    </div>
-                    <span className="links_name">DS Sinh viên</span>
-                  </a>
+              <li
+                id="bangdiem"
+                className={chooseList ? "home" : ""}
+                onClick={this.chooseList}
+              >
+                <Link to="/home/list-students">
+                  {/* danh sach sinh vien */}
+                  <div className="icon">
+                    <BsClipboardData />
+                  </div>
+                  <span className="links_name">DS Sinh viên</span>
                 </Link>
                 <span className="tooltip">DS Sinh viên</span>
               </li>
-              <li className="chart">
-                <Link to="/chart">
-                  <a
-                    className={chooseChart ? "home" : ""}
-                    onClick={this.chooseChart}
-                  >
-                    <div className="icon">
-                      <span className="fa fa-chart-bar"></span>
-                    </div>
-                    <span className="links_name">Biểu đồ điểm</span>
-                  </a>
+              <li
+                className="chart"
+                className={chooseChart ? "home" : ""}
+                onClick={this.chooseChart}
+              >
+                <Link to="/home/chart">
+                  <div className="icon">
+                    <span className="fa fa-chart-bar"></span>
+                  </div>
+                  <span className="links_name">Biểu đồ điểm</span>
                 </Link>
                 <span className="tooltip">Biểu đồ điểm</span>
               </li>
-              <li className="profile">
-                <Link to="/profile">
-                  <a
-                    className={chooseProfile ? "home" : ""}
-                    onClick={this.chooseProfile}
-                  >
-                    <div className="icon">
-                      <span className="fa fa-id-card"></span>{" "}
-                    </div>
-                    <span className="links_name">Hồ sơ</span>
-                  </a>
+              <li
+                className="profile"
+                className={chooseProfile ? "home" : ""}
+                onClick={this.chooseProfile}
+              >
+                <Link to="/home/profile">
+                  <div className="icon">
+                    <span className="fa fa-id-card"></span>{" "}
+                  </div>
+                  <span className="links_name">Hồ sơ</span>
+
                   <span className="tooltip">Hồ sơ</span>
                 </Link>
               </li>
-              <li className="logout" onClick={this.logout}>
-                <Link to="/notification">
+              <li className="logout" onClick={this.chooseLogout}>
+                <a href="/">
                   {/* Log out */}
                   <div className="icon">
                     <BiLogOut />
                   </div>
                   <span className="links_name">Đăng Xuất</span>
-                </Link>
+                </a>
                 <span className="tooltip">Đăng Xuất</span>
               </li>
             </ul>

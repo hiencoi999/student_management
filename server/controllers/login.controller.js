@@ -25,8 +25,7 @@ export const login = async (req, res) => {
         success: false,
         message: "Tên đăng nhập hoặc mật khẩu không đúng!",
       });
-    }
-    if (user.role === "student") {
+    } else {
       const accessToken = jwt.sign(
         { userId: user._id },
         process.env.ACCESS_TOKEN_SECRET
@@ -35,6 +34,8 @@ export const login = async (req, res) => {
       res.json({
         success: true,
         message: "User logged in successfully",
+        username,
+        role: user.role,
         accessToken,
       });
     }

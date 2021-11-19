@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const studentSchema = new mongoose.Schema({
-  id: {
+  msv: {
     type: String,
     required: true,
   },

@@ -194,8 +194,6 @@ class Login extends Component {
       })
       .then(function (response) {
         localStorage.setItem("accessToken", response.data.accessToken);
-
-        console.log(response);
       })
       .catch(function (error) {
         console.log(error);
