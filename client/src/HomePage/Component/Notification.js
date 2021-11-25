@@ -1,13 +1,12 @@
 import React from "react";
-import axios from "axios";
 import "../NavBar.css";
-
 const Notification = () => {
   // let isAuth = localStorage.getItem("accessToken") != null;
 
   // if (!isAuth) {
   //   return <Redirect to="/login" />;
   // } else {
+
   return (
     <div>
       <p className="elements">

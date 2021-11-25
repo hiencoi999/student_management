@@ -269,7 +269,7 @@
   transition: all 0.5s ease;
 }
 
-.profile{
+.profile {
   margin-top: 150px;
 }
 
@@ -327,7 +327,7 @@
 }
 #_intro1 {
   margin-top: 20px;
-  max-width: 1000px;
+  max-width: 900px;
   font-size: 1.5rem;
 }
 #_footer1 {
@@ -350,7 +350,7 @@
   /* display: inline; */
   color: #0c67b3;
   float: left;
-  margin-top: -10px;
+  margin-top: -30px;
   text-align: center;
   margin-left: 15%;
   background-color: white;
@@ -418,15 +418,17 @@
 }
 
 .nav_open {
-  right :0;
+  right: 0;
   margin-left: 200px;
   transition: all 0.6s ease;
+  z-index: 2;
 }
 
 .nav_close {
-  right :0;
+  right: 0;
   margin-left: 80px;
   transition: all 0.6s ease;
+  z-index: 2
 }
 
 .notiManagement {
@@ -470,4 +472,8 @@
 }
 #main_nightmode .notifications .notiManagement {
   background-color: gray;
+}
+
+.student {
+  display: none;
 }

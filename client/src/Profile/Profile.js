@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import CallApi from "../API/CallApi";
 import styled from "styled-components";
+import moment from "moment";
 
 const Title = styled.h2`
   text-align: center;
@@ -76,7 +77,7 @@ const Btn_site = styled.div`
   margin-top: 10%;
   text-align: center;
 `;
-class InfoStudent extends Component {
+class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -85,20 +86,24 @@ class InfoStudent extends Component {
   }
 
   componentDidMount() {
-    // var { match } = this.props;
-    // if (match) {
-    //   var id = match.params.id;
-    //   CallApi(`student/${id}`, "GET", null).then((res) => {
-    //     var data = res.data.StudentDetail[0];
-    //     this.setState({
-    //       student: data,
-    //     });
-    //   });
-    // }
+    var userId = sessionStorage.getItem("userId");
+    console.log(userId);
+    CallApi(`student/${userId}`, "GET", null).then((res) => {
+      var data = res.data.StudentDetail[0];
+      console.log(data);
+      this.setState({
+        student: data,
+      });
+    });
   }
+
+  onChange = () => {
+    console.log("chua lam j ca");
+  };
 
   render() {
     var { student } = this.state;
+    console.log(student);
     return (
       <div className="container">
         <Title>Hồ sơ cá nhân</Title>
@@ -116,11 +121,26 @@ class InfoStudent extends Component {
               </Image_div>
               <Left_div>
                 <p>Mã sinh viên: </p>
-                <input type="text" name="msv" value={student.msv} />
+                <input
+                  type="text"
+                  name="msv"
+                  value={student.msv}
+                  onChange={this.onChange}
+                />
                 <p style={{ marginTop: "10px" }}>Họ và tên: </p>
-                <input type="text" name="name" value={student.name} />
+                <input
+                  type="text"
+                  name="name"
+                  value={student.name}
+                  onChange={this.onChange}
+                />
                 <p style={{ marginTop: "10px" }}>Ngày sinh:</p>
-                <input type="date" name="birthday" value={student.birthday} />
+                <input
+                  type="date"
+                  name="birthday"
+                  value={moment(student.birthday).format("DD/MM/YYYY")}
+                  onChange={this.onChange}
+                />
               </Left_div>
               <Right_div>
                 <p>Giới tính:</p>
@@ -129,9 +149,15 @@ class InfoStudent extends Component {
                   type="text"
                   name="gender"
                   value={student.gender}
+                  onChange={this.onChange}
                 />
                 <p>SĐT: </p>
-                <input type="text" name="phone" value={student.phone} />
+                <input
+                  type="text"
+                  name="phone"
+                  value={student.phone}
+                  onChange={this.onChange}
+                />
                 {/* <p style={{ marginTop: "10px" }}>Địa chỉ E-mail khác: </p>
                 <input type='email' name='email_gg' value={student.email} /> */}
                 <p style={{ marginTop: "10px" }}>Địa chỉ: </p>
@@ -145,6 +171,7 @@ class InfoStudent extends Component {
                   type="text"
                   name="address"
                   value={student.address}
+                  onChange={this.onChange}
                 />
               </Right_div>
             </Infor>
@@ -152,7 +179,12 @@ class InfoStudent extends Component {
           <Gpa_site>
             <Title_gpa>Điểm số</Title_gpa>
             <p>Tổng số tín chỉ đã đăng ký:</p>
-            <p>{student.sum_of_credits} </p>
+            <p>{student.sum_of_credits}/158 </p>
+            <progress
+              min="0"
+              max="158"
+              value={student.sum_of_credits}
+            ></progress>
             <p style={{ marginTop: "30px" }}>Điểm trung bình :</p>
             <p>{student.gpa}</p>
           </Gpa_site>
@@ -173,4 +205,4 @@ class InfoStudent extends Component {
     );
   }
 }
-export default InfoStudent;
+export default Profile;

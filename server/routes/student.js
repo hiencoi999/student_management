@@ -1,4 +1,5 @@
 import express from "express";
+import { verifyToken } from "../midleware/login.midleware.js";
 
 import {
   createStudent,

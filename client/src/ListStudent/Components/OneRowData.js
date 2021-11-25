@@ -4,14 +4,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
-class OneRowData extends Component {
-  dateTransform = (value) => {
-    var s = value.toString().split("-");
-    if (s[0] <= 31 && s[0] >= 1) {
-      return [s[0], s[1], s[2]].join("/");
-    } else return [s[2], s[1], s[0]].join("/");
-  };
 
+class OneRowData extends Component {
   onDelete = (_id) => {
     if (confirm("Bạn chắc chắn muốn xóa sinh viên này ?")) {
       this.props.onDelete(_id);

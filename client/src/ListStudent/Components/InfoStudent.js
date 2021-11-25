@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-pascal-case */
 /* eslint-disable jsx-a11y/alt-text */
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import CallApi from "../../API/CallApi";
 import styled from "styled-components";
+import moment from "moment";
 
 const Title = styled.h2`
   text-align: center;
@@ -91,6 +92,7 @@ class InfoStudent extends Component {
       var id = match.params.id;
       CallApi(`student/${id}`, "GET", null).then((res) => {
         var data = res.data.StudentDetail[0];
+        console.log(data);
         this.setState({
           student: data,
         });
@@ -98,8 +100,13 @@ class InfoStudent extends Component {
     }
   }
 
+  onChange = () => {
+    console.log("chua lam j ca");
+  };
+
   render() {
     var { student } = this.state;
+    console.log(student);
     return (
       <div className="container">
         <Title>Thông tin chi tiết</Title>
@@ -117,11 +124,26 @@ class InfoStudent extends Component {
               </Image_div>
               <Left_div>
                 <p>Mã sinh viên: </p>
-                <input type="text" name="msv" value={student.msv} />
+                <input
+                  type="text"
+                  name="msv"
+                  value={student.msv}
+                  onChange={this.onChange}
+                />
                 <p style={{ marginTop: "10px" }}>Họ và tên: </p>
-                <input type="text" name="name" value={student.name} />
+                <input
+                  type="text"
+                  name="name"
+                  value={student.name}
+                  onChange={this.onChange}
+                />
                 <p style={{ marginTop: "10px" }}>Ngày sinh:</p>
-                <input type="date" name="birthday" value={student.birthday} />
+                <input
+                  type="text"
+                  name="birthday"
+                  value={moment(student.birthday).format("DD/MM/YYYY")}
+                  onChange={this.onChange}
+                />
               </Left_div>
               <Right_div>
                 <p>Giới tính:</p>
@@ -130,9 +152,15 @@ class InfoStudent extends Component {
                   type="text"
                   name="gender"
                   value={student.gender}
+                  onChange={this.onChange}
                 />
                 <p>SĐT: </p>
-                <input type="text" name="phone" value={student.phone} />
+                <input
+                  type="text"
+                  name="phone"
+                  value={student.phone}
+                  onChange={this.onChange}
+                />
                 {/* <p style={{ marginTop: "10px" }}>Địa chỉ E-mail khác: </p>
                 <input type='email' name='email_gg' value={student.email} /> */}
                 <p style={{ marginTop: "10px" }}>Địa chỉ: </p>
@@ -146,6 +174,7 @@ class InfoStudent extends Component {
                   type="text"
                   name="address"
                   value={student.address}
+                  onChange={this.onChange}
                 />
               </Right_div>
             </Infor>
@@ -173,7 +202,7 @@ class InfoStudent extends Component {
           >
             <span className="fa fa-save"></span> &nbsp; Ghi nhận
           </button>
-          <button className="btn btn-danger">
+          <button className="btn btn-danger" onClick={<a href="/chat"></a>}>
             <span className="fa fa-window-close"></span> &nbsp; Hủy bỏ
           </button>
         </Btn_site>

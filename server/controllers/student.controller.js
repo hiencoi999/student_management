@@ -1,5 +1,6 @@
 import Student from "../models/student.model.js";
 import XLSX from "xlsx";
+import { request } from "express";
 
 export const getAllStudent = async (req, res) => {
   try {
@@ -10,17 +11,6 @@ export const getAllStudent = async (req, res) => {
     res
       .status(500)
       .json({ success: false, message: "Server error ~ getAllStudent" });
-  }
-};
-
-export const getStudentDetail = async (req, res) => {
-  try {
-    const StudentDetail = await Student.find({ _id: req.params.id });
-    res.json({ StudentDetail });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: "Server error ~ getStudentDetail" });
   }
 };
 
@@ -72,7 +62,7 @@ export const deleteStudent = async (req, res) => {
     if (deletedStudent) {
       res.json({ success: true, message: "Deleted successfully!" });
     } else {
-      res.status(404).json({ success: false, message: "Deleted failed!" });
+      res.status(404).json({ success: false, message: "Deleted fail!" });
     }
   } catch (error) {
     res.status(500).json({ message: "Server error ~ deleteStudent" });
@@ -93,4 +83,15 @@ export const exportToExcel = async (req, res) => {
   await SheetJSMongo.book_append_mongo(wb, pres, "pres");
   await SheetJSMongo.book_append_mongo(wb, fmts, "fmts");
   XLSX.writeFile(wb, "mongocrud.xlsx");
+};
+
+export const getStudentDetail = async (req, res) => {
+  try {
+    const StudentDetail = await Student.find({ _id: req.params.id });
+    res.json({ StudentDetail });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ success: false, message: "Server error ~ getStudentDetail" });
+  }
 };

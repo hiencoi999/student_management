@@ -2,18 +2,18 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-    "username": "19021269@vnu.edu.vn",
-    "password": "12346"
+    "username": "19021269",
+    "password": "hien"
 }
 
 ###
 
-POST http://localhost:5000/login
+DELETE  http://localhost:5000/student/delete
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTk2MDI5YmE1ODI4OGU0OTMzMDM4NWIiLCJpYXQiOjE2MzcyMjEyMjV9.vPQmErPabfA9qdYfJKk_h2CpHMutgcv8vZGh_qB5V_8
 Content-Type: application/json
 
 {
-    "username": "19021200@vnu.edu.vn",
-    "password": "19021200"
+   "msv": "19021266"
 }
 
 ###
@@ -21,20 +21,28 @@ POST http://localhost:5000/create-student-account
 Content-Type: application/json
 
 {
-    "username": "19021200@vnu.edu.vn",
-    "password": "19021200"
+    "username": "19021266@vnu.edu.vn",
+    "password": "19021266"
 }
 
 ###
 
-POST http://localhost:5000/student
+POST http://localhost:5000/student/create
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTk2MDI5YmE1ODI4OGU0OTMzMDM4NWIiLCJpYXQiOjE2MzcyMjEyMjV9.vPQmErPabfA9qdYfJKk_h2CpHMutgcv8vZGh_qB5V_8
 Content-Type: application/json
 
 {
-    "id": "19021243",
-    "name": "Nguyễn Văn Thanh",
-    "birthday": "2001-08-08",
+    "msv": "19021248",
+    "name": "Lê Mạnh Cường",
+    "birthday": "2001-03-02",
     "gender": "Nam",
+    "phone": "0389469221",
+    "address": "Hà Nội",
+    "sum_of_credits": 86,
     "gpa": 2.5,
     "status": "Không"
 }
+
+###
+
+GET http://localhost:5000/student/6197ae5f293aada2355a2806

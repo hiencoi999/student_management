@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+const Schema = mongoose.Schema;
 const studentSchema = new mongoose.Schema({
   msv: {
     type: String,
@@ -44,6 +44,10 @@ const studentSchema = new mongoose.Schema({
       "Khen thưởng",
     ],
     default: "Không",
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "users",
   },
 });
 //export collection name 'student' storing student info

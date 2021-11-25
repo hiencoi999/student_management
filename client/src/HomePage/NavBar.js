@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable array-callback-return */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -9,22 +10,28 @@ import { BsClipboardData } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { BiLogOut } from "react-icons/bi";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Redirect } from "react-router-dom";
 import routes from "../router";
-
+import { Redirect } from "react-router";
 class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      role: "",
       openNav: false,
       chooseHome: true,
       chooseNoti: false,
       chooseChat: false,
       chooseList: false,
       chooseChart: false,
+      chooseInfoTeacher: false,
       chooseProfile: false,
-      logout: false,
     };
+  }
+
+  componentDidMount() {
+    this.setState({
+      role: sessionStorage.getItem("role"),
+    });
   }
 
   open = () => {
@@ -40,6 +47,7 @@ class NavBar extends Component {
       chooseChat: false,
       chooseList: false,
       chooseChart: false,
+      chooseInfoTeacher: false,
       chooseProfile: false,
     });
   };
@@ -51,6 +59,7 @@ class NavBar extends Component {
       chooseChat: false,
       chooseList: false,
       chooseChart: false,
+      chooseInfoTeacher: false,
       chooseProfile: false,
     });
   };
@@ -62,6 +71,7 @@ class NavBar extends Component {
       chooseChat: true,
       chooseList: false,
       chooseChart: false,
+      chooseInfoTeacher: false,
       chooseProfile: false,
     });
   };
@@ -73,6 +83,7 @@ class NavBar extends Component {
       chooseChat: false,
       chooseList: true,
       chooseChart: false,
+      chooseInfoTeacher: false,
       chooseProfile: false,
     });
   };
@@ -84,6 +95,7 @@ class NavBar extends Component {
       chooseChat: false,
       chooseList: false,
       chooseChart: true,
+      chooseInfoTeacher: false,
       chooseProfile: false,
     });
   };
@@ -95,20 +107,37 @@ class NavBar extends Component {
       chooseChat: false,
       chooseList: false,
       chooseChart: false,
+      chooseInfoTeacher: false,
       chooseProfile: true,
     });
   };
 
   chooseLogout = () => {
+    // this.setState({
+    //   chooseHome: false,
+    //   chooseNoti: false,
+    //   chooseChat: false,
+    //   chooseList: false,
+    //   chooseChart: false,
+    //   chooseInfoTeacher: false,
+    //   chooseProfile: false,
+    // });
+    localStorage.removeItem("accessToken");
+    sessionStorage.removeItem("msv");
+    sessionStorage.removeItem("userId");
+    sessionStorage.removeItem("role");
+  };
+
+  chooseInfoTeacher = () => {
     this.setState({
       chooseHome: false,
       chooseNoti: false,
       chooseChat: false,
       chooseList: false,
       chooseChart: false,
+      chooseInfoTeacher: true,
       chooseProfile: false,
     });
-    localStorage.removeItem("accessToken");
   };
 
   render() {
@@ -116,12 +145,14 @@ class NavBar extends Component {
       return <Redirect to="/login" />;
     }
     var {
+      role,
       openNav,
       chooseHome,
       chooseNoti,
       chooseChat,
       chooseList,
       chooseChart,
+      chooseInfoTeacher,
       chooseProfile,
     } = this.state;
     return (
@@ -177,7 +208,10 @@ class NavBar extends Component {
               </li>
               <li
                 id="bangdiem"
-                className={chooseList ? "home" : ""}
+                className={
+                  (chooseList ? "home" : "") +
+                  (role === "student" ? "student" : "")
+                }
                 onClick={this.chooseList}
               >
                 <Link to="/home/list-students">
@@ -191,7 +225,10 @@ class NavBar extends Component {
               </li>
               <li
                 className="chart"
-                className={chooseChart ? "home" : ""}
+                className={
+                  (chooseChart ? "home" : "") +
+                  (role === "student" ? "student" : "")
+                }
                 onClick={this.chooseChart}
               >
                 <Link to="/home/chart">
@@ -203,8 +240,27 @@ class NavBar extends Component {
                 <span className="tooltip">Biểu đồ điểm</span>
               </li>
               <li
+                className="infomation_teacher"
+                className={
+                  (chooseInfoTeacher ? "home" : "") +
+                  (role === "manager" ? "student" : "")
+                }
+                onClick={this.chooseInfoTeacher}
+              >
+                <Link to="/home/infomation-teacher">
+                  <div className="icon">
+                    <span className="fa fa-info-circle"></span>
+                  </div>
+                  <span className="links_name">TT Cố vấn</span>
+                </Link>
+                <span className="tooltip">TT Cố vấn</span>
+              </li>
+              <li
                 className="profile"
-                className={chooseProfile ? "home" : ""}
+                className={
+                  (chooseProfile ? "home" : "") +
+                  (role === "student" ? "" : "student")
+                }
                 onClick={this.chooseProfile}
               >
                 <Link to="/home/profile">

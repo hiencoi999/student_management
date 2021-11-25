@@ -9,6 +9,7 @@ import importFromExcel from "./routes/student.js";
 import exportToExcel from "./routes/student.js";
 import getAllStudent from "./routes/student.js";
 import getStudentDetail from "./routes/student.js";
+
 const PORT = process.env.PORT || 5000;
 
 dotenv.config();
@@ -26,7 +27,7 @@ mongoose
     useUnifiedTopology: true,
     // useFindandModify: false
   })
-  .catch((error) => console.log(console.error()));
+  .catch((error) => console.log(error));
 
 app.use("/", loginRoute);
 

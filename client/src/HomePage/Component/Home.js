@@ -2,8 +2,8 @@
 import React, { Component } from "react";
 import { BsClipboardData } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import logo from "./logo1.png";
 import "../NavBar.css";
-import { Redirect } from "react-router-dom";
 export default class Home extends Component {
   render() {
     return (
@@ -18,7 +18,14 @@ export default class Home extends Component {
               Mọi thứ
               <div id="_manage">bạn cần cho việc</div> quản lí sinh viên
             </h1>
-            <div className="manage_1">Classe 369</div>
+            <div className="manage_1">
+              <img
+                src={logo}
+                width="200px"
+                height="150px"
+                style={{ marginTop: "-50px" }}
+              />
+            </div>
             <p id="_intro1">
               Classe369 là 1 phần mềm tiện ích giúp quản lý sinh viên một cách
               ngắn gọn và đầy đủ nhất thông qua những thống kê xác thực nhất và

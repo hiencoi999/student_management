@@ -95,13 +95,13 @@ class ListSV extends Component {
           else return student.gender === filter.gender;
         });
       }
-      if (filter.mark) {
+      if (filter.gpa) {
         students = students.filter((student) => {
-          if (filter.mark === "all") return true;
-          else if (filter.mark === "2.0") return student.mark < 2.0;
+          if (filter.gpa === "all") return true;
+          else if (filter.gpa === "2.0") return student.gpa < 2.0;
           else {
-            var mark = filter.mark.toString().split("-");
-            return student.mark > mark[0] && student.mark <= mark[1];
+            var gpa = filter.gpa.toString().split("-");
+            return student.gpa > gpa[0] && student.gpa <= gpa[1];
           }
         });
       }
@@ -188,15 +188,14 @@ class ListSV extends Component {
               <td>
                 <select
                   className="form-control"
-                  name="mark"
-                  value={filter.mark}
+                  name="gpa"
+                  value={filter.gpa}
                   onChange={this.onChange}
                 >
                   <option value="all"></option>
                   <option value="3.6-4.0">3.6 - 4.0</option>
                   <option value="3.2-3.6">3.2 - 3.6</option>
-                  <option value="3.0-3.2">3.0 - 3.2</option>
-                  <option value="2.5-3.0">2.5 - 3.0</option>
+                  <option value="2.5-3.0">2.5 - 3.2</option>
                   <option value="2.0-2.5">2.0 - 2.5</option>
                   <option value="2.0">&lt; 2.0</option>
                 </select>

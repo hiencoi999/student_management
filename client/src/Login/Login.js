@@ -9,7 +9,7 @@ import Logo from "./uet.png";
 import AppLogo from "./applogo_1.png";
 
 const Body = styled.div`
-  background-color: rgb(186, 248, 255);
+  // background-color: rgb(186, 248, 255);
   position: relative;
   overflow: hidden;
   height: 100vh;
@@ -45,7 +45,7 @@ const Icon = styled.i`
   padding: 0px 5px 1px 0px;
   border-bottom: 2px solid #09599b;
   margin-left: 18%;
-  margin-right: 5px;
+  // margin-right: 5px;
   color: #2573b3;
 `;
 const Title = styled.p`
@@ -192,8 +192,12 @@ class Login extends Component {
         username: this.state.username,
         password: this.state.password,
       })
-      .then(function (response) {
-        localStorage.setItem("accessToken", response.data.accessToken);
+      .then((res) => {
+        localStorage.setItem("accessToken", res.data.accessToken);
+        sessionStorage.setItem("role", res.data.role);
+        sessionStorage.setItem("userId", res.data.userId);
+        sessionStorage.setItem("msv", res.data.username);
+        console.log(res);
       })
       .catch(function (error) {
         console.log(error);
@@ -228,7 +232,7 @@ class Login extends Component {
                     <FaUser />
                   </Icon>
                   <_Input
-                    type="email"
+                    type="text"
                     required
                     name="username"
                     placeholder="Email đăng nhập"

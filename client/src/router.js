@@ -1,13 +1,14 @@
 import React from "react";
 import Home from "./HomePage/Component/Home";
 import Notification from "./HomePage/Component/Notification";
-import Chat from "./Chat/Chat";
+import { Chat } from "./Chat/Chat";
 import ListStudent from "./ListStudent/ListStudent";
 import Chart from "./Chart/Chart";
 import AddForm from "./ListStudent/Components/AddForm";
 import InfoStudent from "./ListStudent/Components/InfoStudent";
 import ImportData from "./ListStudent/Components/ImportData";
 import Profile from "./Profile/Profile";
+import InfoTeacher from "./InfoTeacher/InfoTeacher";
 
 const routes = [
   {
@@ -53,8 +54,13 @@ const routes = [
   },
   {
     path: "/home",
-    exact: false,
+    exact: true,
     main: () => <Home />,
+  },
+  {
+    path: "/home/infomation-teacher",
+    exact: true,
+    main: () => <InfoTeacher />,
   },
 ];
 

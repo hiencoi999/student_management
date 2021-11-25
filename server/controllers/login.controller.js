@@ -1,6 +1,7 @@
 import Users from "../models/user.model.js";
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
+import Student from "../models/student.model.js";
 
 // @Router: /login
 // @desc: user login
@@ -11,6 +12,7 @@ export const login = async (req, res) => {
 
   try {
     const user = await Users.findOne({ username: username });
+    const student = await Student.findOne({ msv: username });
     if (!user) {
       return res.status(400).json({
         success: false,
@@ -31,13 +33,24 @@ export const login = async (req, res) => {
         process.env.ACCESS_TOKEN_SECRET
       );
 
-      res.json({
-        success: true,
-        message: "User logged in successfully",
-        username,
-        role: user.role,
-        accessToken,
-      });
+      if (user.role === "student") {
+        res.json({
+          success: true,
+          message: "Student logged in successfully",
+          userId: student._id,
+          username,
+          role: user.role,
+          accessToken,
+        });
+      } else {
+        res.json({
+          success: true,
+          message: "Manager logged in successfully",
+          role: user.role,
+          username: "Cố vấn",
+          accessToken,
+        });
+      }
     }
   } catch (error) {
     console.log(error);

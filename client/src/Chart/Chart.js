@@ -50,7 +50,6 @@ class Chart extends Component {
       },
     ];
     var { students } = this.state;
-    console.log(students);
     for (var i = 0; i < students.length; i++) {
       if (students[i].gpa < 2.0) data[0].Số_SV += 1;
       if (students[i].gpa >= 2.0 && students[i].gpa < 2.5) data[1].Số_SV += 1;
@@ -59,8 +58,6 @@ class Chart extends Component {
       if (students[i].gpa >= 3.2 && students[i].gpa < 3.6) data[4].Số_SV += 1;
       if (students[i].gpa >= 3.6 && students[i].gpa <= 4.0) data[5].Số_SV += 1;
     }
-
-    console.log(data);
 
     return (
       <ComposedChart
