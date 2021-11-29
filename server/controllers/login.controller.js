@@ -47,7 +47,8 @@ export const login = async (req, res) => {
           success: true,
           message: "Manager logged in successfully",
           role: user.role,
-          username: "Cố vấn",
+          username,
+          lop: user.lop,
           accessToken,
         });
       }
@@ -61,8 +62,7 @@ export const login = async (req, res) => {
 // @desc: Teacher create new account for student
 // @access: Only teacher can do
 export const createStudentAccount = async (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
+  const { username, password, lop } = req.body;
 
   try {
     // Check for existing user
@@ -79,6 +79,7 @@ export const createStudentAccount = async (req, res) => {
       username,
       password: hashedPassword,
       role: "student",
+      lop: lop,
     });
     await newUser.save();
 
@@ -96,5 +97,44 @@ export const createStudentAccount = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: "Internal server error" });
+  }
+};
+
+export const deleteStudentAccount = async (req, res) => {
+  try {
+    const acc = await Users.findOneAndDelete({ username: req.params.msv });
+    if (acc) {
+      res.json({ message: "Delete successfully" });
+    } else {
+      res.json({ message: "Delete fail" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Server error ~ deleteStudentAccount" });
+  }
+};
+
+export const changePassword = async (req, res) => {
+  try {
+    const { username, old_pass, new_pass } = req.body;
+    const user = await Users.findOne({
+      username: username,
+    });
+    const verifiedPassword = await argon2.verify(user.password, old_pass);
+    console.log(verifiedPassword);
+    if (!verifiedPassword) {
+      return res.json({ message: "Mật khẩu cũ không đúng" });
+    } else {
+      const UpdatedPassword = await Users.findOneAndUpdate(
+        { username: username },
+        { password: await argon2.hash(new_pass.toString()) }
+      );
+      if (UpdatedPassword) {
+        res.json({ message: "Thay đổi mật khẩu thành công" });
+      } else {
+        res.json({ message: "Thay đổi mật khẩu thất bại" });
+      }
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Server error ~ changePassword" });
   }
 };

@@ -78,3 +78,8 @@ tr {
 .ml-20 {
   margin-left: 20px;
 }
+
+.dropdown {
+  float : left;
+  margin-right: 20px;
+}

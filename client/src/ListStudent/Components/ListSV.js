@@ -9,7 +9,7 @@ class ListSV extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      students: [],
+      students: this.props.students,
       filter: {
         msv: "",
         name: "",
@@ -25,35 +25,13 @@ class ListSV extends Component {
   }
 
   componentDidMount() {
-    CallApi("student", "GET", null).then((res) => {
-      this.setState({
-        students: res.data.ListStudents,
-      });
+    this.setState({
+      students: this.props.students,
     });
   }
 
-  findIndex = (_id) => {
-    var { students } = this.state;
-    var result = -1;
-    students.forEach((student, index) => {
-      if (student._id === _id) result = index;
-    });
-    return result;
-  };
-
-  onDelete = (_id) => {
-    var { students } = this.state;
-    CallApi(`student/delete/${_id}`, "DELETE", null).then((res) => {
-      if (res.status === 200) {
-        var index = this.findIndex(_id);
-        if (index !== -1) {
-          students.splice(index, 1);
-          this.setState({
-            students: students,
-          });
-        }
-      }
-    });
+  onDelete = (_id, msv) => {
+    this.props.onDelete(_id, msv);
   };
 
   onChange = (event) => {
@@ -77,7 +55,9 @@ class ListSV extends Component {
   };
 
   render() {
-    var { students, filter, sort } = this.state;
+    var { filter, sort } = this.state;
+    var students = this.props.students;
+    console.log(students);
     if (filter) {
       if (filter.msv) {
         students = students.filter((student) => {

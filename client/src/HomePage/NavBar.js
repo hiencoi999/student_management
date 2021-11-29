@@ -126,6 +126,8 @@ class NavBar extends Component {
     sessionStorage.removeItem("msv");
     sessionStorage.removeItem("userId");
     sessionStorage.removeItem("role");
+    sessionStorage.removeItem("lop");
+    sessionStorage.removeItem("item");
   };
 
   chooseInfoTeacher = () => {
@@ -238,22 +240,6 @@ class NavBar extends Component {
                   <span className="links_name">Biểu đồ điểm</span>
                 </Link>
                 <span className="tooltip">Biểu đồ điểm</span>
-              </li>
-              <li
-                className="infomation_teacher"
-                className={
-                  (chooseInfoTeacher ? "home" : "") +
-                  (role === "manager" ? "student" : "")
-                }
-                onClick={this.chooseInfoTeacher}
-              >
-                <Link to="/home/infomation-teacher">
-                  <div className="icon">
-                    <span className="fa fa-info-circle"></span>
-                  </div>
-                  <span className="links_name">TT Cố vấn</span>
-                </Link>
-                <span className="tooltip">TT Cố vấn</span>
               </li>
               <li
                 className="profile"

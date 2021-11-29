@@ -17,6 +17,10 @@ const userSchema = new Schema({
     default: "student",
     required: true,
   },
+  lop: {
+    type: String,
+    required: true,
+  },
 });
 // export collection name 'users' storing login infomation
 const Users = mongoose.model("users", userSchema);

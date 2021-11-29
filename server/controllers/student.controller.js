@@ -1,16 +1,35 @@
 import Student from "../models/student.model.js";
-import XLSX from "xlsx";
-import { request } from "express";
-
+import Users from "../models/user.model.js";
+import xlsx from "xlsx";
+import argon2 from "argon2";
+import jwt from "jsonwebtoken";
 export const getAllStudent = async (req, res) => {
   try {
-    const ListStudents = await Student.find({});
+    const ListStudents = await Student.find({ lop: req.params.lop });
 
     res.json({ success: true, ListStudents });
   } catch (error) {
     res
       .status(500)
       .json({ success: false, message: "Server error ~ getAllStudent" });
+  }
+};
+
+export const updateStudent = async (req, res) => {
+  try {
+    console.log(req.body);
+    const { name, birthday, gender, phone, address } = req.body;
+    const updatedStudent = await Student.findByIdAndUpdate(
+      { _id: req.params.id },
+      { name, birthday, gender, phone, address }
+    );
+    if (updatedStudent) {
+      res.json({ message: "Update successfully" });
+    } else {
+      res.json({ message: "Update fail" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Server error ~ updateStudent" });
   }
 };
 
@@ -26,6 +45,7 @@ export const createStudent = async (req, res) => {
       sum_of_credits,
       gpa,
       status,
+      lop,
     } = req.body;
 
     const isExist = await Student.findOne({ msv });
@@ -45,6 +65,7 @@ export const createStudent = async (req, res) => {
       sum_of_credits,
       gpa,
       status,
+      lop,
     });
     await newStudent.save();
     console.log("Create successfully");
@@ -68,21 +89,44 @@ export const deleteStudent = async (req, res) => {
     res.status(500).json({ message: "Server error ~ deleteStudent" });
   }
 };
+export const importFromExcel = async (req, res) => {
+  try {
+    const wb = xlsx.readFile("./uploads/import.xlsx", { cellDates: true });
+    const ws = wb.Sheets["Sheet1"];
+    const dataStudent = xlsx.utils.sheet_to_json(ws);
+    console.log(dataStudent);
+    const dataUser = [];
 
-export const importFromExcel = (req, res) => {
-  const file = req.body;
-  res.send(file);
-};
+    // for (let i = 0; i < dataStudent.length; i++) {
+    //   dataUser.push({
+    //     username: dataStudent[i].msv,
+    //     password: await argon2.hash(dataStudent[i].msv.toString()),
+    //     lop: dataStudent[i].lop,
+    //   });
+    // }
 
-export const exportToExcel = async (req, res) => {
-  const aoo = await Student.find({}, { projection: { _id: 0 } }).toArray();
-  const ws = XLSX.utils.json_to_sheet(aoo);
-  XLSX.utils.book_append_sheet(wb, ws, name);
+    for (let i = 0; i < dataStudent.length; i++) {
+      dataUser[i] = new Users({
+        username: dataStudent[i].msv,
+        password: await argon2.hash(dataStudent[i].msv.toString()),
+        lop: dataStudent[i].lop,
+      });
+      await dataUser[i].save();
+      jwt.sign({ userId: dataUser[i]._id }, process.env.ACCESS_TOKEN_SECRET);
+    }
+    //   console.log(dataUser);
 
-  const wb = XLSX.utils.book_new();
-  await SheetJSMongo.book_append_mongo(wb, pres, "pres");
-  await SheetJSMongo.book_append_mongo(wb, fmts, "fmts");
-  XLSX.writeFile(wb, "mongocrud.xlsx");
+    // const isCreatedUser = await Users.insertMany(dataUser);
+
+    const isImported = await Student.insertMany(dataStudent);
+    if (isImported) {
+      res.send("Import successfully");
+    } else {
+      res.send("Import fail");
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Server error ~ importFromExcel" });
+  }
 };
 
 export const getStudentDetail = async (req, res) => {

@@ -31,8 +31,6 @@ class ImportData extends Component {
     // Details of the uploaded file
     console.log(this.state.selectedFile);
 
-    // Request made to the backend api
-    // Send formData object
     axios
       .post("http://localhost:5000/student/create/import", formData)
       .then((response) => {
@@ -49,7 +47,7 @@ class ImportData extends Component {
         <h1 className="title">Nhập sinh viên từ file Excel</h1> <br /> <br />
         <div className="import">
           <label> Xin hãy chọn file Excel đúng như định dạng bên dưới: </label>
-          <img />
+          <img src="https://i.imgur.com/WNs7Whg.png" />
           <input
             type="file"
             className="form-control"
@@ -69,10 +67,6 @@ class ImportData extends Component {
           >
             <span className="fa fa-save"></span> &nbsp; Ghi nhận
           </button>{" "}
-          &nbsp;
-          <button type="reset" className="btn btn-warning">
-            <span className="fa fa-window-close"></span> &nbsp; Hủy bỏ
-          </button>
         </div>
       </div>
     );

@@ -1,27 +1,31 @@
 import express from "express";
 import { verifyToken } from "../midleware/login.midleware.js";
-
+import { upload } from "../midleware/upload.midleware.js";
+import XLSX from "xlsx";
 import {
   createStudent,
   deleteStudent,
-  exportToExcel,
   getAllStudent,
   getStudentDetail,
   importFromExcel,
+  updateStudent,
 } from "../controllers/student.controller.js";
+import multer from "multer";
 
 const router = express.Router();
 
-router.post("/student/create/import", importFromExcel);
+router.post("/student/create/import", upload.single("myFile"), importFromExcel);
 
-router.get("/student/create/export", exportToExcel);
+router.patch("/student/update/:id", updateStudent);
 
 router.post("/student/create", createStudent);
 
 router.delete("/student/delete/:id", deleteStudent);
 
+//Get 1 student by id
 router.get("/student/:id", getStudentDetail);
 
-router.get("/student", getAllStudent);
+// Get all students in a class
+router.get("/student/all/:lop", getAllStudent);
 
 export default router;

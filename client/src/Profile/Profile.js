@@ -1,9 +1,11 @@
 /* eslint-disable react/jsx-pascal-case */
 /* eslint-disable jsx-a11y/alt-text */
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import CallApi from "../API/CallApi";
 import styled from "styled-components";
 import moment from "moment";
+import axios from "axios";
 
 const Title = styled.h2`
   text-align: center;
@@ -77,36 +79,85 @@ const Btn_site = styled.div`
   margin-top: 10%;
   text-align: center;
 `;
-class Profile extends Component {
+
+class InfoStudent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      student: [],
+      msv: "",
+      name: "",
+      birthday: "",
+      gender: "",
+      phone: "",
+      address: "",
+      sum_of_credits: 0,
+      gpa: 0,
+      status: "",
+      lop: "",
     };
   }
 
   componentDidMount() {
-    var userId = sessionStorage.getItem("userId");
-    console.log(userId);
-    CallApi(`student/${userId}`, "GET", null).then((res) => {
-      var data = res.data.StudentDetail[0];
-      console.log(data);
-      this.setState({
-        student: data,
+    var { match } = this.props;
+    if (match) {
+      var id = sessionStorage.getItem("userId");
+      CallApi(`student/${id}`, "GET", null).then((res) => {
+        var data = res.data.StudentDetail[0];
+        this.setState({
+          msv: data.msv,
+          name: data.name,
+          birthday: data.birthday,
+          gender: data.gender,
+          phone: data.phone,
+          address: data.address,
+          sum_of_credits: data.sum_of_credits,
+          gpa: data.gpa,
+          status: data.status,
+          lop: data.lop,
+        });
       });
-    });
+    }
   }
 
-  onChange = () => {
-    console.log("chua lam j ca");
+  onChange = (event) => {
+    var target = event.target;
+    var name = target.name;
+    var value = target.value;
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  onSubmit = (event) => {
+    event.preventDefault();
+    var id = sessionStorage.getItem("userId");
+    CallApi(`student/update/${id}`, "PATCH", {
+      name: this.state.name,
+      birthday: this.state.birthday,
+      gender: this.state.gender,
+      phone: this.state.phone,
+      address: this.state.address,
+    }).then((res) => {
+      alert("Cập nhật thành công");
+    });
   };
 
   render() {
-    var { student } = this.state;
-    console.log(student);
+    var {
+      msv,
+      name,
+      birthday,
+      gender,
+      phone,
+      address,
+      sum_of_credits,
+      gpa,
+      status,
+      lop,
+    } = this.state;
     return (
       <div className="container">
-        <Title>Hồ sơ cá nhân</Title>
+        <Title>Thông tin chi tiết</Title>
         <Site>
           <Infor_site>
             <Title_infor>Thông tin cá nhân</Title_infor>
@@ -121,56 +172,40 @@ class Profile extends Component {
               </Image_div>
               <Left_div>
                 <p>Mã sinh viên: </p>
-                <input
-                  type="text"
-                  name="msv"
-                  value={student.msv}
-                  onChange={this.onChange}
-                />
+                <label>{msv}</label>
+                <p>Giới tính:</p>
+                <label>{gender}</label>
                 <p style={{ marginTop: "10px" }}>Họ và tên: </p>
                 <input
                   type="text"
                   name="name"
-                  value={student.name}
+                  placeholder={name}
                   onChange={this.onChange}
                 />
                 <p style={{ marginTop: "10px" }}>Ngày sinh:</p>
                 <input
-                  type="date"
+                  type="text"
                   name="birthday"
-                  value={moment(student.birthday).format("DD/MM/YYYY")}
+                  placeholder={moment(birthday).format("DD/MM/YYYY")}
                   onChange={this.onChange}
                 />
               </Left_div>
               <Right_div>
-                <p>Giới tính:</p>
-                <input
-                  style={{ marginBottom: "10px" }}
-                  type="text"
-                  name="gender"
-                  value={student.gender}
-                  onChange={this.onChange}
-                />
+                <p>Trạng thái: </p>
+                <label>{status}</label>
+                <p>Lớp: </p>
+                <label> {lop} </label>
                 <p>SĐT: </p>
                 <input
                   type="text"
                   name="phone"
-                  value={student.phone}
+                  placeholder={phone}
                   onChange={this.onChange}
                 />
-                {/* <p style={{ marginTop: "10px" }}>Địa chỉ E-mail khác: </p>
-                <input type='email' name='email_gg' value={student.email} /> */}
                 <p style={{ marginTop: "10px" }}>Địa chỉ: </p>
                 <textarea
-                  style={{
-                    resize: "vertical",
-                    width: "175px",
-                    minHeight: "50px",
-                    maxHeight: "65px",
-                  }}
-                  type="text"
                   name="address"
-                  value={student.address}
+                  placeholder={address}
                   onChange={this.onChange}
                 />
               </Right_div>
@@ -179,30 +214,39 @@ class Profile extends Component {
           <Gpa_site>
             <Title_gpa>Điểm số</Title_gpa>
             <p>Tổng số tín chỉ đã đăng ký:</p>
-            <p>{student.sum_of_credits}/158 </p>
-            <progress
-              min="0"
-              max="158"
-              value={student.sum_of_credits}
-            ></progress>
+            <label>{sum_of_credits}/158</label>
+            <br />
+            <progress min="0" max="158" value={sum_of_credits}></progress>
             <p style={{ marginTop: "30px" }}>Điểm trung bình :</p>
-            <p>{student.gpa}</p>
+            <label>{gpa}</label>
           </Gpa_site>
         </Site>
         <Btn_site>
+          <Link
+            to="/home/list-students"
+            className="goback btn btn-danger"
+            style={{ marginRight: "20px" }}
+          >
+            <span className="fa fa-arrow-left"></span> &nbsp; Quay lại
+          </Link>
           <button
             type="submit"
             className="btn btn-primary"
             style={{ marginRight: "20px" }}
+            onClick={this.onSubmit}
           >
             <span className="fa fa-save"></span> &nbsp; Ghi nhận
           </button>
-          <button className="btn btn-danger">
-            <span className="fa fa-window-close"></span> &nbsp; Hủy bỏ
-          </button>
+          <Link
+            to="/home/change-password"
+            className="btn btn-primary"
+            style={{ marginRight: "20px" }}
+          >
+            <span className="fa fa-key"></span> &nbsp; Đổi mật khẩu
+          </Link>
         </Btn_site>
       </div>
     );
   }
 }
-export default Profile;
+export default InfoStudent;

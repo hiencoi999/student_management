@@ -1,40 +1,29 @@
 import React from "react";
 import "../NavBar.css";
-const Notification = () => {
-  // let isAuth = localStorage.getItem("accessToken") != null;
+import NotiList from "./Noti/NotiList";
 
-  // if (!isAuth) {
-  //   return <Redirect to="/login" />;
-  // } else {
+class Notification extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      role: "",
+    };
+  }
 
-  return (
-    <div>
-      <p className="elements">
-        THÔNG<span id="noti"> BÁO</span>
-      </p>
-      <div className="notiManagement">
-        <div>
-          <p id="add-noti-title">THÊM THÔNG BÁO</p>
-          <textarea id="notiText" placeholder="Thêm thông báo..."></textarea>
-          <br />
-          <button id="add-noti-btn">THÊM</button>
-        </div>
+  componentDidMount() {
+    this.setState({
+      role: sessionStorage.getItem("role"),
+    });
+  }
+
+  render() {
+    var { role } = this.state;
+    return (
+      <div className="todo-app">
+        <NotiList role={role} />
       </div>
-      <div className="alert">
-        <div className="hiddenNotiDetailBtn" id="notiHiddenBtn">
-          <span>?</span>
-        </div>
-        <div style={{ marginLeft: "30px" }}>Danh sách thông báo</div>
-        <span id="notiCloseBtn">
-          <span>!</span>
-        </span>
-      </div>
-      <div className="notiDetail" id="hiddenNotiDetail">
-        an huy 123
-      </div>
-    </div>
-  );
-  // }
-};
+    );
+  }
+}
 
 export default Notification;

@@ -202,9 +202,6 @@ class InfoStudent extends Component {
           >
             <span className="fa fa-save"></span> &nbsp; Ghi nhận
           </button>
-          <button className="btn btn-danger" onClick={<a href="/chat"></a>}>
-            <span className="fa fa-window-close"></span> &nbsp; Hủy bỏ
-          </button>
         </Btn_site>
       </div>
     );

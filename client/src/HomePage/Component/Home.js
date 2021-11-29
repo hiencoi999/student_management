@@ -3,41 +3,39 @@ import React, { Component } from "react";
 import { BsClipboardData } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import logo from "./logo1.png";
+import home from "./home.png";
 import "../NavBar.css";
 export default class Home extends Component {
   render() {
     return (
-      <div id="main">
-        <div className="homepage">
-          <p className="elements" id="title">
-            Classe <span id="student">369</span>
+      <div id='main'>
+        <div className='homepage'>
+          <p className='elements' id='title'>
+            Classe<span id='student'>369</span>
           </p>
-          <hr className="elements" id="homehr" />
-          <div className="introduction">
-            <h1 className="manage">
+          <hr className='elements' id='homehr' />
+          <div className='introduction'>
+            <h1 className='manage'>
               Mọi thứ
-              <div id="_manage">bạn cần cho việc</div> quản lí sinh viên
+              <div id='_manage'>cần thiết cho việc</div> quản lí sinh viên
             </h1>
-            <div className="manage_1">
+            <div className='manage_1'>
               <img
                 src={logo}
-                width="200px"
-                height="150px"
-                style={{ marginTop: "-50px" }}
+                width='300rem'
+                height='200rem'
+                style={{ marginTop: "-8rem", marginRight: "7rem" }}
               />
             </div>
-            <p id="_intro1">
+            <p id='_intro1'>
               Classe369 là 1 phần mềm tiện ích giúp quản lý sinh viên một cách
               ngắn gọn và đầy đủ nhất thông qua những thống kê xác thực nhất và
               nhanh nhất
             </p>
-            <img
-              className="homewallpaper"
-              src="https://i.pinimg.com/originals/a5/f4/fb/a5f4fb117b65e2a5b624ef09395c4228.png"
-            />
-            <div className="footer1">
+            <img className='homewallpaper' src={home} />
+            <div className='footer1'>
               <br />
-              <p id="_footer2">
+              <p id='_footer2'>
                 Hàng ngàn tổ chức giáo dục ngày nay sử dụng hệ thống quản lý
                 trường học phân mảnh và nền tảng phần mềm để quản lý các hoạt
                 động hành chính và học tập của họ. Classe369 cung cấp một giải
@@ -47,33 +45,34 @@ export default class Home extends Component {
 
             {/* FOOTER CHUC NANG */}
 
-            <div className="footer2">
-              <h1 id="_footer1">Tính năng của Classe 369</h1>
-              <hr className="elements" id="homehr" />
-              <div className="footer_icons">
-                <span className="fa fa-comment-dots"></span>
+            <div className='footer2'>
+              <hr className='elements' id='homehr' />
+              <h1 id='_footer1'>Các tính năng của Classe369</h1>
+
+              <div className='footer_icons'>
+                <span className='fa fa-comment-dots'></span>
               </div>
-              <div className="footer_icons">
-                <span className="fa fa-chart-bar"></span>
+              <div className='footer_icons'>
+                <span className='fa fa-chart-bar'></span>
               </div>
-              <div className="footer_icons">
+              <div className='footer_icons'>
                 <BsClipboardData />
               </div>
-              <div className="footer_icons">
+              <div className='footer_icons'>
                 <IoMdNotificationsOutline />
               </div>
               <br />
 
-              <div className="footer_fn" id="footer_fn1">
+              <div className='footer_fn' id='footer_fn1'>
                 Chat
               </div>
-              <div className="footer_fn" id="footer_fn2">
+              <div className='footer_fn' id='footer_fn2'>
                 Biểu đồ điểm
               </div>
-              <div className="footer_fn" id="footer_fn3">
+              <div className='footer_fn' id='footer_fn3'>
                 Danh sách sinh viên
               </div>
-              <div className="footer_fn" id="footer_fn4">
+              <div className='footer_fn' id='footer_fn4'>
                 Thông báo
               </div>
             </div>

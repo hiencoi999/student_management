@@ -9,6 +9,7 @@ import InfoStudent from "./ListStudent/Components/InfoStudent";
 import ImportData from "./ListStudent/Components/ImportData";
 import Profile from "./Profile/Profile";
 import InfoTeacher from "./InfoTeacher/InfoTeacher";
+import ChangePassword from "./Profile/ChangePassword";
 
 const routes = [
   {
@@ -61,6 +62,11 @@ const routes = [
     path: "/home/infomation-teacher",
     exact: true,
     main: () => <InfoTeacher />,
+  },
+  {
+    path: "/home/change-password",
+    exact: true,
+    main: () => <ChangePassword />,
   },
 ];
 

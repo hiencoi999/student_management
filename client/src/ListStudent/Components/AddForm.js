@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import CallApi from "../../API/CallApi";
-
+import axios from "axios";
 class AddForm extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +15,7 @@ class AddForm extends Component {
       sum_of_credits: 0,
       gpa: 0,
       status: "",
+      lop: "",
     };
   }
 
@@ -39,7 +40,29 @@ class AddForm extends Component {
       sum_of_credits: this.state.sum_of_credits,
       gpa: this.state.gpa,
       status: this.state.status,
+      lop: this.state.lop,
     });
+    CallApi("create-student-account", "POST", {
+      username: this.state.msv,
+      password: this.state.msv,
+      lop: this.state.lop,
+    });
+
+    const headers = {
+      "PRIVATE-KEY": "14bf1d3f-a86c-4b1b-ad74-9675722ee4f8",
+    };
+
+    axios.post(
+      "https://api.chatengine.io/users/",
+      {
+        username: this.state.msv.toString(),
+        secret: this.state.msv.toString(),
+      },
+      {
+        headers: headers,
+      }
+    );
+
     this.setState({
       msv: "",
       name: "",
@@ -50,6 +73,7 @@ class AddForm extends Component {
       sum_of_credits: "",
       gpa: "",
       status: "",
+      lop: "",
     });
     alert("Đã thêm thành công");
   };
@@ -160,6 +184,15 @@ class AddForm extends Component {
                     <option value="Thiếu học phí">Thiếu học phí</option>
                     <option value="Khen thưởng">Khen thưởng</option>
                   </select>{" "}
+                  <label>Lớp:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    required
+                    name="lop"
+                    value={this.state.lop}
+                    onChange={this.onChange}
+                  />
                   <br />
                   <div className="text_center">
                     <button

@@ -45,9 +45,9 @@ const studentSchema = new mongoose.Schema({
     ],
     default: "Không",
   },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "users",
+  lop: {
+    type: String,
+    required: true,
   },
 });
 //export collection name 'student' storing student info

@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 
 class OneRowData extends Component {
-  onDelete = (_id) => {
+  onDelete = (_id, msv) => {
     if (confirm("Bạn chắc chắn muốn xóa sinh viên này ?")) {
-      this.props.onDelete(_id);
+      this.props.onDelete(_id, msv);
     }
   };
 
@@ -37,7 +37,7 @@ class OneRowData extends Component {
           <button
             className="btn btn-danger"
             type="button"
-            onClick={() => this.onDelete(student._id)}
+            onClick={() => this.onDelete(student._id, student.msv)}
           >
             <span className="fa fa-trash"></span> &nbsp;Xóa
           </button>{" "}

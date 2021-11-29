@@ -197,6 +197,7 @@ class Login extends Component {
         sessionStorage.setItem("role", res.data.role);
         sessionStorage.setItem("userId", res.data.userId);
         sessionStorage.setItem("msv", res.data.username);
+        sessionStorage.setItem("lop", res.data.lop);
         console.log(res);
       })
       .catch(function (error) {
@@ -238,6 +239,7 @@ class Login extends Component {
                     placeholder="Email đăng nhập"
                     value={this.state.username}
                     onChange={this.handle}
+                    autoFocus
                   />
                 </Input_container>
                 <br />
@@ -249,7 +251,8 @@ class Login extends Component {
                     type="password"
                     name="password"
                     placeholder="Mật khẩu"
-                    value={this.state.password}
+                    // value={this.state.password}
+
                     onChange={this.handle}
                   ></_Input>
                 </Input_container>
