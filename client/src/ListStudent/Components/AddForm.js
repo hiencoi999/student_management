@@ -186,6 +186,7 @@ class AddForm extends Component {
                   </select>{" "}
                   <label>Lớp:</label>
                   <input
+                    placeholder="vd: K64-CA-CLC-4"
                     type="text"
                     className="form-control"
                     required

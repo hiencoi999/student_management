@@ -71,14 +71,24 @@ function TodoList(props) {
       <Noti_Form>
         <Noti_title>THÔNG BÁO</Noti_title>
         <NotiForm onSubmit={addTodo} />
-        <Noti todos={todos} removeTodo={removeTodo} updateTodo={updateTodo} />
+        <Noti
+          role={role}
+          todos={todos}
+          removeTodo={removeTodo}
+          updateTodo={updateTodo}
+        />
       </Noti_Form>
     );
   } else {
     return (
       <Noti_Form>
         <Noti_title>THÔNG BÁO</Noti_title>
-        <Noti todos={todos} removeTodo={removeTodo} updateTodo={updateTodo} />
+        <Noti
+          role={role}
+          todos={todos}
+          removeTodo={removeTodo}
+          updateTodo={updateTodo}
+        />
       </Noti_Form>
     );
   }

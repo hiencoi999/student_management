@@ -33,7 +33,7 @@ const Noti_icon = styled.div`
   margin-bottom: auto;
   float: right;
 `;
-const Todo = ({ todos, removeTodo, updateTodo }) => {
+const Todo = ({ role, todos, removeTodo, updateTodo }) => {
   const [edit, setEdit] = useState({
     id: null,
     value: "",
@@ -50,24 +50,32 @@ const Todo = ({ todos, removeTodo, updateTodo }) => {
   if (edit.id) {
     return <NotiForm edit={edit} onSubmit={submitUpdate} />;
   }
-
-  return todos.map((todo, index) => (
-    <Noti_element className="todo-row" key={index}>
-      <Noti_content key={todo.id}>{todo.content}</Noti_content>
-      <Noti_icon className="icons">
-        <RiCloseCircleLine
-          style={{ width: "2rem", height: "2rem", color: "white" }}
-          onClick={() => removeTodo(todo.id)}
-          className="delete-icon"
-        />
-        <TiEdit
-          style={{ width: "2rem", height: "2rem", color: "white" }}
-          onClick={() => setEdit({ id: todo.id, value: todo.content })}
-          className="edit-icon"
-        />
-      </Noti_icon>
-    </Noti_element>
-  ));
+  if (role !== "student") {
+    return todos.map((todo, index) => (
+      <Noti_element className="todo-row" key={index}>
+        <Noti_content key={todo.id}>{todo.content}</Noti_content>
+        <Noti_icon className="icons">
+          <RiCloseCircleLine
+            style={{ width: "2rem", height: "2rem", color: "white" }}
+            onClick={() => removeTodo(todo.id)}
+            className="delete-icon"
+          />
+          <TiEdit
+            style={{ width: "2rem", height: "2rem", color: "white" }}
+            onClick={() => setEdit({ id: todo.id, value: todo.content })}
+            className="edit-icon"
+          />
+        </Noti_icon>
+      </Noti_element>
+    ));
+  } else {
+    return todos.map((todo, index) => (
+      <Noti_element className="todo-row" key={index}>
+        <Noti_content key={todo.id}>{todo.content}</Noti_content>
+        <Noti_icon className="icons"></Noti_icon>
+      </Noti_element>
+    ));
+  }
 };
 
 export default Todo;
