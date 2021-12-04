@@ -3,6 +3,10 @@ import Users from "../models/user.model.js";
 import xlsx from "xlsx";
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
+import axios from "axios";
+const headers = {
+  "PRIVATE-KEY": "14bf1d3f-a86c-4b1b-ad74-9675722ee4f8",
+};
 export const getAllStudent = async (req, res) => {
   try {
     const ListStudents = await Student.find({ lop: req.params.lop });
@@ -113,6 +117,17 @@ export const importFromExcel = async (req, res) => {
       });
       await dataUser[i].save();
       jwt.sign({ userId: dataUser[i]._id }, process.env.ACCESS_TOKEN_SECRET);
+
+      axios.post(
+        "https://api.chatengine.io/users/",
+        {
+          username: dataStudent[i].msv.toString(),
+          secret: dataStudent[i].msv.toString(),
+        },
+        {
+          headers: headers,
+        }
+      );
     }
     //   console.log(dataUser);
 

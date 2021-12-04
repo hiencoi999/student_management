@@ -37,22 +37,17 @@ function TodoList(props) {
     }
     fetchNotiList();
   }, []);
-  console.log(todos);
+
   const addTodo = (todo) => {
     if (!todo.content || /^\s*$/.test(todo.content)) {
       return;
     }
-
     const newTodos = [todo, ...todos];
 
     setTodos(newTodos);
-    console.log(...todos);
   };
 
   const updateTodo = async (id, newValue) => {
-    await axios.patch(`http://localhost:5000/post/update/${id}`, {
-      newValue,
-    });
     if (!newValue.content || /^\s*$/.test(newValue.content)) {
       return;
     }

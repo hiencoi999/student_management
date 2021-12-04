@@ -66,7 +66,7 @@
 // };
 import React from "react";
 import { ChatEngine } from "react-chat-engine";
-
+import { PeopleSettings } from "react-chat-engine";
 export const Chat = () => {
   const username = sessionStorage.getItem("msv");
   return (

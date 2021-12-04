@@ -10,6 +10,12 @@ const postSchema = new Schema({
     type: String,
     required: true,
   },
+  comment: [
+    {
+      msv: String,
+      cmt: String,
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now,

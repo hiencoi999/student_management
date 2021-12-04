@@ -6,7 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .sidebar {
   position: fixed;
@@ -160,12 +160,13 @@
 .homewallpaper {
   text-align: center;
   margin-top: 30px;
-  width: 1000px;
-  height: 450px;
+  width: 100rem;
+  height: 60rem;
   border-radius: 20px;
   /* margin-left: 240px; */
   transition: all 0.5s ease;
-  box-shadow: 3px 3px 3px black;
+  box-shadow: 4px 4px 8px 8px rgba(0, 0, 0, 0.2),
+    6px 6px 20px 10px rgba(0, 0, 0, 0.19);
 }
 .homewallpaper.open {
   /* margin-left: 320px; */
@@ -177,6 +178,7 @@
   color: #0c67b3;
   text-shadow: 1px 1px #11101d;
   transition: all 0.5s ease;
+  font-size: 6rem;
 }
 #homehr {
   transition: all 0.5s ease;
@@ -313,9 +315,11 @@
 }
 .manage {
   display: inline;
-  font-size: 2.9rem;
-  line-height: 3.2rem;
+  font-size: 4rem;
+  line-height: 5rem;
   color: #0c67b3;
+  font-weight: bold;
+  text-shadow: 2px 5px 8px rgba(0, 0, 0, 0.3);
 }
 #_manage {
   font-weight: 400;
@@ -327,17 +331,19 @@
 }
 #_intro1 {
   margin-top: 20px;
-  max-width: 900px;
+  max-width: 50rem;
   font-size: 1.5rem;
 }
 #_footer1 {
-  font-size: 1.8rem;
+  font-size: 3rem;
   line-height: 3.2rem;
   color: #0c67b3;
   text-align: center;
   transition: all 0.5 ease;
   margin-bottom: 30px;
   margin-top: 30px;
+  font-weight: bold;
+  text-shadow: 2px 5px 8px rgba(0, 0, 0, 0.3);
 }
 #_footer2 {
   margin-left: auto;
@@ -345,17 +351,22 @@
   max-width: 800px;
   text-align: center;
   transition: all 0.5s ease;
+  font-size: 1.7rem;
+  margin-top: 3rem;
+}
+.footer2 {
+  margin-bottom: 5rem;
 }
 .footer_icons {
   /* display: inline; */
   color: #0c67b3;
   float: left;
-  margin-top: -30px;
+  /* margin-top: -2.8rem; */
   text-align: center;
-  margin-left: 15%;
+  margin-left: 18%;
   background-color: white;
-  height: 30px;
-  width: 30px;
+  height: 3rem;
+  width: 3rem;
   transition: all 0.5s ease;
 }
 #main_nightmode .footer_icons {
@@ -380,16 +391,16 @@
   transition: all 0.5s ease;
 }
 #footer_fn1 {
-  margin-left: 15%;
+  margin-left: 18%;
 }
 #footer_fn2 {
-  margin-left: 12%;
+  margin-left: 15%;
 }
 #footer_fn3 {
-  margin-left: 8%;
+  margin-left: 9%;
 }
 #footer_fn4 {
-  margin-left: 6%;
+  margin-left: 10%;
 }
 .homepage.open .introduction .footer2 .footer_icons {
   margin-left: 136px;
@@ -428,7 +439,7 @@
   right: 0;
   margin-left: 80px;
   transition: all 0.6s ease;
-  z-index: 2
+  z-index: 2;
 }
 
 .notiManagement {

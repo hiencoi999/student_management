@@ -6,6 +6,7 @@ import CallApi from "../API/CallApi";
 import styled from "styled-components";
 import moment from "moment";
 import axios from "axios";
+import avatar from "./avatar.png";
 
 const Title = styled.h2`
   text-align: center;
@@ -165,7 +166,7 @@ class InfoStudent extends Component {
               <Image_div>
                 <img
                   className="avatar"
-                  src="https://i.imgur.com/k88evbb.png"
+                  src={avatar}
                   width="150px"
                   height="150px"
                 />
@@ -177,6 +178,7 @@ class InfoStudent extends Component {
                 <label>{gender}</label>
                 <p style={{ marginTop: "10px" }}>Họ và tên: </p>
                 <input
+                  style={{ width: "90%" }}
                   type="text"
                   name="name"
                   placeholder={name}
@@ -184,6 +186,7 @@ class InfoStudent extends Component {
                 />
                 <p style={{ marginTop: "10px" }}>Ngày sinh:</p>
                 <input
+                  style={{ width: "90%" }}
                   type="text"
                   name="birthday"
                   placeholder={moment(birthday).format("DD/MM/YYYY")}
@@ -197,6 +200,7 @@ class InfoStudent extends Component {
                 <label> {lop} </label>
                 <p>SĐT: </p>
                 <input
+                  style={{ width: "90%" }}
                   type="text"
                   name="phone"
                   placeholder={phone}
@@ -204,6 +208,12 @@ class InfoStudent extends Component {
                 />
                 <p style={{ marginTop: "10px" }}>Địa chỉ: </p>
                 <textarea
+                  style={{
+                    width: "90%",
+                    maxHeight: "6rem",
+                    resize: "vertical",
+                    minHeight: "4rem",
+                  }}
                   name="address"
                   placeholder={address}
                   onChange={this.onChange}
@@ -222,13 +232,12 @@ class InfoStudent extends Component {
           </Gpa_site>
         </Site>
         <Btn_site>
-          <Link
-            to="/home/list-students"
-            className="goback btn btn-danger"
-            style={{ marginRight: "20px" }}
-          >
-            <span className="fa fa-arrow-left"></span> &nbsp; Quay lại
-          </Link>
+          {/* <Link
+            to='/home/list-students'
+            className='goback btn btn-danger'
+            style={{ marginRight: "20px" }}>
+            <span className='fa fa-arrow-left'></span> &nbsp; Quay lại
+          </Link> */}
           <button
             type="submit"
             className="btn btn-primary"

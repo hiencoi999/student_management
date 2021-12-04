@@ -27,10 +27,12 @@ const Infor = styled.div`
 const Left_div = styled.div`
   padding-right: 10px;
   padding-left: 10px;
+  max-width: 35%;
 `;
 const Right_div = styled.div`
   padding-right: 10px;
   padding-left: 10px;
+  max-width: 35%;
 `;
 const Image_div = styled.div`
   padding-top: 30px;
@@ -124,41 +126,22 @@ class InfoStudent extends Component {
               </Image_div>
               <Left_div>
                 <p>Mã sinh viên: </p>
-                <input
-                  type="text"
-                  name="msv"
-                  value={student.msv}
-                  onChange={this.onChange}
-                />
+                <label>{student.msv}</label>
                 <p style={{ marginTop: "10px" }}>Họ và tên: </p>
-                <input
-                  type="text"
-                  name="name"
-                  value={student.name}
-                  onChange={this.onChange}
-                />
+                <label>{student.name}</label>
                 <p style={{ marginTop: "10px" }}>Ngày sinh:</p>
-                <input
-                  type="text"
-                  name="birthday"
-                  value={moment(student.birthday).format("DD/MM/YYYY")}
-                  onChange={this.onChange}
-                />
+                <label>{moment(student.birthday).format("DD/MM/YYYY")}</label>
+                <p>Giới tính:</p>
+                <label>{student.gender}</label>
               </Left_div>
               <Right_div>
-                <p>Giới tính:</p>
-                <input
-                  style={{ marginBottom: "10px" }}
-                  type="text"
-                  name="gender"
-                  value={student.gender}
-                  onChange={this.onChange}
-                />
+                <p>Lớp:</p>
+                <label>{student.lop}</label>
                 <p>SĐT: </p>
                 <input
                   type="text"
                   name="phone"
-                  value={student.phone}
+                  placeholder={student.phone}
                   onChange={this.onChange}
                 />
                 {/* <p style={{ marginTop: "10px" }}>Địa chỉ E-mail khác: </p>
@@ -173,7 +156,7 @@ class InfoStudent extends Component {
                   }}
                   type="text"
                   name="address"
-                  value={student.address}
+                  placeholder={student.address}
                   onChange={this.onChange}
                 />
               </Right_div>
@@ -182,9 +165,16 @@ class InfoStudent extends Component {
           <Gpa_site>
             <Title_gpa>Điểm số</Title_gpa>
             <p>Tổng số tín chỉ đã đăng ký:</p>
-            <input type="number" name="tc" value={student.sum_of_credits} />
+            <label>{student.sum_of_credits}/153</label> <br />
+            <progress
+              min="0"
+              max="158"
+              value={student.sum_of_credits}
+            ></progress>
             <p style={{ marginTop: "30px" }}>Điểm trung bình :</p>
-            <input type="number" name="mark" value={student.gpa} />
+            <label>{student.gpa}</label>
+            <p>Trạng thái: </p>
+            <label style={{ color: "red" }}>{student.status}</label>
           </Gpa_site>
         </Site>
         <Btn_site>
@@ -199,6 +189,7 @@ class InfoStudent extends Component {
             type="submit"
             className="btn btn-primary"
             style={{ marginRight: "20px" }}
+            onClick={this.onSubmit}
           >
             <span className="fa fa-save"></span> &nbsp; Ghi nhận
           </button>

@@ -79,17 +79,27 @@ function TodoForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!props.edit) {
+      axios.post("http://localhost:5000/post/create", {
+        id: Math.floor(Math.random() * 10000),
+        content: input,
+      });
 
-    axios.post("http://localhost:5000/post/create", {
-      id: Math.floor(Math.random() * 10000),
-      content: input,
-    });
-
-    props.onSubmit({
-      id: Math.floor(Math.random() * 10000),
-      content: input,
-    });
-    setInput("");
+      props.onSubmit({
+        id: Math.floor(Math.random() * 10000),
+        content: input,
+      });
+    } else {
+      console.log(props.edit.id);
+      axios.patch(`http://localhost:5000/post/update/${props.edit.id}`, {
+        content: input,
+      });
+      props.onSubmit({
+        id: props.edit.id,
+        content: input,
+      });
+      setInput("");
+    }
   };
 
   return (

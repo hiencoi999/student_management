@@ -2,8 +2,8 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-    "username": "covan1@vnu.edu.vn",
-    "password": "covan1"
+    "username": "19021269",
+    "password": "19021269"
 }
 
 ###
@@ -21,9 +21,9 @@ POST http://localhost:5000/create-student-account
 Content-Type: application/json
 
 {
-    "username": "covan2@vnu.edu.vn",
-    "password": "covan2",
-    "lop": "K64-CA-CLC-3, K65-CA-CLC-4"
+    "username": "covan1@vnu.edu.vn",
+    "password": "covan1",
+    "lop": "K64-CA-CLC-4"
 }
 
 ###
@@ -48,11 +48,11 @@ Content-Type: application/json
 GET http://localhost:5000/student/all/K64-CA-CLC-4
 
 ###
-PATCH    http://localhost:5000/post/update/4567
+PATCH    http://localhost:5000/post/update/1050
 Content-Type: application/json
 
 {
-    "content": "Upofdfdfstfdf"
+    "content": "Upofdffdfstfdf"
     
 }
 
@@ -60,9 +60,9 @@ Content-Type: application/json
 GET http://localhost:5000/student/619f544fe5e3738cca25cf86
 
 ###
-GET https://api.chatengine.io/chats/72779/messages/
 
-###
-DELETE  http://localhost:5000/post/delete/123
-###
-GET http://localhost:5000/post
+PATCH http://localhost:5000/post/comment/1050
+Content-Type: application/json
+{
+    "cmt": "hiencoi9999"
+}

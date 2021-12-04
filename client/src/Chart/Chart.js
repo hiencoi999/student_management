@@ -22,16 +22,18 @@ const Container = styled.div`
   width: 100%;
 `;
 const Chart1 = styled.div`
-  float: left;
-  width: 520px;
+  margin-left: 150px;
+  margin-bottom: 20px;
+  width: 950px;
   padding: 0px;
   border: 1px solid black;
   border-radius: 10px;
 `;
 const Chart2 = styled.div`
-  float: right;
   width: 520px;
-  margin-right: 50px;
+  margin-left: 350px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   border: 1px solid black;
   border-radius: 10px;
 `;
@@ -50,7 +52,6 @@ class Chart extends Component {
     var item = sessionStorage.getItem("item");
     console.log("aloga");
     CallApi(`student/all/${item}`, "GET", null).then((res) => {
-      console.log(res.data.ListStudents);
       if (res.data.ListStudents != null) {
         this.setState({
           students: res.data.ListStudents,
@@ -83,23 +84,27 @@ class Chart extends Component {
     //bar-chart
     var data_bar_chart = [
       {
-        name: "Dưới 2.0",
+        name: "Nguy cơ nghỉ học",
         Số_SV: 0,
       },
       {
-        name: "2.0-2.5",
+        name: "Cảnh báo học vụ",
         Số_SV: 0,
       },
       {
-        name: "2.5-3.2",
+        name: "Thiếu tín chỉ",
         Số_SV: 0,
       },
       {
-        name: "3.2-3.6",
+        name: "Thiếu học phí",
         Số_SV: 0,
       },
       {
-        name: "3.6-4.0",
+        name: "Không",
+        Số_SV: 0,
+      },
+      {
+        name: "Khen thưởng",
         Số_SV: 0,
       },
     ];
@@ -141,29 +146,45 @@ class Chart extends Component {
     };
 
     var { students, lop } = this.state;
-    for (var i = 0; i < students.length; i++) {
+    for (let i = 0; i < students.length; i++) {
       if (students[i].gpa < 2.0) {
-        data_bar_chart[0].Số_SV += 1;
         data_pie_chart[0].value += 1;
       }
       if (students[i].gpa >= 2.0 && students[i].gpa < 2.5) {
-        data_bar_chart[1].Số_SV += 1;
         data_pie_chart[1].value += 1;
       }
       if (students[i].gpa >= 2.5 && students[i].gpa < 3.2) {
-        data_bar_chart[2].Số_SV += 1;
         data_pie_chart[2].value += 1;
       }
       if (students[i].gpa >= 3.2 && students[i].gpa < 3.6) {
-        data_bar_chart[3].Số_SV += 1;
         data_pie_chart[3].value += 1;
       }
       if (students[i].gpa >= 3.6 && students[i].gpa <= 4.0) {
-        data_bar_chart[4].Số_SV += 1;
         data_pie_chart[4].value += 1;
       }
     }
-
+    console.log(students);
+    for (let i = 0; i < students.length; i++) {
+      if (students[i].status === "Nguy cơ nghỉ học") {
+        data_bar_chart[0].Số_SV += 1;
+      }
+      if (students[i].status === "Cảnh báo học vụ") {
+        data_bar_chart[1].Số_SV += 1;
+      }
+      if (students[i].status === "Thiếu tín chỉ") {
+        data_bar_chart[2].Số_SV += 1;
+      }
+      if (students[i].status === "Thiếu học phí") {
+        data_bar_chart[3].Số_SV += 1;
+      }
+      if (students[i].status === "Không") {
+        data_bar_chart[4].Số_SV += 1;
+      }
+      if (students[i].status === "Khen thưởng") {
+        data_bar_chart[5].Số_SV += 1;
+      }
+    }
+    console.log(data_bar_chart);
     return (
       <Container>
         <div className="dropdown">
@@ -190,16 +211,6 @@ class Chart extends Component {
           </ul>
         </div>
         <br /> <br />
-        <Chart1>
-          <ComposedChart width={500} height={450} data={data_bar_chart}>
-            <CartesianGrid stroke="#f5f5f5" />
-            <XAxis dataKey="name" scale="band" />
-            <YAxis />
-            <Tooltip />
-            <Bar dataKey="Số_SV" barSize={70} fill="#413ea0" />
-            <Line type="monotone" dataKey="Số_SV" stroke="#ff7300" />
-          </ComposedChart>
-        </Chart1>
         <Chart2>
           <PieChart width={500} height={450}>
             <Pie
@@ -223,6 +234,16 @@ class Chart extends Component {
             <Legend />
           </PieChart>
         </Chart2>
+        <Chart1>
+          <ComposedChart width={900} height={500} data={data_bar_chart}>
+            <CartesianGrid stroke="#f5f5f5" />
+            <XAxis dataKey="name" scale="band" />
+            <YAxis />
+            <Tooltip />
+            <Bar dataKey="Số_SV" barSize={50} fill="#413ea0" />
+            <Line type="monotone" dataKey="Số_SV" stroke="#ff7300" />
+          </ComposedChart>
+        </Chart1>
       </Container>
     );
   }
