@@ -57,7 +57,7 @@ class Chart extends Component {
       lop: sessionStorage.getItem("lop").split(", "),
     });
     var item = sessionStorage.getItem("item");
-    console.log("aloga");
+
     CallApi(`student/all/${item}`, "GET", null).then((res) => {
       if (res.data.ListStudents != null) {
         this.setState({
@@ -170,7 +170,7 @@ class Chart extends Component {
         data_pie_chart[4].value += 1;
       }
     }
-    console.log(students);
+
     for (let i = 0; i < students.length; i++) {
       if (students[i].status === "Nguy cơ nghỉ học") {
         data_bar_chart[0].Số_SV += 1;
@@ -191,7 +191,7 @@ class Chart extends Component {
         data_bar_chart[5].Số_SV += 1;
       }
     }
-    console.log(data_bar_chart);
+
     return (
       <Container>
         <div className="dropdown">
@@ -217,6 +217,13 @@ class Chart extends Component {
             ))}
           </ul>
         </div>
+        <label
+          style={{
+            padding: "5px",
+          }}
+        >
+          {sessionStorage.getItem("item")}
+        </label>
         <br /> <br />
         <Chart2>
           <h3 style={{ textAlign: "center" }}>

@@ -11,9 +11,11 @@ import avatar from "./avatar.png";
 const Title = styled.h2`
   text-align: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 4rem;
+  text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3);
+  font-size: 5rem;
   font-weight: bolder;
   margin-top: 5%;
+  color: #0b5592;
 `;
 const Infor_site = styled.div`
   background-color: white;
@@ -66,7 +68,7 @@ const Gpa_site = styled.div`
   width: 30%;
   padding: 2rem 3rem;
   margin-left: 5%;
-  height: 45vh;
+  height: 50vh;
   align-items: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-align: center;
@@ -77,7 +79,7 @@ const Site = styled.div`
 `;
 const Btn_site = styled.div`
   position: static;
-  margin-top: 10%;
+  margin-top: 5vh;
   text-align: center;
 `;
 
@@ -158,7 +160,7 @@ class InfoStudent extends Component {
     } = this.state;
     return (
       <div className="container">
-        <Title>Thông tin chi tiết</Title>
+        <Title>Thông tin cá nhân</Title>
         <Site>
           <Infor_site>
             <Title_infor>Thông tin cá nhân</Title_infor>

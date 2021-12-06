@@ -40,6 +40,7 @@ export const login = async (req, res) => {
           userId: student._id,
           username,
           role: user.role,
+          lop: user.lop,
           accessToken,
         });
       } else {

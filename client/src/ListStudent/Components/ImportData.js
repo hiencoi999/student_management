@@ -29,7 +29,7 @@ class ImportData extends Component {
     );
 
     // Details of the uploaded file
-    console.log(this.state.selectedFile);
+    //console.log(this.state.selectedFile);
 
     axios
       .post("http://localhost:5000/student/create/import", formData)
@@ -39,6 +39,7 @@ class ImportData extends Component {
       .catch((error) => {
         console.log(error);
       });
+    alert("Đã thêm thành công");
   };
 
   render() {
@@ -46,7 +47,8 @@ class ImportData extends Component {
       <div className="container">
         <h1 className="title">Nhập sinh viên từ file Excel</h1> <br /> <br />
         <div className="import">
-          <label> Xin hãy chọn file Excel đúng như định dạng bên dưới: </label>
+          <label> Xin hãy chọn file Excel đúng như định dạng bên dưới: </label>{" "}
+          <br />
           <img src="https://i.imgur.com/WNs7Whg.png" />
           <input
             type="file"

@@ -83,3 +83,12 @@ tr {
   float : left;
   margin-right: 20px;
 }
+
+#qlsv {
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3);
+  font-size: 5rem;
+  font-weight: bolder;
+  color: #0b5592;
+}

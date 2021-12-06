@@ -6,19 +6,23 @@ import CallApi from "../../API/CallApi";
 import styled from "styled-components";
 import moment from "moment";
 import "../../index.css";
+import bg_link from "./avatar.png";
 
 const Title = styled.h2`
   text-align: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 4rem;
+  text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3);
+  font-size: 5rem;
   font-weight: bolder;
   margin-top: 5%;
+  color: #0b5592;
 `;
 const Infor_site = styled.div`
   background-color: white;
   padding: 2rem 3rem;
   width: 60%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2),
+    8px 8px 8px 8px rgba(0, 0, 0, 0.19);
   border-radius: 10px;
   background-color: whitesmoke;
 `;
@@ -47,8 +51,8 @@ const Title_infor = styled.p`
   text-align: center;
   font-weight: bold;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3),
-    0px -4px 10px rgba(255, 255, 255, 0.3);
+  // text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3),
+  //   0px -4px 10px rgba(255, 255, 255, 0.3);
 `;
 const Title_gpa = styled.p`
   font-size: 2.5rem;
@@ -58,19 +62,20 @@ const Title_gpa = styled.p`
   font-weight: bold;
   //text-align: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3),
-    0px -4px 10px rgba(255, 255, 255, 0.3);
+  // text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3),
+  //   0px -4px 10px rgba(255, 255, 255, 0.3);
 `;
 const Gpa_site = styled.div`
   // border: 1px solid black;
   background-color: whitesmoke;
   border-radius: 10px;
-  width: 30%;
+  width: 40%;
   padding: 2rem 3rem;
   margin-left: 5%;
-  height: 45vh;
+  height: 50vh;
   align-items: center;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2),
+    8px 8px 8px 8px rgba(0, 0, 0, 0.19);
   text-align: center;
 `;
 const Site = styled.div`
@@ -79,9 +84,11 @@ const Site = styled.div`
 `;
 const Btn_site = styled.div`
   position: static;
-  margin-top: 10%;
+  margin-top: 5vh;
   text-align: center;
 `;
+
+const Container = styled.div``;
 class InfoStudent extends Component {
   constructor(props) {
     super(props);
@@ -141,7 +148,7 @@ class InfoStudent extends Component {
     var { student } = this.state;
 
     return (
-      <div className="container">
+      <Container className="container">
         <Title>Thông tin chi tiết</Title>
         <Site>
           <Infor_site>
@@ -150,7 +157,7 @@ class InfoStudent extends Component {
               <Image_div>
                 <img
                   className="avatar"
-                  src="https://i.imgur.com/k88evbb.png"
+                  src={bg_link}
                   width="150px"
                   height="150px"
                 />
@@ -249,7 +256,7 @@ class InfoStudent extends Component {
             <span className="fa fa-save"></span> &nbsp; Ghi nhận
           </button>
         </Btn_site>
-      </div>
+      </Container>
     );
   }
 }

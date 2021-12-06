@@ -79,7 +79,7 @@ class ListStudent extends Component {
     return (
       <div className="Container">
         <div className="text_center">
-          <h1>Quản lý sinh viên</h1>
+          <h1 id="qlsv">Quản lý sinh viên</h1>
         </div>
         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           &nbsp;
@@ -106,6 +106,15 @@ class ListStudent extends Component {
               ))}
             </ul>
           </div>
+          <label
+            style={{
+              paddingTop: "8px",
+              paddingBottom: "2px",
+              marginRight: "10px",
+            }}
+          >
+            {sessionStorage.getItem("item")}
+          </label>
           <Link to="/home/list-students/add" className="btn btn-primary">
             <span className="fa fa-plus"></span> &nbsp; Thêm sinh viên
           </Link>{" "}

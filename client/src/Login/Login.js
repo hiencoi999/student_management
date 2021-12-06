@@ -42,7 +42,7 @@ const _Button = styled.button`
 `;
 
 const Icon = styled.i`
-  padding: 0px 5px 1px 0px;
+  padding: 0px 5px 2px 0px;
   border-bottom: 2px solid #09599b;
   margin-left: 18%;
   // margin-right: 5px;

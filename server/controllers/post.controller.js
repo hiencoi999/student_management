@@ -2,7 +2,7 @@ import Posts from "../models/post.model.js";
 
 export const getPost = async (req, res) => {
   try {
-    const getpost = await Posts.find({});
+    const getpost = await Posts.find({ lop: req.params.item }).select("-lop");
     if (getpost) {
       res.json({ getpost });
     } else {
@@ -15,11 +15,12 @@ export const getPost = async (req, res) => {
 
 export const createPost = async (req, res) => {
   try {
-    const { id, content } = req.body;
+    const { id, content, lop } = req.body;
 
     const newPost = new Posts({
       id,
       content,
+      lop,
     });
     await newPost.save();
 
@@ -73,15 +74,8 @@ export const commentPost = async (req, res) => {
         },
       },
       { new: true, upsert: true }
-      // function (err, managerparent) {
-      //   if (err) throw err;
-
-      // }
     );
-    // const comment = await Posts.findOneAndUpdate(
-    //   { id: req.params.id },
-    //   { $push: { comment: cmt } }
-    // );
+
     if (comment) {
       res.json({ message: "Comment successfully" });
     } else {

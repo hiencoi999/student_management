@@ -80,13 +80,15 @@ function TodoForm(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     // if (!props.edit) {
+    const id = Math.floor(Math.random() * 10000);
     axios.post("http://localhost:5000/post/create", {
-      id: Math.floor(Math.random() * 10000),
+      id: id,
       content: input,
+      lop: sessionStorage.getItem("item"),
     });
 
     props.onSubmit({
-      id: Math.floor(Math.random() * 10000),
+      id: id,
       content: input,
       comment: [],
     });

@@ -15,7 +15,6 @@ const Noti_element = styled.div`
   background-color: #0c67b3;
   padding: 1.5rem 1.5rem 1.5rem 1.5rem;
   margin-top: 10px;
-  margin-bottom: 10px;
   min-height: 8rem;
   box-sizing: border-box;
   border-radius: 20px;
@@ -97,6 +96,7 @@ const Todo = ({ role, todos, removeTodo, updateTodo }) => {
   };
 
   const handleSubmit = (id) => {
+    console.log(id);
     axios.patch(`http://localhost:5000/post/comment/${id}`, {
       msv: sessionStorage.getItem("msv"),
       cmt: cmt,
@@ -242,9 +242,7 @@ const Todo = ({ role, todos, removeTodo, updateTodo }) => {
               placeholder="Thêm phản hồi cho thông báo trên ..."
               onChange={handleChange}
             ></Reply_content>
-            <SendRep_btn onClick={() => handleSubmit(todo.comment, todo.id)}>
-              GỬI
-            </SendRep_btn>
+            <SendRep_btn onClick={() => handleSubmit(todo.id)}>GỬI</SendRep_btn>
           </Noti_reply>
         </div>
       ));

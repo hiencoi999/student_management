@@ -10,6 +10,10 @@ const postSchema = new Schema({
     type: String,
     required: true,
   },
+  lop: {
+    type: String,
+    required: true,
+  },
   comment: [
     {
       msv: String,

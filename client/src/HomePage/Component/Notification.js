@@ -7,6 +7,7 @@ class Notification extends React.Component {
     super(props);
     this.state = {
       role: "",
+      lop: [],
     };
   }
 
@@ -15,14 +16,26 @@ class Notification extends React.Component {
       role: sessionStorage.getItem("role"),
     });
   }
+  ChooseClass = (item) => {
+    sessionStorage.setItem("item", item);
+  };
 
   render() {
-    var { role } = this.state;
-    return (
-      <div className="todo-app">
-        <NotiList role={role} />
-      </div>
-    );
+    var { role, lop } = this.state;
+    console.log(lop);
+    if (role !== "student") {
+      return (
+        <div className="todo-app">
+          <NotiList role={role} />
+        </div>
+      );
+    } else {
+      return (
+        <div className="todo-app">
+          <NotiList role={role} />
+        </div>
+      );
+    }
   }
 }
 
