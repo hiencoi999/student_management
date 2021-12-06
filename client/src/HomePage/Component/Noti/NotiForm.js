@@ -79,27 +79,35 @@ function TodoForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!props.edit) {
-      axios.post("http://localhost:5000/post/create", {
-        id: Math.floor(Math.random() * 10000),
-        content: input,
-      });
+    // if (!props.edit) {
+    axios.post("http://localhost:5000/post/create", {
+      id: Math.floor(Math.random() * 10000),
+      content: input,
+    });
 
-      props.onSubmit({
-        id: Math.floor(Math.random() * 10000),
-        content: input,
-      });
-    } else {
-      console.log(props.edit.id);
-      axios.patch(`http://localhost:5000/post/update/${props.edit.id}`, {
-        content: input,
-      });
-      props.onSubmit({
-        id: props.edit.id,
-        content: input,
-      });
-      setInput("");
-    }
+    props.onSubmit({
+      id: Math.floor(Math.random() * 10000),
+      content: input,
+      comment: [],
+    });
+    // } else {
+    //   axios.patch(`http://localhost:5000/post/update/${props.edit.id}`, {
+    //     content: input,
+    //   });
+    //   const cmt = [];
+    //   console.log(props.todos[0].id, ",", props.edit.id);
+    //   for (let i = 0; i < props.todos.length; i++) {
+    //     if (props.todos[i].id === props.edit.id) {
+    //       cmt.push(props.todos.comment);
+    //     }
+    //   }
+    //   props.onSubmit({
+    //     id: props.edit.id,
+    //     content: input,
+    //     comment: cmt,
+    //   });
+    // }
+    setInput("");
   };
 
   return (

@@ -65,7 +65,7 @@ function TodoList(props) {
     return (
       <Noti_Form>
         <Noti_title>THÔNG BÁO</Noti_title>
-        <NotiForm onSubmit={addTodo} />
+        <NotiForm todos={todos} onSubmit={addTodo} />
         <Noti
           role={role}
           todos={todos}

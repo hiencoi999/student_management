@@ -110,8 +110,8 @@ class ListSV extends Component {
         });
       } else {
         students.sort((student1, student2) => {
-          if (student1.mark > student2.mark) return sort.value;
-          else if (student1.mark < student2.mark) return -sort.value;
+          if (student1.gpa > student2.gpa) return sort.value;
+          else if (student1.gpa < student2.gpa) return -sort.value;
           else return 0;
         });
       }

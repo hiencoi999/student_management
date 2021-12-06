@@ -19,7 +19,7 @@ class OneRowData extends Component {
       <tr height="30px">
         <td className="text_center">{index + 1}</td>
         <td className="text_center">{student.msv}</td>
-        <td className="text_center">{student.name}</td>
+        <td>{student.name}</td>
         <td className="text_center">
           {moment(student.birthday).format("DD/MM/YYYY")}
         </td>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import CallApi from "../API/CallApi";
 import styled from "styled-components";
 import moment from "moment";
-import axios from "axios";
+import "../index.css";
 import avatar from "./avatar.png";
 
 const Title = styled.h2`
@@ -194,8 +194,6 @@ class InfoStudent extends Component {
                 />
               </Left_div>
               <Right_div>
-                <p>Trạng thái: </p>
-                <label>{status}</label>
                 <p>Lớp: </p>
                 <label> {lop} </label>
                 <p>SĐT: </p>
@@ -210,9 +208,8 @@ class InfoStudent extends Component {
                 <textarea
                   style={{
                     width: "90%",
-                    maxHeight: "6rem",
-                    resize: "vertical",
-                    minHeight: "4rem",
+                    resize: "none",
+                    minHeight: "9rem",
                   }}
                   name="address"
                   placeholder={address}
@@ -229,6 +226,16 @@ class InfoStudent extends Component {
             <progress min="0" max="158" value={sum_of_credits}></progress>
             <p style={{ marginTop: "30px" }}>Điểm trung bình :</p>
             <label>{gpa}</label>
+            <p>Trạng thái: </p>
+            <label
+              className={
+                status === "Khen thưởng" || status === "Không"
+                  ? "change_status_green"
+                  : "change_status_red"
+              }
+            >
+              {status}
+            </label>
           </Gpa_site>
         </Site>
         <Btn_site>

@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-pascal-case */
 /* eslint-disable jsx-a11y/alt-text */
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CallApi from "../../API/CallApi";
 import styled from "styled-components";
 import moment from "moment";
+import "../../index.css";
 
 const Title = styled.h2`
   text-align: center;
@@ -33,6 +34,7 @@ const Right_div = styled.div`
   padding-right: 10px;
   padding-left: 10px;
   max-width: 35%;
+  margin-left: 2rem;
 `;
 const Image_div = styled.div`
   padding-top: 30px;
@@ -85,6 +87,11 @@ class InfoStudent extends Component {
     super(props);
     this.state = {
       student: [],
+      name: "",
+      birthday: "",
+      gender: "",
+      phone: "",
+      address: "",
     };
   }
 
@@ -97,18 +104,42 @@ class InfoStudent extends Component {
         console.log(data);
         this.setState({
           student: data,
+          name: data.name,
+          birthday: data.birthday,
+          gender: data.gender,
+          phone: data.phone,
+          address: data.address,
         });
       });
     }
   }
 
-  onChange = () => {
-    console.log("chua lam j ca");
+  onChange = (event) => {
+    var target = event.target;
+    var name = target.name;
+    var value = target.value;
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  onSubmit = (event) => {
+    event.preventDefault();
+    var id = this.props.match.params.id;
+    CallApi(`student/update/${id}`, "PATCH", {
+      name: this.state.name,
+      birthday: this.state.birthday,
+      gender: this.state.gender,
+      phone: this.state.phone,
+      address: this.state.address,
+    }).then((res) => {
+      alert("Cập nhật thành công");
+    });
   };
 
   render() {
     var { student } = this.state;
-    console.log(student);
+
     return (
       <div className="container">
         <Title>Thông tin chi tiết</Title>
@@ -128,31 +159,47 @@ class InfoStudent extends Component {
                 <p>Mã sinh viên: </p>
                 <label>{student.msv}</label>
                 <p style={{ marginTop: "10px" }}>Họ và tên: </p>
-                <label>{student.name}</label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder={student.name}
+                  onChange={this.onChange}
+                  style={{ width: "150px" }}
+                />
                 <p style={{ marginTop: "10px" }}>Ngày sinh:</p>
-                <label>{moment(student.birthday).format("DD/MM/YYYY")}</label>
-                <p>Giới tính:</p>
-                <label>{student.gender}</label>
+                <input
+                  type="text"
+                  name="birthday"
+                  placeholder={moment(student.birthday).format("DD/MM/YYYY")}
+                  onChange={this.onChange}
+                  style={{ width: "150px" }}
+                />
+                <p style={{ marginTop: "10px" }}>Giới tính:</p>
+                <input
+                  type="text"
+                  name="gender"
+                  placeholder={student.gender}
+                  onChange={this.onChange}
+                  style={{ width: "150px" }}
+                />
               </Left_div>
               <Right_div>
                 <p>Lớp:</p>
                 <label>{student.lop}</label>
-                <p>SĐT: </p>
+                <p style={{ marginTop: "10px" }}>SĐT: </p>
                 <input
                   type="text"
                   name="phone"
                   placeholder={student.phone}
                   onChange={this.onChange}
+                  style={{ width: "175px" }}
                 />
-                {/* <p style={{ marginTop: "10px" }}>Địa chỉ E-mail khác: </p>
-                <input type='email' name='email_gg' value={student.email} /> */}
                 <p style={{ marginTop: "10px" }}>Địa chỉ: </p>
                 <textarea
                   style={{
-                    resize: "vertical",
+                    resize: "none",
                     width: "175px",
-                    minHeight: "50px",
-                    maxHeight: "65px",
+                    minHeight: "9rem",
                   }}
                   type="text"
                   name="address"
@@ -174,7 +221,15 @@ class InfoStudent extends Component {
             <p style={{ marginTop: "30px" }}>Điểm trung bình :</p>
             <label>{student.gpa}</label>
             <p>Trạng thái: </p>
-            <label style={{ color: "red" }}>{student.status}</label>
+            <label
+              className={
+                student.status === "Khen thưởng" || student.status === "Không"
+                  ? "change_status_green"
+                  : "change_status_red"
+              }
+            >
+              {student.status}
+            </label>
           </Gpa_site>
         </Site>
         <Btn_site>

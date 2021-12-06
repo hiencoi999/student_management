@@ -6,7 +6,7 @@ import { TiEdit } from "react-icons/ti";
 import styled from "styled-components";
 import Comment from "./Comment";
 import axios from "axios";
-import { BiShow } from "react-icons/bi";
+import { FaReplyAll } from "react-icons/fa";
 
 const Noti_element = styled.div`
   display: flex;
@@ -37,7 +37,7 @@ const Noti_icon = styled.div`
   float: right;
 `;
 const Noti_reply = styled.div`
-  width: 70%;
+  width: 75%;
   display: flex;
   // background-color: blue;
   margin-right: auto;
@@ -49,8 +49,8 @@ const Reply_content = styled.textarea`
   max-height: 5rem;
   resize: none;
   border: none;
-  //padding: 0.5rem 0.5rem;
-  border-radius: 5px 0 0 0;
+  padding: 0.5rem 0.5rem;
+  border-radius: 0 0 0 5px;
   &:focus {
     outline: none;
   }
@@ -70,39 +70,19 @@ const SendRep_btn = styled.button`
       6px 6px 20px 0px rgba(0, 0, 0, 0.19);
   }
 `;
-const Reply_site = styled.div`
-  width: 75%;
-  height: 5rem;
-  max-height: 20vh;
-  margin-right: auto;
-  margin-left: auto;
-  box-sizing: border-box;
-  padding: 0.5rem 0.5rem;
-  background-color: white;
-  border-radius: 0 0 10px 10px;
-  // display: none;
-`;
-const Reply_title = styled.p`
-  width: 50%;
-  margin: auto;
-  font-weight: bold;
-  font-size: 1.5rem;
-  text-align: center;
-  color: #117ed8;
-`;
+
 const Todo = ({ role, todos, removeTodo, updateTodo }) => {
   const [edit, setEdit] = useState({
     id: null,
     value: "",
   });
 
-  const [list, setList] = useState(todos);
-  const [comment, setComment] = useState(false);
+  const [comment, setComment] = useState();
   const [cmt, setCmt] = useState("");
 
   useEffect(() => {
-    setList(todos);
-  }, [todos]);
+    setComment(false);
+  }, []);
 
   const submitUpdate = (value) => {
     updateTodo(edit.id, value);
@@ -112,15 +92,11 @@ const Todo = ({ role, todos, removeTodo, updateTodo }) => {
     });
   };
 
-  const sendComment = () => {
-    setComment(!comment);
-  };
-
   const handleChange = (e) => {
     setCmt(e.target.value);
   };
 
-  const handleSubmit = (comment, id) => {
+  const handleSubmit = (id) => {
     axios.patch(`http://localhost:5000/post/comment/${id}`, {
       msv: sessionStorage.getItem("msv"),
       cmt: cmt,
@@ -132,12 +108,11 @@ const Todo = ({ role, todos, removeTodo, updateTodo }) => {
       }
     }
     setCmt("");
-    setList(todos);
     document.getElementById("input_cmt").value = "";
   };
 
   if (edit.id) {
-    return <NotiForm edit={edit} onSubmit={submitUpdate} />;
+    return <NotiForm todos={todos} edit={edit} onSubmit={submitUpdate} />;
   }
   if (role !== "student") {
     if (comment) {
@@ -146,33 +121,41 @@ const Todo = ({ role, todos, removeTodo, updateTodo }) => {
           <Noti_element className="todo-row" key={index}>
             <Noti_content key={todo.id}>{todo.content}</Noti_content>
             <Noti_icon className="icons">
-              <TiEdit
+              {/* <TiEdit
                 style={{ width: "2rem", height: "2rem", color: "white" }}
                 onClick={() => setEdit({ id: todo.id, value: todo.content })}
                 className="edit-icon"
-              />
-              <span
+              /> */}
+              <FaReplyAll
                 className="fas fa-reply"
-                style={{ width: "2rem", height: "2rem", color: "white" }}
-                onClick={() => sendComment()}
-              ></span>
+                style={{
+                  width: "2rem",
+                  height: "2rem",
+                  color: "white",
+                  marginLeft: "0.5rem",
+                }}
+                onClick={() => setComment(!comment)}
+              ></FaReplyAll>
               <RiCloseCircleLine
-                style={{ width: "2rem", height: "2rem", color: "white" }}
+                style={{
+                  width: "2rem",
+                  height: "2rem",
+                  color: "white",
+                  marginLeft: "0.5rem",
+                }}
                 onClick={() => removeTodo(todo.id)}
                 className="delete-icon"
               />
             </Noti_icon>
           </Noti_element>
-          <Comment comment={todo.comment} />
+          <Comment comments={todo.comment} />
           <Noti_reply>
             <Reply_content
               id="input_cmt"
               placeholder="Thêm phản hồi cho thông báo trên ..."
               onChange={handleChange}
             ></Reply_content>
-            <SendRep_btn onClick={() => handleSubmit(todo.comment, todo.id)}>
-              GỬI
-            </SendRep_btn>
+            <SendRep_btn onClick={() => handleSubmit(todo.id)}>GỬI</SendRep_btn>
           </Noti_reply>
         </div>
       ));
@@ -182,18 +165,28 @@ const Todo = ({ role, todos, removeTodo, updateTodo }) => {
           <Noti_element className="todo-row" key={index}>
             <Noti_content key={todo.id}>{todo.content}</Noti_content>
             <Noti_icon className="icons">
-              <TiEdit
+              {/* <TiEdit
                 style={{ width: "2rem", height: "2rem", color: "white" }}
                 onClick={() => setEdit({ id: todo.id, value: todo.content })}
                 className="edit-icon"
-              />
-              <span
+              /> */}
+              <FaReplyAll
                 className="fas fa-reply"
-                style={{ width: "2rem", height: "2rem", color: "white" }}
-                onClick={() => sendComment()}
-              ></span>
+                style={{
+                  width: "2rem",
+                  height: "2rem",
+                  color: "white",
+                  marginLeft: "0.5rem",
+                }}
+                onClick={() => setComment(!comment)}
+              ></FaReplyAll>
               <RiCloseCircleLine
-                style={{ width: "2rem", height: "2rem", color: "white" }}
+                style={{
+                  width: "2rem",
+                  height: "2rem",
+                  color: "white",
+                  marginLeft: "0.5rem",
+                }}
                 onClick={() => removeTodo(todo.id)}
                 className="delete-icon"
               />
@@ -204,25 +197,45 @@ const Todo = ({ role, todos, removeTodo, updateTodo }) => {
     }
   } else {
     if (comment === false) {
-      return list.map((todo, index) => (
+      return todos.map((todo, index) => (
         <div>
           <Noti_element className="todo-row" key={index}>
             <Noti_content key={todo.id}>{todo.content}</Noti_content>
-            <button className="btn btn-warning" onClick={() => sendComment()}>
-              Phản hồi
-            </button>
+            <Noti_icon>
+              <FaReplyAll
+                className="fas fa-reply"
+                style={{
+                  width: "2rem",
+                  height: "2rem",
+                  color: "white",
+                  marginLeft: "2rem",
+                }}
+                onClick={() => setComment(!comment)}
+              ></FaReplyAll>{" "}
+            </Noti_icon>
           </Noti_element>
           <Noti_reply></Noti_reply>
         </div>
       ));
     } else {
-      return list.map((todo, index) => (
+      return todos.map((todo, index) => (
         <div>
           <Noti_element className="todo-row" key={index}>
             <Noti_content key={todo.id}>{todo.content}</Noti_content>
-            <button className="btn btn-warning">Phản hồi</button>
+            <Noti_icon>
+              <FaReplyAll
+                className="fas fa-reply"
+                style={{
+                  width: "2rem",
+                  height: "2rem",
+                  color: "white",
+                  marginLeft: "2rem",
+                }}
+                onClick={() => setComment(!comment)}
+              ></FaReplyAll>{" "}
+            </Noti_icon>
           </Noti_element>
-          <Comment comment={todo.comment} />
+          <Comment comments={todo.comment} />
           <Noti_reply>
             <Reply_content
               id="input_cmt"

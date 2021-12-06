@@ -22,20 +22,27 @@ const Container = styled.div`
   width: 100%;
 `;
 const Chart1 = styled.div`
-  margin-left: 150px;
-  margin-bottom: 20px;
-  width: 950px;
+  margin: auto;
+  width: 75%;
   padding: 0px;
+  margin-bottom: 20px;
   border: 1px solid black;
   border-radius: 10px;
 `;
 const Chart2 = styled.div`
-  width: 520px;
-  margin-left: 350px;
-  margin-top: 20px;
+  width: 75%;
+  margin: auto;
   margin-bottom: 20px;
   border: 1px solid black;
   border-radius: 10px;
+`;
+const Center2 = styled.div`
+  max-width: 50%;
+  margin: auto;
+`;
+const Center1 = styled.div`
+  max-width: 90%;
+  margin: auto;
 `;
 class Chart extends Component {
   constructor(props) {
@@ -212,37 +219,47 @@ class Chart extends Component {
         </div>
         <br /> <br />
         <Chart2>
-          <PieChart width={500} height={450}>
-            <Pie
-              data={data_pie_chart}
-              isAnimationActive={true}
-              cx="50%"
-              cy="50%"
-              label={renderCustom}
-              outerRadius={80}
-              fill="#8884d8"
-              dataKey="value"
-            >
-              {data_pie_chart.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              ))}
-            </Pie>
-            <Tooltip />
-            <Legend />
-          </PieChart>
+          <h3 style={{ textAlign: "center" }}>
+            BIỂU ĐỒ THỐNG KÊ GPA SINH VIÊN
+          </h3>
+          <Center2>
+            <PieChart width={500} height={450}>
+              <Pie
+                data={data_pie_chart}
+                isAnimationActive={true}
+                cx="50%"
+                cy="50%"
+                label={renderCustom}
+                outerRadius={120}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {data_pie_chart.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+              <Tooltip />
+              <Legend />
+            </PieChart>{" "}
+          </Center2>
         </Chart2>
         <Chart1>
-          <ComposedChart width={900} height={500} data={data_bar_chart}>
-            <CartesianGrid stroke="#f5f5f5" />
-            <XAxis dataKey="name" scale="band" />
-            <YAxis />
-            <Tooltip />
-            <Bar dataKey="Số_SV" barSize={50} fill="#413ea0" />
-            <Line type="monotone" dataKey="Số_SV" stroke="#ff7300" />
-          </ComposedChart>
+          <h3 style={{ textAlign: "center" }}>
+            BIỂU ĐỒ THỐNG KÊ TRẠNG THÁI SINH VIÊN
+          </h3>
+          <Center1>
+            <ComposedChart width={900} height={500} data={data_bar_chart}>
+              <CartesianGrid stroke="#f5f5f5" />
+              <XAxis dataKey="name" scale="band" />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="Số_SV" barSize={50} fill="#413ea0" />
+              <Line type="monotone" dataKey="Số_SV" stroke="#ff7300" />
+            </ComposedChart>
+          </Center1>
         </Chart1>
       </Container>
     );

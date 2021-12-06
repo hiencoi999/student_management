@@ -94,3 +94,10 @@ code {
 /* .ce-chat-card{
   background-image: linear-gradient(to bottom right, lightblue, darksalmon) !important;
 } */
+
+.change_status_red {
+  color: red;
+}
+.change_status_green {
+  color : green;
+}
