@@ -56,22 +56,7 @@ const Title = styled.p`
   color: #2573b3;
   padding: 20px 0px 20px 0px;
 `;
-const Title1 = styled.p`
-  width: 150px;
-  margin: auto;
-  text-align: center;
-  font-family: "Poppins", sans-serif;
-  font-weight: bold;
-  font-size: 1.5rem;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  opacity: 0.8;
-  transition: all 0.3s ease;
-  &:hover {
-    cursor: pointer;
-    opacity: 1;
-  }
-`;
+
 const Form = styled.form`
   width: 400px;
   height: 500px;
@@ -257,7 +242,6 @@ class Login extends Component {
                   ></_Input>
                 </Input_container>
                 <br />
-                <Title1>Quên mật khẩu?</Title1>
                 <_Button onClick={this.submit}>Đăng nhập</_Button>
                 <br />
               </Form>

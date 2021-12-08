@@ -219,7 +219,7 @@ class InfoStudent extends Component {
           <Gpa_site>
             <Title_gpa>Điểm số</Title_gpa>
             <p>Tổng số tín chỉ đã đăng ký:</p>
-            <label>{student.sum_of_credits}/153</label> <br />
+            <label>{student.sum_of_credits}/158</label> <br />
             <progress
               min="0"
               max="158"
@@ -230,9 +230,15 @@ class InfoStudent extends Component {
             <p>Trạng thái: </p>
             <label
               className={
-                student.status === "Khen thưởng" || student.status === "Không"
+                student.status === "Khen thưởng"
                   ? "change_status_green"
-                  : "change_status_red"
+                  : student.status === "Thiếu tín chỉ" ||
+                    student.status === "Thiếu học phí"
+                  ? "change_status_yellow"
+                  : student.status === "Nguy cơ nghỉ học" ||
+                    student.status === "Cảnh báo học vụ"
+                  ? "change_status_red"
+                  : ""
               }
             >
               {student.status}

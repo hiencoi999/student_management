@@ -227,7 +227,7 @@ class Chart extends Component {
         <br /> <br />
         <Chart2>
           <h3 style={{ textAlign: "center" }}>
-            BIỂU ĐỒ THỐNG KÊ GPA SINH VIÊN
+            BIỂU ĐỒ THỐNG KÊ TỔNG GPA SINH VIÊN
           </h3>
           <Center2>
             <PieChart width={500} height={450}>
@@ -261,7 +261,7 @@ class Chart extends Component {
             <ComposedChart width={900} height={500} data={data_bar_chart}>
               <CartesianGrid stroke="#f5f5f5" />
               <XAxis dataKey="name" scale="band" />
-              <YAxis />
+              <YAxis allowDecimals={false} />
               <Tooltip />
               <Bar dataKey="Số_SV" barSize={50} fill="#413ea0" />
               <Line type="monotone" dataKey="Số_SV" stroke="#ff7300" />

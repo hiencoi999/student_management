@@ -3,7 +3,6 @@
 import React, { Component } from "react";
 import Sort from "./Sort";
 import OneRowData from "./OneRowData";
-import CallApi from "./../../API/CallApi";
 
 class ListSV extends Component {
   constructor(props) {

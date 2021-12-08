@@ -4,6 +4,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import "../../index.css";
 
 class OneRowData extends Component {
   onDelete = (_id, msv) => {
@@ -25,7 +26,23 @@ class OneRowData extends Component {
         </td>
         <td className="text_center">{student.gender}</td>
         <td className="text_center">{student.gpa}</td>
-        <td className="text_center">{student.status}</td>
+        <td className="text_center">
+          <span
+            className={
+              student.status === "Khen thưởng"
+                ? "change_status_green"
+                : student.status === "Thiếu tín chỉ" ||
+                  student.status === "Thiếu học phí"
+                ? "change_status_yellow"
+                : student.status === "Nguy cơ nghỉ học" ||
+                  student.status === "Cảnh báo học vụ"
+                ? "change_status_red"
+                : ""
+            }
+          >
+            {student.status}
+          </span>
+        </td>
         <td className="text_center">
           <Link
             to={`/home/list-students/update/${student._id}`}

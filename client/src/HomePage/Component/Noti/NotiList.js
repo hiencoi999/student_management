@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-pascal-case */
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect } from "react";
 import NotiForm from "./NotiForm";
 import Noti from "./Noti";
 import styled from "styled-components";

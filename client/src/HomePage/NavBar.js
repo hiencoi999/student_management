@@ -154,7 +154,6 @@ class NavBar extends Component {
       chooseChat,
       chooseList,
       chooseChart,
-      chooseInfoTeacher,
       chooseProfile,
     } = this.state;
     return (
@@ -183,6 +182,39 @@ class NavBar extends Component {
               </li>
 
               <li
+                id="bangdiem"
+                className={
+                  (chooseList ? "home" : "") +
+                  (role === "student" ? "student" : "")
+                }
+                onClick={this.chooseList}
+              >
+                <Link to="/home/list-students">
+                  {/* danh sach sinh vien */}
+                  <div className="icon">
+                    <BsClipboardData />
+                  </div>
+                  <span className="links_name">Sinh viên</span>
+                </Link>
+                <span className="tooltip">Sinh viên</span>
+              </li>
+              <li
+                className="chart"
+                className={
+                  (chooseChart ? "home" : "") +
+                  (role === "student" ? "student" : "")
+                }
+                onClick={this.chooseChart}
+              >
+                <Link to="/home/chart">
+                  <div className="icon">
+                    <span className="fa fa-chart-bar"></span>
+                  </div>
+                  <span className="links_name">Biểu đồ điểm</span>
+                </Link>
+                <span className="tooltip">Biểu đồ điểm</span>
+              </li>
+              <li
                 className={chooseNoti ? "home" : ""}
                 onClick={this.chooseNoti}
               >
@@ -208,39 +240,7 @@ class NavBar extends Component {
                   <span className="tooltip">Chat</span>
                 </Link>
               </li>
-              <li
-                id="bangdiem"
-                className={
-                  (chooseList ? "home" : "") +
-                  (role === "student" ? "student" : "")
-                }
-                onClick={this.chooseList}
-              >
-                <Link to="/home/list-students">
-                  {/* danh sach sinh vien */}
-                  <div className="icon">
-                    <BsClipboardData />
-                  </div>
-                  <span className="links_name">DS Sinh viên</span>
-                </Link>
-                <span className="tooltip">DS Sinh viên</span>
-              </li>
-              <li
-                className="chart"
-                className={
-                  (chooseChart ? "home" : "") +
-                  (role === "student" ? "student" : "")
-                }
-                onClick={this.chooseChart}
-              >
-                <Link to="/home/chart">
-                  <div className="icon">
-                    <span className="fa fa-chart-bar"></span>
-                  </div>
-                  <span className="links_name">Biểu đồ điểm</span>
-                </Link>
-                <span className="tooltip">Biểu đồ điểm</span>
-              </li>
+
               <li
                 className="profile"
                 className={

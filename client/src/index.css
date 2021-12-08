@@ -101,3 +101,7 @@ code {
 .change_status_green {
   color : green;
 }
+
+.change_status_yellow {
+  color: #f0a600;
+}

@@ -231,9 +231,14 @@ class InfoStudent extends Component {
             <p>Trạng thái: </p>
             <label
               className={
-                status === "Khen thưởng" || status === "Không"
+                status === "Khen thưởng"
                   ? "change_status_green"
-                  : "change_status_red"
+                  : status === "Thiếu tín chỉ" || status === "Thiếu học phí"
+                  ? "change_status_yellow"
+                  : status === "Nguy cơ nghỉ học" ||
+                    status === "Cảnh báo học vụ"
+                  ? "change_status_red"
+                  : ""
               }
             >
               {status}
