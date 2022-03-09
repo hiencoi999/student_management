@@ -117,7 +117,6 @@ export const importFromExcel = async (req, res) => {
       });
       await dataUser[i].save();
       jwt.sign({ userId: dataUser[i]._id }, process.env.ACCESS_TOKEN_SECRET);
-
       axios.post(
         "https://api.chatengine.io/users/",
         {

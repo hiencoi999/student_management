@@ -75,7 +75,6 @@ export const commentPost = async (req, res) => {
       },
       { new: true, upsert: true }
     );
-
     if (comment) {
       res.json({ message: "Comment successfully" });
     } else {

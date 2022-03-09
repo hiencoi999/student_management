@@ -20,7 +20,6 @@ mongoose
   .connect(DB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    // useFindandModify: false
   })
   .catch((error) => console.log(error));
 
